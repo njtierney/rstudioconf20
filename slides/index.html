@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Exploring and understanding the individual experience from longitudinal data, or…</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Nicholas Tierney, Monash University" />
+    <link href="libs/font-awesome-5.3.1/css/fontawesome-all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="njtheme.css" type="text/css" />
+    <link rel="stylesheet" href="extra.css" type="text/css" />
+    <link rel="stylesheet" href="animate.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: left, middle, inverse, title-slide
+
+# Exploring and understanding the individual experience from longitudinal data, or…
+## <em>How to make better spaghetti (plots)</em>
+### <span style="font-size: 90%;">Nicholas Tierney, Monash University</span>
+### <span style="font-size: 90%;">WOMBAT <br><br> Thursday 28th November, 2019 </span><br><br> <i class="fas  fa-link "></i> <a href="https://bit.ly/njt-wombat">bit.ly/njt-wombat</a><br><br><i class="fab  fa-twitter "></i> <a href="https://twitter.com/nj_tierney">nj_tierney</a>
+
+---
+
+
+layout: true
+&lt;div class="my-footer"&gt;&lt;span&gt;bit.ly/njt-wombat • @nj_tierney&lt;/span&gt;&lt;/div&gt; 
+
+
+
+
+
+
+
+
+
+---
+class: inverse, middle, center
+
+# A Bit About Me
+
+---
+
+## Background: Undergraduate
+
+.pull-left.large[
+Undergraduate in Psychology
+
+- Statistics
+- Experiment Design
+- Cognitive Theory
+- Neurology
+- Humans
+]
+
+.pull-right[
+&lt;img src="imgs/psy_brain.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Background: PhD
+
+.pull-left.large[
+- "Ah, statistics, everything is black and white!
+- "There's always an answer"
+- "data in, answer out"
+]
+
+
+.pull-right[
+&lt;img src="imgs/bw-mountains.jpg" width="1778" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+## Background: PhD
+
+.pull-left.large[
+
+- Data is really messy
+- Missing values are frustrating
+- How to Explore data?
+
+]
+
+.pull-right[
+&lt;img src="imgs/explorer.jpg" width="569" style="display: block; margin: auto;" /&gt;
+
+]
+
+
+
+---
+
+# EDA: Why it's worth it
+
+--
+
+&lt;img src="gifs/dino-saurus.gif" style="display: block; margin: auto;" /&gt;
+
+-- From ["Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical Statistics through Simulated Annealing"](https://www.autodeskresearch.com/publications/samestats)
+
+
+---
+
+## (My personal) motivation
+
+.large.pull-left[
+**A lot** of research in new statistical methods, e.g., imputation, inference, prediction
+]
+
+--
+
+.large.pull-right[
+**Not much** research on **how** we explore data
+]
+
+---
+
+## (My personal) motivation
+
+.pull-left[
+&lt;img src="imgs/bw-bridge.jpg" width="2560" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right.large[
+  &gt; Focus on building a bridge across a river. Less focus on **how** it is built, and the **tools** used.
+]
+
+???
+
+- I became very interested in how we explore our data - exploratory data analysis.
+
+---
+class: inverse, middle, center
+
+.huge[
+My research:
+
+Design and improve tools for (exploratory) data analysis
+]
+
+---
+class: inverse, middle, center
+
+
+&lt;img src="imgs/hex-visdat-and-naniar.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+.pull-left[
+.center[
+.hugew[
+[visdat.njtierney.com](https://visdat.njtierney.com)
+]
+]
+]
+
+.pull-right[
+.center[
+.hugew[
+[naniar.njtierney.com](https://naniar.njtierney.com)
+]
+]
+]
+
+---
+class: middle, center, inverse
+
+.vhuge[Current work:]
+
+.huge[
+How to explore longitudinal data effectively
+]
+
+---
+class: inverse, middle,
+
+# What is longitudinal data?
+
+.huge[
+&gt; Something observed sequentially over time
+]
+
+
+---
+
+# What is longitudinal data?
+
+.large[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; country &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; year &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; height_cm &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Australia &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1910 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 173 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+
+# What is longitudinal data?
+
+.large[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; country &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; year &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; height_cm &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Australia &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1910 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 173 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Australia &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1920 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 173 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+
+# What is longitudinal data?
+
+.large[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; country &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; year &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; height_cm &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Australia &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1910 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 173 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Australia &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1920 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 173 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Australia &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1960 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 176 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+
+# What is longitudinal data?
+
+.large[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; country &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; year &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; height_cm &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Australia &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1910 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 173 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Australia &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1920 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 173 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Australia &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1960 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 176 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Australia &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1970 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 178 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+
+&lt;img src="gifs/reveal-height-1.gif" width="150%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# All of Australia
+
+&lt;img src="figures/gg-all-australia-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# ...And New Zealand
+
+&lt;img src="figures/gg-show-a-few-countries-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# And the rest?
+
+&lt;img src="gifs/animate-all-data-1.gif" style="display: block; margin: auto;" /&gt;
+
+---
+
+# And the rest?
+
+&lt;img src="figures/gg-show-all-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="gifs/noodle-explode.gif" width="50%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# Problems:
+
+.pull-left.large[
+- Overplotting
+- We don't see the individuals
+- We could look at 144 individual plots, but this doesn't help.
+]
+
+.pull-right[
+&lt;img src="figures/gg-heights-heights-again-1.png" width="936" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Answers: Transparency?
+
+--
+
+&lt;img src="figures/gg-show-all-w-alpha-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Answers: Transparency + a model?
+
+&lt;img src="figures/gg-show-all-w-model-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+???
+
+- This helps reduce the overplotting
+- It's not that this is wrong, it is useful - but we lose the individuals
+- We only get the overall average. We dont get the rest of the information
+- How do we even get started?
+---
+
+
+# But we forget about the **individuals**
+
+&lt;img src="figures/heights-dec-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+???
+
+- The model might make some good overall predictions
+- But it can be really _ill suited_ for some individual
+- Exploring this is somewhat clumsy - we need another way to explore
+
+---
+class: inverse, middle 
+
+.large[
+Problem #1: How do I look at **some** of the data?
+]
+
+--
+
+.large[
+Problem #2: How do I find **interesting** observations?
+]
+
+
+---
+
+# Introducing `brolgar`: brolgar.njtierney.com
+
+.pull-left.large[
+* **br**owsing
+* **o**ver
+* **l**ongitudinal data 
+* **g**raphically, and
+* **a**nalytically, in
+* **r**
+]
+
+.pull-right[
+&lt;img src="imgs/brolga-bird.jpg" width="569" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+* It's a crane, it fishes, and it's a native Australian bird
+
+
+---
+
+&lt;img src="figures/gg-remind-spaghetti-1.png" width="200%" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: inverse, middle, center
+
+# What is longitudinal data?
+
+--
+
+.vlarge[
+&gt; Something observed sequentially over time
+]
+
+---
+class: inverse, middle, center
+
+# What is longitudinal data?
+
+
+.vlarge[
+&gt; ~~Something~~ **Anything that is** observed sequentially over time **is a time series**
+]
+
+---
+class: inverse, middle, center
+
+# ~~What is longitudinal data?~~ Longitudinal data is a time series.
+
+
+.vlarge[
+&gt; ~~Something~~ **Anything that is** observed sequentially over time **is a time series**
+]
+
+.large[
+[-- Rob Hyndman and George Athanasopolous,
+Forecasting: Principles and Practice](https://otexts.com/fpp2/data-methods.html)
+]
+
+---
+
+# Longitudinal data as a time series &lt;img src="https://tsibble.tidyverts.org/reference/figures/logo.png" align="right" height=140/&gt;
+
+
+
+```r
+heights &lt;- as_tsibble(heights,
+                      index = year,
+                      key = country,
+*                     regular = FALSE)
+```
+
+1. **index**: Your time variable
+2. **key**: Variable(s) defining individual groups (or series)
+
+`1. +  2.` determine distinct rows in a tsibble.
+
+(From Earo Wang's talk: [Melt the clock](https://slides.earo.me/rstudioconf19/#8))
+
+---
+
+# Longitudinal data as a time series &lt;img src="https://tsibble.tidyverts.org/reference/figures/logo.png" align="right" height=140/&gt;
+
+## Key Concepts:
+
+.large[
+Record important time series information once, and use it many times in other places
+
+- We add information about **index** + **key**:
+  - Index = Year
+  - Key = Country
+]
+---
+
+.large[
+
+```
+## # A tsibble: 1,490 x 3 [!]
+## # Key:       country [144]
+##   country      year height_cm
+##   &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Afghanistan  1870      168.
+## 2 Afghanistan  1880      166.
+## 3 Afghanistan  1930      167.
+## 4 Afghanistan  1990      167.
+## 5 Afghanistan  2000      161.
+## 6 Albania      1880      170.
+## # … with 1,484 more rows
+```
+]
+
+---
+class: inverse, middle, center
+
+.huge[
+Remember: 
+
+**key**  = variable(s) defining individual groups (or series)
+]
+
+---
+
+# Problem #1: How do I look at **some** of the data?
+
+--
+
+.pull-left.large[
+Look at only a sample of the data:
+]
+
+.pull-right.large[
+&lt;img src="figures/ggplot-sample-keys-1.png" width="936" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Sample `n` rows with `sample_n()`
+
+
+
+
+--
+
+
+```r
+heights %&gt;% sample_n(5)
+```
+
+--
+
+
+```
+## # A tsibble: 5 x 3 [!]
+## # Key:       country [5]
+##   country           year height_cm
+##   &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Cambodia          1860      165.
+## 2 Bolivia           1890      164.
+## 3 Macedonia         1930      169.
+## 4 United States     1920      173.
+## 5 Papua New Guinea  1880      152.
+```
+
+
+
+---
+
+# Sample `n` rows with `sample_n()`
+
+&lt;img src="figures/plot-sample-n-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# Sample `n` rows with `sample_n()`
+
+
+```
+## # A tsibble: 5 x 3 [!]
+## # Key:       country [5]
+##   country           year height_cm
+##   &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Cambodia          1860      165.
+## 2 Bolivia           1890      164.
+## 3 Macedonia         1930      169.
+## 4 United States     1920      173.
+## 5 Papua New Guinea  1880      152.
+```
+
+--
+
+.large[
+... sampling needs to select not random rows of the data, but the **keys - the countries**.
+]
+
+---
+
+
+# `sample_n_keys()` to sample ... **keys**
+
+
+```r
+sample_n_keys(heights, 5)
+```
+
+
+```
+## # A tsibble: 32 x 3 [!]
+## # Key:       country [5]
+##   country     year height_cm
+##   &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Congo, DRC  1810      163.
+## 2 Congo, DRC  1870      166.
+## 3 Congo, DRC  1880      163.
+## 4 Congo, DRC  1890      163.
+## 5 Congo, DRC  1910      165.
+## 6 Congo, DRC  1920      163.
+## # … with 26 more rows
+```
+
+---
+
+# `sample_n_keys()` to sample ... **keys**
+
+&lt;img src="figures/ggplot-sample-keys-2-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Problem #1: How do I look at **some** of the data?
+
+
+.large[
+~~Look at subsamples~~
+]
+
+--
+
+.large[
+Sample **keys** with `sample_n_keys()`
+]
+
+--
+
+.large[
+Look at **many** subsamples
+]
+
+--
+
+.largeright[
+**?**
+]
+
+---
+
+# Portion out your spaghetti! 🍝 🍝 🍝 🍝
+
+&lt;img src="figures/all-heights-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Look at **one** set of subsamples 🍝
+
+&lt;img src="figures/all-heights-samples-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Look at **many** subsamples 🍝 🍝
+
+&lt;img src="figures/heights-strata-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+---
+
+# **How** to look at many subsamples
+
+.large[
+- How many facets to look at? (2, 4, ... 16?)
+]
+
+--
+
+.large[
+- How many keys per facets?
+  - 144 keys into 16 facets = 9 each
+]
+
+--
+
+.large[
+- Randomly pick 16 groups of size 9.
+]
+
+--
+
+.large[
+- This might not look like much extra work, but it hits the
+**distraction threshold** quite quickly.
+]
+
+---
+
+&lt;iframe width="1020" height="630" src="https://www.youtube.com/embed/AbSehcT19u0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+---
+
+# Distraction threshold (time to rabbit hole)
+
+--
+
+.large[
+
+(Something I made up)
+]
+
+--
+
+.large[
+&gt; If solving a problem requires solving **3+ smaller problems**
+
+&gt; Your focus shifts from the current goal to something else. 
+
+&gt; You are distracted.
+
+]
+
+???
+
+- Task one
+
+- Task one being overshadowed slightly by minor task 1
+- Task one being overshadowed slightly by minor task 2
+- Task one being overshadowed slightly by minor task 3
+
+---
+
+# Distraction threshold (time to rabbit hole)
+
+**I want to look at many subsamples of the data** 
+
+--
+
+How many keys are there?
+
+--
+
+How many facets do I want to look at
+
+--
+
+How many keys per facet should I look at
+
+--
+
+How do I ensure there are the same number of keys per plot
+
+--
+
+What is `rep`, `rep.int`, and `rep_len`?
+
+--
+
+Do I want `length.out` or `times`?
+
+
+---
+
+&lt;img src="imgs/what-year-is-it.jpg" width="70%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# Avoiding the rabbit hole
+
+--
+
+.large[
+We can blame ourselves when we are distracted for **not being better**.
+]
+
+--
+
+.large[
+It's not that we should be better, rather **with better tools we could be more efficient**. 
+]
+
+--
+
+.large[
+We need to make things **as easy as reasonable**, with the least amount of distraction.
+]
+
+
+---
+
+# Remove distraction by asking relevant questions
+
+--
+
+.large[
+&gt; How many keys per facet?
+
+&gt; How many plots do I want to look at?
+]
+
+--
+
+
+```r
+facet_sample(
+*   n_per_facet = 3,
+*   n_facets = 9
+  )
+```
+
+---
+
+&lt;img src="figures/show-facet-sample-print-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# `facet_sample()`: See more individuals
+
+
+```r
+ggplot(heights, aes(x = year, 
+                    y = height_cm, 
+                    group = country)) + 
+  geom_line() 
+```
+
+&lt;img src="figures/gg-facet-sample-all-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# `facet_sample()`: See more individuals
+
+
+```r
+ggplot(heights,
+       aes(x = year,
+             y = height_cm,
+             group = country)) + 
+  geom_line() + 
+* facet_sample()
+```
+
+---
+
+# `facet_sample()`: See more individuals
+
+&lt;img src="figures/print-gg-facet-sample-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+---
+
+# How to see **all** individuals?
+
+--
+
+# `facet_strata()`
+
+
+```r
+ggplot(heights,
+       aes(x = year,
+           y = height_cm,
+           group = country)) + 
+  geom_line() + 
+* facet_strata()
+```
+
+---
+
+# `facet_strata()`: See **all** individuals
+
+&lt;img src="figures/print-gg-facet-strata-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Can we re-order these facets in a meaningful way?
+
+&lt;img src="figures/print-gg-facet-strata-again-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+???
+
+In asking these questions we can solve something else interesting
+
+---
+
+## `facet_strata(along = -year)`: see all individuals **along** some variable
+
+
+```r
+ggplot(heights,
+       aes(x = year,
+           y = height_cm,
+           group = country)) + 
+  geom_line() + 
+* facet_strata(along = -year)
+```
+
+---
+
+## `facet_strata(along = -year)`: see all individuals **along** some variable
+
+&lt;img src="figures/print-gg-facet-strata-along-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# Focus on answering relevant questions instead of the minutae:
+
+.pull-left[
+"How many lines per facet"
+
+"How many facets?"
+
+
+```r
+  facet_sample(
+*   n_per_facet = 10,
+*   n_facets = 12
+    ) 
+```
+
+]
+
+--
+
+.pull-right[
+"How many facets to put all the data in?"
+
+"How to arrange plots **along**?"
+
+
+```r
+  facet_strata(
+*   n_strata = 10,
+*   along = -year
+    ) 
+```
+
+]
+
+---
+
+# `facet_strata()` &amp; `facet_sample()` Under the hood
+
+.large[
+<i class="fas  fa-industry "></i> using `sample_n_keys()` &amp; `stratify_keys()`
+]
+
+--
+
+.large[
+You can still get at data and do manipulations
+]
+
+---
+
+## Problem #1: How do I look at some of the data?
+
+--
+
+.left-code.large[
+
+`as_tsibble()`
+
+`sample_n_keys()`
+
+`facet_sample()`
+
+`facet_strata()`
+
+]
+
+--
+
+
+.right-plot.large[
+
+Store useful information
+
+View subsamples of data
+
+View **many** subsamples
+
+View **all** subsamples
+
+]
+
+
+---
+
+## ~~Problem #1: How do I look at some of the data?~~
+
+.left-code.large[
+
+`as_tsibble()`
+
+`sample_n_keys()`
+
+`facet_sample()`
+
+`facet_strata()`
+
+]
+
+.right-plot.large[
+
+Store useful information
+
+View subsamples of data
+
+View many subsamples
+
+View all subsamples
+
+]
+
+
+---
+
+## Problem #2: How do I find **interesting** observations?
+
+&lt;img src="figures/quite-interesting-obs-2-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+---
+class: inverse, center, middle
+
+.huge[
+A workflow
+]
+
+--
+
+.huge[
+Define what is interesting
+]
+
+--
+
+.huge[
+maximum height
+]
+
+---
+
+## Identify features: one observation per **key**
+
+
+
+
+&lt;img src="gifs/anim-line-flat-max-1.gif" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Identify features: one observation per **key**
+
+&lt;img src="figures/show-line-range-point-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Identify features: one observation per **key**
+
+&lt;img src="figures/gg-show-point-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Identify important features and decide how to filter 
+
+&lt;img src="figures/gg-show-red-points-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Identify important features and decide how to filter 
+
+&lt;img src="figures/gg-just-red-points-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Join this feature back to the data
+
+&lt;img src="figures/gg-join-red-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Join this feature back to the data
+
+&lt;img src="figures/gg-join-red-show-all-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 🎉 Countries with smallest and largest max height
+
+&lt;img src="figures/show-red-all-again-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+---
+class: inverse, middle, cetner
+
+.vhuge[
+Let's see that **one more time**, but with the data
+]
+
+---
+
+## Identify features: one observation per **key**
+
+
+```
+## # A tsibble: 1,490 x 3 [!]
+## # Key:       country [144]
+##    country      year height_cm
+##    &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Afghanistan  1870      168.
+##  2 Afghanistan  1880      166.
+##  3 Afghanistan  1930      167.
+##  4 Afghanistan  1990      167.
+##  5 Afghanistan  2000      161.
+##  6 Albania      1880      170.
+##  7 Albania      1890      170.
+##  8 Albania      1900      169.
+##  9 Albania      2000      168.
+## 10 Algeria      1910      169.
+## # … with 1,480 more rows
+```
+
+---
+
+## Identify features: one observation per **key**
+
+
+
+
+```
+## # A tibble: 144 x 6
+##    country       min   q25   med   q75   max
+##    &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 Afghanistan  161.  164.  167.  168.  168.
+##  2 Albania      168.  168.  170.  170.  170.
+##  3 Algeria      166.  168.  169   170.  171.
+##  4 Angola       159.  160.  167.  168.  169.
+##  5 Argentina    167.  168.  168.  170.  174.
+##  6 Armenia      164.  166.  169.  172.  172.
+##  7 Australia    170   171.  172.  173.  178.
+##  8 Austria      162.  164.  167.  169.  179.
+##  9 Azerbaijan   170.  171.  172.  172.  172.
+## 10 Bahrain      161.  161.  164.  164.  164 
+## # … with 134 more rows
+```
+
+---
+
+## Identify important features and decide how to filter 
+
+
+```r
+heights_five %&gt;% 
+  filter(max == max(max) | max == min(max))
+```
+
+```
+## # A tibble: 2 x 6
+##   country            min   q25   med   q75   max
+##   &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 Denmark           165.  168.  170.  178.  183.
+## 2 Papua New Guinea  152.  152.  156.  160.  161.
+```
+
+---
+
+## Join summaries back to data
+
+
+```r
+heights_five %&gt;% 
+  filter(max == max(max) | max == min(max)) %&gt;% 
+  left_join(heights, by = "country")
+```
+
+```
+## # A tibble: 21 x 8
+##    country   min   q25   med   q75   max  year height_cm
+##    &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Denmark  165.  168.  170.  178.  183.  1820      167.
+##  2 Denmark  165.  168.  170.  178.  183.  1830      165.
+##  3 Denmark  165.  168.  170.  178.  183.  1850      167.
+##  4 Denmark  165.  168.  170.  178.  183.  1860      168.
+##  5 Denmark  165.  168.  170.  178.  183.  1870      168.
+##  6 Denmark  165.  168.  170.  178.  183.  1880      170.
+##  7 Denmark  165.  168.  170.  178.  183.  1890      169.
+##  8 Denmark  165.  168.  170.  178.  183.  1900      170.
+##  9 Denmark  165.  168.  170.  178.  183.  1910      170 
+## 10 Denmark  165.  168.  170.  178.  183.  1920      174.
+## # … with 11 more rows
+```
+
+---
+
+&lt;img src="gifs/dog-solve-problem.gif" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Identify features: one per **key** &lt;img src="https://feasts.tidyverts.org/reference/figures/logo.png" align="right" height=140/&gt;
+
+
+```r
+heights %&gt;%
+* features(height_cm,
+*          feat_five_num)
+```
+ 
+
+```
+## # A tibble: 144 x 6
+##   country       min   q25   med   q75   max
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 Afghanistan  161.  164.  167.  168.  168.
+## 2 Albania      168.  168.  170.  170.  170.
+## 3 Algeria      166.  168.  169   170.  171.
+## 4 Angola       159.  160.  167.  168.  169.
+## 5 Argentina    167.  168.  168.  170.  174.
+## 6 Armenia      164.  166.  169.  172.  172.
+## # … with 138 more rows
+```
+
+---
+
+## What is the range of the data? `feat_ranges`
+
+
+```r
+heights %&gt;%
+  features(height_cm, feat_ranges)
+```
+
+```
+## # A tibble: 144 x 5
+##    country       min   max range_diff   iqr
+##    &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;
+##  1 Afghanistan  161.  168.       7     3.27
+##  2 Albania      168.  170.       2.20  1.53
+##  3 Algeria      166.  171.       5.06  2.15
+##  4 Angola       159.  169.      10.5   7.87
+##  5 Argentina    167.  174.       7     2.21
+##  6 Armenia      164.  172.       8.82  5.30
+##  7 Australia    170   178.       8.4   2.58
+##  8 Austria      162.  179.      17.2   5.35
+##  9 Azerbaijan   170.  172.       1.97  1.12
+## 10 Bahrain      161.  164        3.3   2.75
+## # … with 134 more rows
+```
+
+---
+
+## Does it only increase or decrease? `feat_monotonic`
+
+
+```r
+heights %&gt;%
+  features(height_cm, feat_monotonic)
+```
+
+```
+## # A tibble: 144 x 5
+##    country     increase decrease unvary monotonic
+##    &lt;chr&gt;       &lt;lgl&gt;    &lt;lgl&gt;    &lt;lgl&gt;  &lt;lgl&gt;    
+##  1 Afghanistan FALSE    FALSE    FALSE  FALSE    
+##  2 Albania     FALSE    TRUE     FALSE  TRUE     
+##  3 Algeria     FALSE    FALSE    FALSE  FALSE    
+##  4 Angola      FALSE    FALSE    FALSE  FALSE    
+##  5 Argentina   FALSE    FALSE    FALSE  FALSE    
+##  6 Armenia     FALSE    FALSE    FALSE  FALSE    
+##  7 Australia   FALSE    FALSE    FALSE  FALSE    
+##  8 Austria     FALSE    FALSE    FALSE  FALSE    
+##  9 Azerbaijan  FALSE    FALSE    FALSE  FALSE    
+## 10 Bahrain     TRUE     FALSE    FALSE  TRUE     
+## # … with 134 more rows
+```
+
+---
+
+## What is the spread of my data? `feat_spread`
+
+
+```r
+heights %&gt;%
+  features(height_cm, feat_spread)
+```
+
+```
+## # A tibble: 144 x 5
+##    country        var    sd   mad   iqr
+##    &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 Afghanistan  7.20  2.68  1.65   3.27
+##  2 Albania      0.950 0.975 0.667  1.53
+##  3 Algeria      3.30  1.82  0.741  2.15
+##  4 Angola      16.9   4.12  3.11   7.87
+##  5 Argentina    2.89  1.70  1.36   2.21
+##  6 Armenia     10.6   3.26  3.60   5.30
+##  7 Australia    7.63  2.76  1.66   2.58
+##  8 Austria     26.6   5.16  3.93   5.35
+##  9 Azerbaijan   0.516 0.718 0.621  1.12
+## 10 Bahrain      3.42  1.85  0.297  2.75
+## # … with 134 more rows
+```
+
+---
+
+## features: MANY more features in `feasts` &lt;img src="https://feasts.tidyverts.org/reference/figures/logo.png" align="right" height=140/&gt;
+
+.large[
+Such as:
+
+- `feat_acf`: autocorrelation-based features
+- `feat_stl`: STL (Seasonal, Trend, and Remainder by LOESS) decomposition
+- [Create your own features](http://brolgar.njtierney.com/articles/finding-features.html#creating-your-own-features)
+]
+
+
+
+---
+
+# Take homes
+
+## Problem #1: How do I look at **some** of the data?
+
+
+.large[
+1. Longitudinal data is a time series
+2. Specify structure once, get a free lunch.
+3. Look at as much of the raw data as possible 
+4. Use `facet_sample()` / `facet_strata()`
+]
+
+---
+
+# Take homes
+
+## Problem #2: How do I find **interesting** observations?
+
+.large[
+1. Decide what features are interesting
+2. Summarise down to one observation
+3. Decide how to filter
+4. Join this feature back to the data
+]
+
+---
+
+# Future Directions
+
+.large[
+- More features (summaries)
+- Generalise beyond time series
+- Explore stratification process
+]
+
+---
+
+# Thanks
+
+.large.pull-left[
+- Di Cook
+- Tania Prvan
+- Stuart Lee
+- Mitchell O'Hara Wild
+]
+
+.large.pull-right[
+- Earo Wang
+- Rob Hyndman
+- Miles McBain
+- Hadley Wickham
+- Monash University
+]
+
+---
+
+# Resources
+
+.large[
+- [feasts](http://feasts.tidyverts.org/)
+- [tsibble](http://tsibble.tidyverts.org/)
+- [Time series graphics using feasts](https://robjhyndman.com/hyndsight/feasts/)
+- [Feature-based time series analysis](https://robjhyndman.com/hyndsight/fbtsa/)
+]
+
+---
+
+# Colophon
+
+.large[
+- Slides made using [xaringan](https://github.com/yihui/xaringan)
+- Extended with [xaringanthemer](https://github.com/gadenbuie/xaringanthemer)
+- Colours taken + modified from [lorikeet theme from ochRe](https://github.com/ropenscilabs/ochRe)
+- Header font is **Josefin Sans**
+- Body text font is **Montserrat**
+- Code font is **Fira Mono**
+]
+
+---
+
+# Learning more
+
+.large[
+<i class="fas  fa-box-open "></i> [brolgar.njtierney.com](http://brolgar.njtierney.com/)
+
+<i class="fas  fa-link "></i> [bit.ly/njt-wombat](https://bit.ly/njt-wombat)
+
+<i class="fab  fa-twitter "></i> nj_tierney
+
+<i class="fab  fa-github "></i> njtierney
+
+<i class="fas  fa-paper-plane "></i> nicholas.tierney@gmail.com
+
+]
+
+
+---
+
+.vhuge[
+**End.**
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
