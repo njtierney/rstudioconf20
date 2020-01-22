@@ -4,6 +4,8 @@
     <title>Exploring and understanding the individual experience from longitudinal data, or…</title>
     <meta charset="utf-8" />
     <meta name="author" content="Nicholas Tierney, Monash University" />
+    <script src="libs/jquery-1.11.3/jquery.min.js"></script>
+    <script src="libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
     <link href="libs/font-awesome-5.3.1/css/fontawesome-all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="njtheme.css" type="text/css" />
     <link rel="stylesheet" href="extra.css" type="text/css" />
@@ -16,13 +18,12 @@ class: left, middle, inverse, title-slide
 # Exploring and understanding the individual experience from longitudinal data, or…
 ## <em>How to make better spaghetti (plots)</em>
 ### <span style="font-size: 90%;">Nicholas Tierney, Monash University</span>
-### <span style="font-size: 90%;">WOMBAT <br><br> Thursday 28th November, 2019 </span><br><br> <i class="fas  fa-link "></i> <a href="https://bit.ly/njt-wombat">bit.ly/njt-wombat</a><br><br><i class="fab  fa-twitter "></i> <a href="https://twitter.com/nj_tierney">nj_tierney</a>
 
 ---
 
 
 layout: true
-&lt;div class="my-footer"&gt;&lt;span&gt;bit.ly/njt-wombat • @nj_tierney&lt;/span&gt;&lt;/div&gt; 
+&lt;div class="my-footer"&gt;&lt;span&gt;bit.ly/njt-rstudio • @nj_tierney&lt;/span&gt;&lt;/div&gt; 
 
 
 
@@ -33,62 +34,8 @@ layout: true
 
 
 ---
-class: inverse, middle, center
 
-# A Bit About Me
-
----
-
-## Background: Undergraduate
-
-.pull-left.large[
-Undergraduate in Psychology
-
-- Statistics
-- Experiment Design
-- Cognitive Theory
-- Neurology
-- Humans
-]
-
-.pull-right[
-&lt;img src="imgs/psy_brain.png" width="80%" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-## Background: PhD
-
-.pull-left.large[
-- "Ah, statistics, everything is black and white!
-- "There's always an answer"
-- "data in, answer out"
-]
-
-
-.pull-right[
-&lt;img src="imgs/bw-mountains.jpg" width="1778" style="display: block; margin: auto;" /&gt;
-
-]
-
----
-
-## Background: PhD
-
-.pull-left.large[
-
-- Data is really messy
-- Missing values are frustrating
-- How to Explore data?
-
-]
-
-.pull-right[
 &lt;img src="imgs/explorer.jpg" width="569" style="display: block; margin: auto;" /&gt;
-
-]
-
-
 
 ---
 
@@ -100,46 +47,6 @@ Undergraduate in Psychology
 
 -- From ["Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical Statistics through Simulated Annealing"](https://www.autodeskresearch.com/publications/samestats)
 
-
----
-
-## (My personal) motivation
-
-.large.pull-left[
-**A lot** of research in new statistical methods, e.g., imputation, inference, prediction
-]
-
---
-
-.large.pull-right[
-**Not much** research on **how** we explore data
-]
-
----
-
-## (My personal) motivation
-
-.pull-left[
-&lt;img src="imgs/bw-bridge.jpg" width="2560" style="display: block; margin: auto;" /&gt;
-
-]
-
-.pull-right.large[
-  &gt; Focus on building a bridge across a river. Less focus on **how** it is built, and the **tools** used.
-]
-
-???
-
-- I became very interested in how we explore our data - exploratory data analysis.
-
----
-class: inverse, middle, center
-
-.huge[
-My research:
-
-Design and improve tools for (exploratory) data analysis
-]
 
 ---
 class: inverse, middle, center
@@ -165,8 +72,6 @@ class: inverse, middle, center
 
 ---
 class: middle, center, inverse
-
-.vhuge[Current work:]
 
 .huge[
 How to explore longitudinal data effectively
@@ -421,12 +326,6 @@ Problem #2: How do I find **interesting** observations?
 
 * It's a crane, it fishes, and it's a native Australian bird
 
-
----
-
-&lt;img src="figures/gg-remind-spaghetti-1.png" width="200%" style="display: block; margin: auto;" /&gt;
-
-
 ---
 class: inverse, middle, center
 
@@ -528,79 +427,8 @@ Remember:
 
 # Problem #1: How do I look at **some** of the data?
 
---
-
-.pull-left.large[
-Look at only a sample of the data:
-]
-
-.pull-right.large[
 &lt;img src="figures/ggplot-sample-keys-1.png" width="936" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-# Sample `n` rows with `sample_n()`
-
-
-
-
 --
-
-
-```r
-heights %&gt;% sample_n(5)
-```
-
---
-
-
-```
-## # A tsibble: 5 x 3 [!]
-## # Key:       country [5]
-##   country           year height_cm
-##   &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;
-## 1 Cambodia          1860      165.
-## 2 Bolivia           1890      164.
-## 3 Macedonia         1930      169.
-## 4 United States     1920      173.
-## 5 Papua New Guinea  1880      152.
-```
-
-
-
----
-
-# Sample `n` rows with `sample_n()`
-
-&lt;img src="figures/plot-sample-n-1.png" width="936" style="display: block; margin: auto;" /&gt;
-
-
----
-
-# Sample `n` rows with `sample_n()`
-
-
-```
-## # A tsibble: 5 x 3 [!]
-## # Key:       country [5]
-##   country           year height_cm
-##   &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;
-## 1 Cambodia          1860      165.
-## 2 Bolivia           1890      164.
-## 3 Macedonia         1930      169.
-## 4 United States     1920      173.
-## 5 Papua New Guinea  1880      152.
-```
-
---
-
-.large[
-... sampling needs to select not random rows of the data, but the **keys - the countries**.
-]
-
----
-
 
 # `sample_n_keys()` to sample ... **keys**
 
@@ -611,17 +439,17 @@ sample_n_keys(heights, 5)
 
 
 ```
-## # A tsibble: 32 x 3 [!]
+## # A tsibble: 42 x 3 [!]
 ## # Key:       country [5]
-##   country     year height_cm
-##   &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;
-## 1 Congo, DRC  1810      163.
-## 2 Congo, DRC  1870      166.
-## 3 Congo, DRC  1880      163.
-## 4 Congo, DRC  1890      163.
-## 5 Congo, DRC  1910      165.
-## 6 Congo, DRC  1920      163.
-## # … with 26 more rows
+##   country  year height_cm
+##   &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Belgium  1810      163.
+## 2 Belgium  1820      164.
+## 3 Belgium  1830      164 
+## 4 Belgium  1840      165.
+## 5 Belgium  1850      166.
+## 6 Belgium  1860      167.
+## # … with 36 more rows
 ```
 
 ---
@@ -1414,7 +1242,7 @@ Such as:
 .large[
 <i class="fas  fa-box-open "></i> [brolgar.njtierney.com](http://brolgar.njtierney.com/)
 
-<i class="fas  fa-link "></i> [bit.ly/njt-wombat](https://bit.ly/njt-wombat)
+<i class="fas  fa-link "></i> [bit.ly/njt-rstudio](https://bit.ly/njt-rstudio)
 
 <i class="fab  fa-twitter "></i> nj_tierney
 

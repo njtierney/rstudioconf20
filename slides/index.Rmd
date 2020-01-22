@@ -2,7 +2,7 @@
 title: 'Exploring and understanding the individual experience from longitudinal data, or...'
 subtitle: "_How to make better spaghetti (plots)_"  
 author: "<span style = 'font-size: 90%;'>Nicholas Tierney, Monash University</span>"
-date: "<span style = 'font-size: 90%;'>rsudioconf2020<br><br> January, 2020</span><br><br> `r icon::fa('link')` [bit.ly/njt-rstudio](https://bit.ly/njt-rstudio)<br><br>`r icon::fa('twitter')` [nj_tierney](https://twitter.com/nj_tierney)"
+# date: "<span style = 'font-size: 90%;'>rsudioconf2020<br><br> January, 2020</span><br><br> `r icon::fa('link')` [bit.ly/link](https://bit.ly/link)<br><br>`r icon::fa('twitter')` [nj_tierney](https://twitter.com/nj_tierney)"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -137,6 +137,8 @@ gg_heights <- function(data){
   geom_line()
 }
 ```
+
+---
 
 ```{r explorer}
 include_graphics("imgs/explorer.jpg")
@@ -512,6 +514,11 @@ Remember:
 
 # Problem #1: How do I look at **some** of the data?
 
+```{r ggplot-sample-keys}
+heights_sample <- sample_n_keys(heights, 5)
+gg_sample_keys <- gg_heights(heights_sample)
+gg_sample_keys
+```
 --
 
 # `sample_n_keys()` to sample ... **keys**
