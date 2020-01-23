@@ -40,13 +40,13 @@ h1, h2, h3 {
   padding: 1em 2em 1em 2em;
 }
 .remark-slide-content h1 {
-    font-size: 55px;
+    font-size: 50px;
 }
 .remark-slide-content h2 {
-    font-size: 45px;
+    font-size: 40px;
 }
 .remark-slide-content h3 {
-    font-size: 35px;
+    font-size: 30px;
 }
 .remark-code, .remark-inline-code {
   font-family: Fira Mono, 'Lucida Console', Monaco, monospace;

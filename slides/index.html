@@ -35,7 +35,7 @@ layout: true
 
 ---
 
-&lt;img src="imgs/explorer.jpg" width="569" style="display: block; margin: auto;" /&gt;
+&lt;img src="imgs/explorer.jpg" width="65%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -46,29 +46,6 @@ layout: true
 &lt;img src="gifs/dino-saurus.gif" style="display: block; margin: auto;" /&gt;
 
 -- From ["Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical Statistics through Simulated Annealing"](https://www.autodeskresearch.com/publications/samestats)
-
-
----
-class: inverse, middle, center
-
-
-&lt;img src="imgs/hex-visdat-and-naniar.png" width="70%" style="display: block; margin: auto;" /&gt;
-
-.pull-left[
-.center[
-.hugew[
-[visdat.njtierney.com](https://visdat.njtierney.com)
-]
-]
-]
-
-.pull-right[
-.center[
-.hugew[
-[naniar.njtierney.com](https://naniar.njtierney.com)
-]
-]
-]
 
 ---
 class: middle, center, inverse
@@ -83,7 +60,7 @@ class: inverse, middle,
 # What is longitudinal data?
 
 .huge[
-&gt; Something observed sequentially over time
+&gt; Individuals repeatedly measured through time
 ]
 
 
@@ -211,6 +188,13 @@ class: inverse, middle,
 
 ---
 
+# Same slide as before but with marked up:
+
+- **individuals repeatedly measured** (country)
+- through time (year)
+
+---
+
 &lt;img src="gifs/reveal-height-1.gif" width="150%" style="display: block; margin: auto;" /&gt;
 
 ---
@@ -240,8 +224,13 @@ class: inverse, middle,
 &lt;img src="figures/gg-show-all-1.png" width="936" style="display: block; margin: auto;" /&gt;
 
 ---
+class: bg-black
 
-&lt;img src="gifs/noodle-explode.gif" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="gifs/noodle-explode.gif" width="40%" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;iframe width="950" height="590" src="https://www.youtube.com/embed/UerBCXHKJ5s?start=38" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
 
 
 ---
@@ -261,6 +250,8 @@ class: inverse, middle,
 ---
 
 # Answers: Transparency?
+
+(slowly fade the image alpha down)
 
 --
 
@@ -334,27 +325,38 @@ class: inverse, middle, center
 --
 
 .vlarge[
-&gt; Something observed sequentially over time
+&gt; Individuals repeatedly measured through time.
 ]
 
 ---
-class: inverse, middle, center
+class: inverse, middle,
 
 # What is longitudinal data?
 
-
-.vlarge[
-&gt; ~~Something~~ **Anything that is** observed sequentially over time **is a time series**
+.huge[
+&gt; Individuals **repeatedly** measured through time
 ]
 
 ---
+class: inverse, middle,
+
+# What is longitudinal data?
+
+.huge[
+&gt; Individuals **repeatedly** measured through **time**
+]
+
+
+
+---
+
 class: inverse, middle, center
 
-# ~~What is longitudinal data?~~ Longitudinal data is a time series.
+# ~~What is longitudinal data?~~ Longitudinal data as a time series.
 
 
 .vlarge[
-&gt; ~~Something~~ **Anything that is** observed sequentially over time **is a time series**
+&gt; Anything that is observed sequentially over time is a time series
 ]
 
 .large[
@@ -424,66 +426,10 @@ Remember:
 ]
 
 ---
-
-# Problem #1: How do I look at **some** of the data?
-
-&lt;img src="figures/ggplot-sample-keys-1.png" width="936" style="display: block; margin: auto;" /&gt;
---
-
-# `sample_n_keys()` to sample ... **keys**
-
-
-```r
-sample_n_keys(heights, 5)
-```
-
-
-```
-## # A tsibble: 42 x 3 [!]
-## # Key:       country [5]
-##   country  year height_cm
-##   &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt;
-## 1 Belgium  1810      163.
-## 2 Belgium  1820      164.
-## 3 Belgium  1830      164 
-## 4 Belgium  1840      165.
-## 5 Belgium  1850      166.
-## 6 Belgium  1860      167.
-## # … with 36 more rows
-```
-
----
-
-# `sample_n_keys()` to sample ... **keys**
-
-&lt;img src="figures/ggplot-sample-keys-2-1.png" width="936" style="display: block; margin: auto;" /&gt;
-
----
-
+class: inverse, center, middle
 # Problem #1: How do I look at **some** of the data?
 
 
-.large[
-~~Look at subsamples~~
-]
-
---
-
-.large[
-Sample **keys** with `sample_n_keys()`
-]
-
---
-
-.large[
-Look at **many** subsamples
-]
-
---
-
-.largeright[
-**?**
-]
 
 ---
 
@@ -533,7 +479,7 @@ Look at **many** subsamples
 
 ---
 
-&lt;iframe width="1020" height="630" src="https://www.youtube.com/embed/AbSehcT19u0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;iframe width="960" height="600" src="https://www.youtube.com/embed/AbSehcT19u0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
 
 ---
 
@@ -598,7 +544,7 @@ Do I want `length.out` or `times`?
 
 ---
 
-&lt;img src="imgs/what-year-is-it.jpg" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="imgs/what-year-is-it.jpg" width="65%" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -741,7 +687,7 @@ ggplot(heights,
 
 ---
 
-# Focus on answering relevant questions instead of the minutae:
+# Focus on relevant questions instead of minutae:
 
 .pull-left[
 "How many lines per facet"
@@ -761,9 +707,9 @@ ggplot(heights,
 --
 
 .pull-right[
-"How many facets to put all the data in?"
+"How many facets to put data into?"
 
-"How to arrange plots **along**?"
+"**What** to arrange plots **along**?"
 
 
 ```r
@@ -778,6 +724,9 @@ ggplot(heights,
 ---
 
 # `facet_strata()` &amp; `facet_sample()` Under the hood
+
+&lt;img src="imgs/car-hood-small.jpg" width="730" style="display: block; margin: auto;" /&gt;
+
 
 .large[
 <i class="fas  fa-industry "></i> using `sample_n_keys()` &amp; `stratify_keys()`
@@ -799,8 +748,6 @@ You can still get at data and do manipulations
 
 `as_tsibble()`
 
-`sample_n_keys()`
-
 `facet_sample()`
 
 `facet_strata()`
@@ -813,8 +760,6 @@ You can still get at data and do manipulations
 .right-plot.large[
 
 Store useful information
-
-View subsamples of data
 
 View **many** subsamples
 
@@ -831,8 +776,6 @@ View **all** subsamples
 
 `as_tsibble()`
 
-`sample_n_keys()`
-
 `facet_sample()`
 
 `facet_strata()`
@@ -843,11 +786,9 @@ View **all** subsamples
 
 Store useful information
 
-View subsamples of data
+View **many** subsamples
 
-View many subsamples
-
-View all subsamples
+View **all** subsamples
 
 ]
 
@@ -868,13 +809,13 @@ A workflow
 --
 
 .huge[
-Define what is interesting
+**Define** what is interesting:
 ]
 
 --
 
 .huge[
-maximum height
+_maximum height_
 ]
 
 ---
@@ -1190,6 +1131,7 @@ Such as:
 - More features (summaries)
 - Generalise beyond time series
 - Explore stratification process
+- Work with `dplyr::across()` &amp; `dplyr::pick()`
 ]
 
 ---
@@ -1258,6 +1200,62 @@ Such as:
 .vhuge[
 **End.**
 ]
+
+---
+
+
+```
+## [[1]]
+```
+
+```
+## 
+## [[2]]
+```
+
+```
+## 
+## [[3]]
+```
+
+```
+## 
+## [[4]]
+```
+
+```
+## 
+## [[5]]
+```
+
+```
+## 
+## [[6]]
+```
+
+```
+## 
+## [[7]]
+```
+
+```
+## 
+## [[8]]
+```
+
+```
+## 
+## [[9]]
+```
+
+```
+## 
+## [[10]]
+```
+
+
+&lt;img src="figures/many-ggplots-1.png" width="936" style="display: block; margin: auto;" /&gt;&lt;img src="figures/many-ggplots-2.png" width="936" style="display: block; margin: auto;" /&gt;&lt;img src="figures/many-ggplots-3.png" width="936" style="display: block; margin: auto;" /&gt;&lt;img src="figures/many-ggplots-4.png" width="936" style="display: block; margin: auto;" /&gt;&lt;img src="figures/many-ggplots-5.png" width="936" style="display: block; margin: auto;" /&gt;&lt;img src="figures/many-ggplots-6.png" width="936" style="display: block; margin: auto;" /&gt;&lt;img src="figures/many-ggplots-7.png" width="936" style="display: block; margin: auto;" /&gt;&lt;img src="figures/many-ggplots-8.png" width="936" style="display: block; margin: auto;" /&gt;&lt;img src="figures/many-ggplots-9.png" width="936" style="display: block; margin: auto;" /&gt;&lt;img src="figures/many-ggplots-10.png" width="936" style="display: block; margin: auto;" /&gt;
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
