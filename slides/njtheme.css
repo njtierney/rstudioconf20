@@ -63,7 +63,9 @@ h1, h2, h3 {
 .remark-slide-number {
   color: #484878;
   opacity: 1;
-  font-size: 0.7em;
+  font-size: 0.6em;
+  right: 20px;
+  bottom: 5px;
 }
 /*strong{color:#F7D37F;}*/
 strong{color:#f0a800;}

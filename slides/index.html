@@ -226,12 +226,7 @@ class: inverse, middle,
 ---
 class: bg-black
 
-&lt;img src="gifs/noodle-explode.gif" width="40%" style="display: block; margin: auto;" /&gt;
-
----
-
-&lt;iframe width="950" height="590" src="https://www.youtube.com/embed/UerBCXHKJ5s?start=38" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
-
+&lt;img src="gifs/noodle-explode.gif" width="45%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -251,7 +246,7 @@ class: bg-black
 
 # Answers: Transparency?
 
-(slowly fade the image alpha down)
+&lt;!-- (slowly fade the image alpha down) --&gt;
 
 --
 
@@ -318,14 +313,14 @@ Problem #2: How do I find **interesting** observations?
 * It's a crane, it fishes, and it's a native Australian bird
 
 ---
-class: inverse, middle, center
+class: inverse, middle
 
 # What is longitudinal data?
 
 --
 
-.vlarge[
-&gt; Individuals repeatedly measured through time.
+.huge[
+&gt; Individuals repeatedly measured through time
 ]
 
 ---
@@ -350,10 +345,11 @@ class: inverse, middle,
 
 ---
 
-class: inverse, middle, center
+class: inverse, middle
 
-# ~~What is longitudinal data?~~ Longitudinal data as a time series.
+# Longitudinal data as a **time series**?
 
+--
 
 .vlarge[
 &gt; Anything that is observed sequentially over time is a time series
@@ -388,10 +384,9 @@ heights &lt;- as_tsibble(heights,
 
 # Longitudinal data as a time series &lt;img src="https://tsibble.tidyverts.org/reference/figures/logo.png" align="right" height=140/&gt;
 
-## Key Concepts:
-
 .large[
-Record important time series information once, and use it many times in other places
+- Record important time series information **once**
+- Use it **many** times in other places
 
 - We add information about **index** + **key**:
   - Index = Year
@@ -417,7 +412,7 @@ Record important time series information once, and use it many times in other pl
 ]
 
 ---
-class: inverse, middle, center
+class: inverse, middle
 
 .huge[
 Remember: 
@@ -431,11 +426,39 @@ class: inverse, center, middle
 
 
 
+--
+
+# How do you **eat** spaghetti?
+
+&lt;img src="gifs/steaming-spaghetti.gif" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="gifs/full-house-spag.gif" style="display: block; margin: auto;" /&gt;
+
+---
+
+.pull-left[
+
+&lt;img src="gifs/cat-single-spag.gif" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="gifs/rat-spaghetti.gif" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+&lt;img src="gifs/garfield-spaghetti.gif" style="display: block; margin: auto;" /&gt;
+
+
+
 ---
 
 # Portion out your spaghetti! 🍝 🍝 🍝 🍝
 
 &lt;img src="figures/all-heights-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
 
 ---
 
@@ -451,7 +474,9 @@ class: inverse, center, middle
 
 ---
 
-# **How** to look at many subsamples
+# **How** to look at many subsamples?
+
+--
 
 .large[
 - How many facets to look at? (2, 4, ... 16?)
@@ -476,10 +501,6 @@ class: inverse, center, middle
 - This might not look like much extra work, but it hits the
 **distraction threshold** quite quickly.
 ]
-
----
-
-&lt;iframe width="960" height="600" src="https://www.youtube.com/embed/AbSehcT19u0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
 
 ---
 
@@ -608,7 +629,7 @@ ggplot(heights, aes(x = year,
   geom_line() 
 ```
 
-&lt;img src="figures/gg-facet-sample-all-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/gg-facet-sample-all-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -656,7 +677,7 @@ ggplot(heights,
 
 ---
 
-## Can we re-order these facets in a meaningful way?
+# Can we re-order these facets better?
 
 &lt;img src="figures/print-gg-facet-strata-again-1.png" width="936" style="display: block; margin: auto;" /&gt;
 
@@ -666,7 +687,7 @@ In asking these questions we can solve something else interesting
 
 ---
 
-## `facet_strata(along = -year)`: see all individuals **along** some variable
+# See all individuals **along** some variable
 
 
 ```r
@@ -680,7 +701,7 @@ ggplot(heights,
 
 ---
 
-## `facet_strata(along = -year)`: see all individuals **along** some variable
+# See all individuals **along** some variable
 
 &lt;img src="figures/print-gg-facet-strata-along-1.png" width="936" style="display: block; margin: auto;" /&gt;
 
@@ -707,7 +728,7 @@ ggplot(heights,
 --
 
 .pull-right[
-"How many facets to put data into?"
+"How many facets / strata?"
 
 "**What** to arrange plots **along**?"
 
@@ -723,24 +744,21 @@ ggplot(heights,
 
 ---
 
-# `facet_strata()` &amp; `facet_sample()` Under the hood
+# `facet_strata()` &amp; `facet_sample()`
 
-&lt;img src="imgs/car-hood-small.jpg" width="730" style="display: block; margin: auto;" /&gt;
-
-
-.large[
-<i class="fas  fa-industry "></i> using `sample_n_keys()` &amp; `stratify_keys()`
+.pull-left[
+&lt;img src="imgs/car-hood-small.jpg" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 
---
+.pull-right.large[
+<i class="fas  fa-bolt "></i> with `sample_n_keys()` &amp; `stratify_keys()`
 
-.large[
 You can still get at data and do manipulations
 ]
 
 ---
 
-## Problem #1: How do I look at some of the data?
+# Problem #1: How do I look at some of the data?
 
 --
 
@@ -770,7 +788,7 @@ View **all** subsamples
 
 ---
 
-## ~~Problem #1: How do I look at some of the data?~~
+# ~~Problem #1: How do I look at some of the data?~~
 
 .left-code.large[
 
@@ -885,21 +903,19 @@ Let's see that **one more time**, but with the data
 
 
 ```
-## # A tsibble: 1,490 x 3 [!]
-## # Key:       country [144]
-##    country      year height_cm
-##    &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;
-##  1 Afghanistan  1870      168.
-##  2 Afghanistan  1880      166.
-##  3 Afghanistan  1930      167.
-##  4 Afghanistan  1990      167.
-##  5 Afghanistan  2000      161.
-##  6 Albania      1880      170.
-##  7 Albania      1890      170.
-##  8 Albania      1900      169.
-##  9 Albania      2000      168.
-## 10 Algeria      1910      169.
-## # … with 1,480 more rows
+## # A tsibble: 9 x 3 [!]
+## # Key:       country [2]
+##   country      year height_cm
+##   &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Afghanistan  1870      168.
+## 2 Afghanistan  1880      166.
+## 3 Afghanistan  1930      167.
+## 4 Afghanistan  1990      167.
+## 5 Afghanistan  2000      161.
+## 6 Albania      1880      170.
+## 7 Albania      1890      170.
+## 8 Albania      1900      169.
+## 9 Albania      2000      168.
 ```
 
 ---
@@ -948,33 +964,28 @@ heights_five %&gt;%
 
 ## Join summaries back to data
 
-
 ```r
 heights_five %&gt;% 
   filter(max == max(max) | max == min(max)) %&gt;% 
   left_join(heights, by = "country")
 ```
 
+
 ```
-## # A tibble: 21 x 8
-##    country   min   q25   med   q75   max  year height_cm
-##    &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
-##  1 Denmark  165.  168.  170.  178.  183.  1820      167.
-##  2 Denmark  165.  168.  170.  178.  183.  1830      165.
-##  3 Denmark  165.  168.  170.  178.  183.  1850      167.
-##  4 Denmark  165.  168.  170.  178.  183.  1860      168.
-##  5 Denmark  165.  168.  170.  178.  183.  1870      168.
-##  6 Denmark  165.  168.  170.  178.  183.  1880      170.
-##  7 Denmark  165.  168.  170.  178.  183.  1890      169.
-##  8 Denmark  165.  168.  170.  178.  183.  1900      170.
-##  9 Denmark  165.  168.  170.  178.  183.  1910      170 
-## 10 Denmark  165.  168.  170.  178.  183.  1920      174.
-## # … with 11 more rows
+## # A tibble: 6 x 8
+##   country   min   q25   med   q75   max  year height_cm
+##   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Denmark  165.  168.  170.  178.  183.  1820      167.
+## 2 Denmark  165.  168.  170.  178.  183.  1830      165.
+## 3 Denmark  165.  168.  170.  178.  183.  1850      167.
+## 4 Denmark  165.  168.  170.  178.  183.  1860      168.
+## 5 Denmark  165.  168.  170.  178.  183.  1870      168.
+## 6 Denmark  165.  168.  170.  178.  183.  1880      170.
 ```
 
 ---
 
-&lt;img src="gifs/dog-solve-problem.gif" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="gifs/dog-solve-problem.gif" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1005,81 +1016,66 @@ heights %&gt;%
 
 ## What is the range of the data? `feat_ranges`
 
-
 ```r
 heights %&gt;%
   features(height_cm, feat_ranges)
 ```
 
+
 ```
-## # A tibble: 144 x 5
-##    country       min   max range_diff   iqr
-##    &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;
-##  1 Afghanistan  161.  168.       7     3.27
-##  2 Albania      168.  170.       2.20  1.53
-##  3 Algeria      166.  171.       5.06  2.15
-##  4 Angola       159.  169.      10.5   7.87
-##  5 Argentina    167.  174.       7     2.21
-##  6 Armenia      164.  172.       8.82  5.30
-##  7 Australia    170   178.       8.4   2.58
-##  8 Austria      162.  179.      17.2   5.35
-##  9 Azerbaijan   170.  172.       1.97  1.12
-## 10 Bahrain      161.  164        3.3   2.75
-## # … with 134 more rows
+## # A tibble: 6 x 5
+##   country       min   max range_diff   iqr
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;
+## 1 Afghanistan  161.  168.       7     3.27
+## 2 Albania      168.  170.       2.20  1.53
+## 3 Algeria      166.  171.       5.06  2.15
+## 4 Angola       159.  169.      10.5   7.87
+## 5 Argentina    167.  174.       7     2.21
+## 6 Armenia      164.  172.       8.82  5.30
 ```
 
 ---
 
 ## Does it only increase or decrease? `feat_monotonic`
 
-
 ```r
 heights %&gt;%
   features(height_cm, feat_monotonic)
 ```
 
+
 ```
-## # A tibble: 144 x 5
-##    country     increase decrease unvary monotonic
-##    &lt;chr&gt;       &lt;lgl&gt;    &lt;lgl&gt;    &lt;lgl&gt;  &lt;lgl&gt;    
-##  1 Afghanistan FALSE    FALSE    FALSE  FALSE    
-##  2 Albania     FALSE    TRUE     FALSE  TRUE     
-##  3 Algeria     FALSE    FALSE    FALSE  FALSE    
-##  4 Angola      FALSE    FALSE    FALSE  FALSE    
-##  5 Argentina   FALSE    FALSE    FALSE  FALSE    
-##  6 Armenia     FALSE    FALSE    FALSE  FALSE    
-##  7 Australia   FALSE    FALSE    FALSE  FALSE    
-##  8 Austria     FALSE    FALSE    FALSE  FALSE    
-##  9 Azerbaijan  FALSE    FALSE    FALSE  FALSE    
-## 10 Bahrain     TRUE     FALSE    FALSE  TRUE     
-## # … with 134 more rows
+## # A tibble: 6 x 5
+##   country     increase decrease unvary monotonic
+##   &lt;chr&gt;       &lt;lgl&gt;    &lt;lgl&gt;    &lt;lgl&gt;  &lt;lgl&gt;    
+## 1 Afghanistan FALSE    FALSE    FALSE  FALSE    
+## 2 Albania     FALSE    TRUE     FALSE  TRUE     
+## 3 Algeria     FALSE    FALSE    FALSE  FALSE    
+## 4 Angola      FALSE    FALSE    FALSE  FALSE    
+## 5 Argentina   FALSE    FALSE    FALSE  FALSE    
+## 6 Armenia     FALSE    FALSE    FALSE  FALSE
 ```
 
 ---
 
 ## What is the spread of my data? `feat_spread`
 
-
 ```r
 heights %&gt;%
-  features(height_cm, feat_spread)
+  features(height_cm, feat_spread) 
 ```
 
+
 ```
-## # A tibble: 144 x 5
-##    country        var    sd   mad   iqr
-##    &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 Afghanistan  7.20  2.68  1.65   3.27
-##  2 Albania      0.950 0.975 0.667  1.53
-##  3 Algeria      3.30  1.82  0.741  2.15
-##  4 Angola      16.9   4.12  3.11   7.87
-##  5 Argentina    2.89  1.70  1.36   2.21
-##  6 Armenia     10.6   3.26  3.60   5.30
-##  7 Australia    7.63  2.76  1.66   2.58
-##  8 Austria     26.6   5.16  3.93   5.35
-##  9 Azerbaijan   0.516 0.718 0.621  1.12
-## 10 Bahrain      3.42  1.85  0.297  2.75
-## # … with 134 more rows
+## # A tibble: 6 x 5
+##   country        var    sd   mad   iqr
+##   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 Afghanistan  7.20  2.68  1.65   3.27
+## 2 Albania      0.950 0.975 0.667  1.53
+## 3 Algeria      3.30  1.82  0.741  2.15
+## 4 Angola      16.9   4.12  3.11   7.87
+## 5 Argentina    2.89  1.70  1.36   2.21
+## 6 Armenia     10.6   3.26  3.60   5.30
 ```
 
 ---
@@ -1087,8 +1083,6 @@ heights %&gt;%
 ## features: MANY more features in `feasts` &lt;img src="https://feasts.tidyverts.org/reference/figures/logo.png" align="right" height=140/&gt;
 
 .large[
-Such as:
-
 - `feat_acf`: autocorrelation-based features
 - `feat_stl`: STL (Seasonal, Trend, and Remainder by LOESS) decomposition
 - [Create your own features](http://brolgar.njtierney.com/articles/finding-features.html#creating-your-own-features)
@@ -1128,10 +1122,13 @@ Such as:
 # Future Directions
 
 .large[
-- More features (summaries)
-- Generalise beyond time series
-- Explore stratification process
-- Work with `dplyr::across()` &amp; `dplyr::pick()`
+<i class="fas  fa-mortar-pestle "></i> More features (summaries)
+
+<i class="fas  fa-binoculars "></i> Generalise beyond time series
+
+<i class="fas  fa-compass "></i> Explore stratification process
+
+<i class="fas  fa-code "></i> Work with `dplyr::across()` &amp; `dplyr::pick()`
 ]
 
 ---
@@ -1143,14 +1140,15 @@ Such as:
 - Tania Prvan
 - Stuart Lee
 - Mitchell O'Hara Wild
+- Earo Wang
 ]
 
 .large.pull-right[
-- Earo Wang
 - Rob Hyndman
 - Miles McBain
 - Hadley Wickham
 - Monash University
+- ACEMS
 ]
 
 ---
@@ -1158,10 +1156,13 @@ Such as:
 # Resources
 
 .large[
-- [feasts](http://feasts.tidyverts.org/)
-- [tsibble](http://tsibble.tidyverts.org/)
-- [Time series graphics using feasts](https://robjhyndman.com/hyndsight/feasts/)
-- [Feature-based time series analysis](https://robjhyndman.com/hyndsight/fbtsa/)
+<i class="fas  fa-box-open "></i> [feasts](http://feasts.tidyverts.org/)
+
+<i class="fas  fa-box-open "></i> [tsibble](http://tsibble.tidyverts.org/)
+
+<i class="fas  fa-newspaper "></i> [Time series graphics using feasts](https://robjhyndman.com/hyndsight/feasts/)
+
+<i class="fas  fa-newspaper "></i> [Feature-based time series analysis](https://robjhyndman.com/hyndsight/fbtsa/)
 ]
 
 ---
@@ -1169,12 +1170,17 @@ Such as:
 # Colophon
 
 .large[
-- Slides made using [xaringan](https://github.com/yihui/xaringan)
-- Extended with [xaringanthemer](https://github.com/gadenbuie/xaringanthemer)
-- Colours taken + modified from [lorikeet theme from ochRe](https://github.com/ropenscilabs/ochRe)
-- Header font is **Josefin Sans**
-- Body text font is **Montserrat**
-- Code font is **Fira Mono**
+<i class="fas  fa-layer-group "></i> Slides made using [xaringan](https://github.com/yihui/xaringan)
+
+<i class="fas  fa-seedling "></i> Extended with [xaringanthemer](https://github.com/gadenbuie/xaringanthemer)
+
+<i class="fas  fa-palette "></i> Colours modified from [ochRe::lorikeet](https://github.com/ropenscilabs/ochRe)
+
+<i class="fas  fa-text-height "></i> Header font is **Josefin Sans**
+
+<i class="fas  fa-text-height "></i> Body text font is **Montserrat**
+
+<i class="fas  fa-code "></i> Code font is **Fira Mono**
 ]
 
 ---
@@ -1194,6 +1200,14 @@ Such as:
 
 ]
 
+---
+
+&lt;iframe width="1060" height="590" src="https://www.youtube.com/embed/UerBCXHKJ5s?start=38" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+---
+
+&lt;iframe width="960" height="600" src="https://www.youtube.com/embed/AbSehcT19u0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
 
 ---
 
@@ -1201,60 +1215,7 @@ Such as:
 **End.**
 ]
 
----
 
-
-```
-## [[1]]
-```
-
-```
-## 
-## [[2]]
-```
-
-```
-## 
-## [[3]]
-```
-
-```
-## 
-## [[4]]
-```
-
-```
-## 
-## [[5]]
-```
-
-```
-## 
-## [[6]]
-```
-
-```
-## 
-## [[7]]
-```
-
-```
-## 
-## [[8]]
-```
-
-```
-## 
-## [[9]]
-```
-
-```
-## 
-## [[10]]
-```
-
-
-&lt;img src="figures/many-ggplots-1.png" width="936" style="display: block; margin: auto;" /&gt;&lt;img src="figures/many-ggplots-2.png" width="936" style="display: block; margin: auto;" /&gt;&lt;img src="figures/many-ggplots-3.png" width="936" style="display: block; margin: auto;" /&gt;&lt;img src="figures/many-ggplots-4.png" width="936" style="display: block; margin: auto;" /&gt;&lt;img src="figures/many-ggplots-5.png" width="936" style="display: block; margin: auto;" /&gt;&lt;img src="figures/many-ggplots-6.png" width="936" style="display: block; margin: auto;" /&gt;&lt;img src="figures/many-ggplots-7.png" width="936" style="display: block; margin: auto;" /&gt;&lt;img src="figures/many-ggplots-8.png" width="936" style="display: block; margin: auto;" /&gt;&lt;img src="figures/many-ggplots-9.png" width="936" style="display: block; margin: auto;" /&gt;&lt;img src="figures/many-ggplots-10.png" width="936" style="display: block; margin: auto;" /&gt;
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

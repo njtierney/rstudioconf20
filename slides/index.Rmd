@@ -275,14 +275,9 @@ gg_heights(heights)
 ---
 class: bg-black
 
-```{r noodle-explode-gif, out.width = "40%"}
+```{r noodle-explode-gif, out.width = "45%"}
 include_graphics("gifs/noodle-explode.gif")
 ```
-
----
-
-<iframe width="950" height="590" src="https://www.youtube.com/embed/UerBCXHKJ5s?start=38" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 
 ---
 
@@ -304,7 +299,7 @@ gg_heights(heights)
 
 # Answers: Transparency?
 
-(slowly fade the image alpha down)
+<!-- (slowly fade the image alpha down) -->
 
 --
 
@@ -415,14 +410,14 @@ include_graphics("imgs/brolga-bird.jpg")
 * It's a crane, it fishes, and it's a native Australian bird
 
 ---
-class: inverse, middle, center
+class: inverse, middle
 
 # What is longitudinal data?
 
 --
 
-.vlarge[
-> Individuals repeatedly measured through time.
+.huge[
+> Individuals repeatedly measured through time
 ]
 
 ---
@@ -447,10 +442,11 @@ class: inverse, middle,
 
 ---
 
-class: inverse, middle, center
+class: inverse, middle
 
-# ~~What is longitudinal data?~~ Longitudinal data as a time series.
+# Longitudinal data as a **time series**?
 
+--
 
 .vlarge[
 > Anything that is observed sequentially over time is a time series
@@ -484,10 +480,9 @@ heights <- as_tsibble(heights,
 
 # Longitudinal data as a time series <img src="https://tsibble.tidyverts.org/reference/figures/logo.png" align="right" height=140/>
 
-## Key Concepts:
-
 .large[
-Record important time series information once, and use it many times in other places
+- Record important time series information **once**
+- Use it **many** times in other places
 
 - We add information about **index** + **key**:
   - Index = Year
@@ -502,7 +497,7 @@ print(heights, n = 6)
 ]
 
 ---
-class: inverse, middle, center
+class: inverse, middle
 
 .huge[
 Remember: 
@@ -519,6 +514,43 @@ heights_sample <- sample_n_keys(heights, 5)
 gg_sample_keys <- gg_heights(heights_sample)
 ```
 
+--
+
+# How do you **eat** spaghetti?
+
+```{r steaming-sketti}
+include_graphics("gifs/steaming-spaghetti.gif")
+```
+
+---
+
+```{r full-house-spaghetti}
+include_graphics("gifs/full-house-spag.gif")
+```
+
+---
+
+.pull-left[
+
+```{r cat-sketti}
+include_graphics("gifs/cat-single-spag.gif")
+```
+]
+
+.pull-right[
+```{r rat-sketti}
+include_graphics("gifs/rat-spaghetti.gif")
+```
+]
+
+---
+
+```{r garfield-sketti}
+include_graphics("gifs/garfield-spaghetti.gif")
+```
+
+
+
 ---
 
 # Portion out your spaghetti! `r emo::ji("spaghetti")` `r emo::ji("spaghetti")` `r emo::ji("spaghetti")` `r emo::ji("spaghetti")`
@@ -526,6 +558,7 @@ gg_sample_keys <- gg_heights(heights_sample)
 ```{r all-heights}
 gg_heights(heights)
 ```
+
 
 ---
 
@@ -546,7 +579,9 @@ gg_heights(heights) +
 
 ---
 
-# **How** to look at many subsamples
+# **How** to look at many subsamples?
+
+--
 
 .large[
 - How many facets to look at? (2, 4, ... 16?)
@@ -571,10 +606,6 @@ gg_heights(heights) +
 - This might not look like much extra work, but it hits the
 **distraction threshold** quite quickly.
 ]
-
----
-
-<iframe width="960" height="600" src="https://www.youtube.com/embed/AbSehcT19u0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ---
 
@@ -702,7 +733,7 @@ gg_heights(heights) +
 
 # `facet_sample()`: See more individuals
 
-```{r gg-facet-sample-all, echo = TRUE, out.width = "60%"}
+```{r gg-facet-sample-all, echo = TRUE, out.width = "50%"}
 ggplot(heights, aes(x = year, 
                     y = height_cm, 
                     group = country)) + 
@@ -755,7 +786,7 @@ ggplot(heights,
 
 ---
 
-## Can we re-order these facets in a meaningful way?
+# Can we re-order these facets better?
 
 ```{r print-gg-facet-strata-again, ref.label='gg-facet-strata'}
 ```
@@ -766,7 +797,7 @@ In asking these questions we can solve something else interesting
 
 ---
 
-## `facet_strata(along = -year)`: see all individuals **along** some variable
+# See all individuals **along** some variable
 
 ```{r gg-facet-strata-along, echo = TRUE, eval = FALSE}
 ggplot(heights,
@@ -779,7 +810,7 @@ ggplot(heights,
 
 ---
 
-## `facet_strata(along = -year)`: see all individuals **along** some variable
+# See all individuals **along** some variable
 
 ```{r print-gg-facet-strata-along, ref.label = "gg-facet-strata-along"}
 ```
@@ -806,7 +837,7 @@ ggplot(heights,
 --
 
 .pull-right[
-"How many facets to put data into?"
+"How many facets / strata?"
 
 "**What** to arrange plots **along**?"
 
@@ -821,26 +852,23 @@ ggplot(heights,
 
 ---
 
-# `facet_strata()` & `facet_sample()` Under the hood
+# `facet_strata()` & `facet_sample()`
 
-```{r under-hood}
+.pull-left[
+```{r under-hood, out.width = "80%"}
 include_graphics("imgs/car-hood-small.jpg")
 ```
-
-
-.large[
-`r icon::fa_industry()` using `sample_n_keys()` & `stratify_keys()`
 ]
 
---
+.pull-right.large[
+`r icon::fa_bolt()` with `sample_n_keys()` & `stratify_keys()`
 
-.large[
 You can still get at data and do manipulations
 ]
 
 ---
 
-## Problem #1: How do I look at some of the data?
+# Problem #1: How do I look at some of the data?
 
 --
 
@@ -870,7 +898,7 @@ View **all** subsamples
 
 ---
 
-## ~~Problem #1: How do I look at some of the data?~~
+# ~~Problem #1: How do I look at some of the data?~~
 
 .left-code.large[
 
@@ -1126,7 +1154,7 @@ Let's see that **one more time**, but with the data
 ## Identify features: one observation per **key**
 
 ```{r print-heights-again}
-heights
+heights[1:9, ]
 ```
 
 ---
@@ -1156,15 +1184,22 @@ heights_five %>%
 
 ## Join summaries back to data
 
-```{r show-code, echo = TRUE}
+```r
 heights_five %>% 
   filter(max == max(max) | max == min(max)) %>% 
   left_join(heights, by = "country")
 ```
 
+```{r show-code}
+heights_five %>% 
+  filter(max == max(max) | max == min(max)) %>% 
+  left_join(heights, by = "country") %>% 
+  head()
+```
+
 ---
 
-```{r show-doggo, out.width = "70%"}
+```{r show-doggo, out.width = "60%"}
 include_graphics("gifs/dog-solve-problem.gif")
 ```
 
@@ -1190,27 +1225,45 @@ print(heights_five, n = 6)
 
 ## What is the range of the data? `feat_ranges`
 
-```{r features-feat-ranges, echo = TRUE}
+```r
 heights %>%
   features(height_cm, feat_ranges)
+```
+
+```{r features-feat-ranges, echo = FALSE}
+heights %>%
+  features(height_cm, feat_ranges) %>% 
+  head()
 ```
 
 ---
 
 ## Does it only increase or decrease? `feat_monotonic`
 
-```{r features-feat-monotonic, echo = TRUE}
+```r
 heights %>%
   features(height_cm, feat_monotonic)
+```
+
+```{r features-feat-monotonic}
+heights %>%
+  features(height_cm, feat_monotonic) %>% 
+  head()
 ```
 
 ---
 
 ## What is the spread of my data? `feat_spread`
 
-```{r features-feat-spread, echo = TRUE}
+```r
 heights %>%
-  features(height_cm, feat_spread)
+  features(height_cm, feat_spread) 
+```
+
+```{r features-feat-spread}
+heights %>%
+  features(height_cm, feat_spread) %>% 
+  head()
 ```
 
 ---
@@ -1218,8 +1271,6 @@ heights %>%
 ## features: MANY more features in `feasts` <img src="https://feasts.tidyverts.org/reference/figures/logo.png" align="right" height=140/>
 
 .large[
-Such as:
-
 - `feat_acf`: autocorrelation-based features
 - `feat_stl`: STL (Seasonal, Trend, and Remainder by LOESS) decomposition
 - [Create your own features](http://brolgar.njtierney.com/articles/finding-features.html#creating-your-own-features)
@@ -1259,10 +1310,13 @@ Such as:
 # Future Directions
 
 .large[
-- More features (summaries)
-- Generalise beyond time series
-- Explore stratification process
-- Work with `dplyr::across()` & `dplyr::pick()`
+`r icon::fa_mortar_pestle()` More features (summaries)
+
+`r icon::fa_binoculars()` Generalise beyond time series
+
+`r icon::fa_compass()` Explore stratification process
+
+`r icon::fa_code()` Work with `dplyr::across()` & `dplyr::pick()`
 ]
 
 ---
@@ -1274,14 +1328,15 @@ Such as:
 - Tania Prvan
 - Stuart Lee
 - Mitchell O'Hara Wild
+- Earo Wang
 ]
 
 .large.pull-right[
-- Earo Wang
 - Rob Hyndman
 - Miles McBain
 - Hadley Wickham
 - Monash University
+- ACEMS
 ]
 
 ---
@@ -1289,10 +1344,13 @@ Such as:
 # Resources
 
 .large[
-- [feasts](http://feasts.tidyverts.org/)
-- [tsibble](http://tsibble.tidyverts.org/)
-- [Time series graphics using feasts](https://robjhyndman.com/hyndsight/feasts/)
-- [Feature-based time series analysis](https://robjhyndman.com/hyndsight/fbtsa/)
+`r icon::fa_box_open()` [feasts](http://feasts.tidyverts.org/)
+
+`r icon::fa_box_open()` [tsibble](http://tsibble.tidyverts.org/)
+
+`r icon::fa_newspaper()` [Time series graphics using feasts](https://robjhyndman.com/hyndsight/feasts/)
+
+`r icon::fa_newspaper()` [Feature-based time series analysis](https://robjhyndman.com/hyndsight/fbtsa/)
 ]
 
 ---
@@ -1300,12 +1358,17 @@ Such as:
 # Colophon
 
 .large[
-- Slides made using [xaringan](https://github.com/yihui/xaringan)
-- Extended with [xaringanthemer](https://github.com/gadenbuie/xaringanthemer)
-- Colours taken + modified from [lorikeet theme from ochRe](https://github.com/ropenscilabs/ochRe)
-- Header font is **Josefin Sans**
-- Body text font is **Montserrat**
-- Code font is **Fira Mono**
+`r icon::fa_layer_group()` Slides made using [xaringan](https://github.com/yihui/xaringan)
+
+`r icon::fa_seedling()` Extended with [xaringanthemer](https://github.com/gadenbuie/xaringanthemer)
+
+`r icon::fa_palette()` Colours modified from [ochRe::lorikeet](https://github.com/ropenscilabs/ochRe)
+
+`r icon::fa_text_height()` Header font is **Josefin Sans**
+
+`r icon::fa_text_height()` Body text font is **Montserrat**
+
+`r icon::fa_code()` Code font is **Fira Mono**
 ]
 
 ---
@@ -1325,6 +1388,14 @@ Such as:
 
 ]
 
+---
+
+<iframe width="1060" height="590" src="https://www.youtube.com/embed/UerBCXHKJ5s?start=38" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+---
+
+<iframe width="960" height="600" src="https://www.youtube.com/embed/AbSehcT19u0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 ---
 
@@ -1332,7 +1403,7 @@ Such as:
 **End.**
 ]
 
-```{r many-ggplots, eval = FALSE, echo = FALSE}
+```{r many-ggplots, eval = FALSE}
 # some code to generate many alphas
 
 library(magick)

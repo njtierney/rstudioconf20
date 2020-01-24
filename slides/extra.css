@@ -48,7 +48,7 @@ div.my-footer {
   position: absolute;
   bottom: 0px;
   left: 0px;
-  height: 40px;
+  height: 30px;
   width: 100%;
 }
 
@@ -56,11 +56,11 @@ div.my-footer {
   background-color: #ECECF1;
 }
 div.my-footer span {
-  font-size: 16pt;
-  color: #125972;
+  font-size: 15pt;
+  color: #484878;
   position: absolute;
   left: 20px;
-  bottom: 10px;
+  bottom: 5px;
 }
 
 
