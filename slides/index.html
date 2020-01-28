@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>Exploring and understanding the individual experience from longitudinal data, or…</title>
     <meta charset="utf-8" />
     <meta name="author" content="Nicholas Tierney, Monash University" />
-    <script src="libs/jquery-1.11.3/jquery.min.js"></script>
-    <script src="libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
-    <link href="libs/font-awesome-5.3.1/css/fontawesome-all.min.css" rel="stylesheet" />
+    <script src="libs/header-attrs-2.1/header-attrs.js"></script>
     <link rel="stylesheet" href="njtheme.css" type="text/css" />
     <link rel="stylesheet" href="extra.css" type="text/css" />
     <link rel="stylesheet" href="animate.css" type="text/css" />
@@ -18,6 +16,11 @@ class: left, middle, inverse, title-slide
 # Exploring and understanding the individual experience from longitudinal data, or…
 ## <em>How to make better spaghetti (plots)</em>
 ### <span style="font-size: 90%;">Nicholas Tierney, Monash University</span>
+### <span style="font-size: 90%;">rsudioconf2020<br><br> January, 2020</span><br><svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+  <path d='M12.41 148.02l232.94 105.67c6.8 3.09 14.49 3.09 21.29 0l232.94-105.67c16.55-7.51 16.55-32.52 0-40.03L266.65 2.31a25.607 25.607 0 0 0-21.29 0L12.41 107.98c-16.55 7.51-16.55 32.53 0 40.04zm487.18 88.28l-58.09-26.33-161.64 73.27c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.51 209.97l-58.1 26.33c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 276.3c16.55-7.5 16.55-32.5 0-40zm0 127.8l-57.87-26.23-161.86 73.37c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.29 337.87 12.41 364.1c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 404.1c16.55-7.5 16.55-32.5 0-40z'></path>
+</svg> <a href="https://bit.ly/njt-rstudio">bit.ly/njt-rstudio</a><br><br><svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+  <path d='M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z'></path>
+</svg> <a href="https://twitter.com/nj_tierney">nj_tierney</a>
 
 ---
 
@@ -35,20 +38,28 @@ layout: true
 
 ---
 
-&lt;img src="imgs/explorer.jpg" width="65%" style="display: block; margin: auto;" /&gt;
+# This is a problem
+
+&lt;img src="figures/gg-show-all-1.png" width="936" style="display: block; margin: auto;" /&gt;
 
 ---
+class: bg-black
 
-# EDA: Why it's worth it
-
---
-
-&lt;img src="gifs/dino-saurus.gif" style="display: block; margin: auto;" /&gt;
-
--- From ["Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical Statistics through Simulated Annealing"](https://www.autodeskresearch.com/publications/samestats)
+&lt;img src="gifs/noodle-explode.gif" width="45%" style="display: block; margin: auto;" /&gt;
 
 ---
 class: middle, center, inverse
+
+.huge[
+How to make better spaghetti
+]
+
+---
+class: middle, center, inverse
+
+.huge[
+~~How to make better spaghetti~~
+]
 
 .huge[
 How to explore longitudinal data effectively
@@ -57,7 +68,9 @@ How to explore longitudinal data effectively
 ---
 class: inverse, middle,
 
-# What is longitudinal data?
+# What even **is** longitudinal data?
+
+--
 
 .huge[
 &gt; Individuals repeatedly measured through time
@@ -66,7 +79,7 @@ class: inverse, middle,
 
 ---
 
-# What is longitudinal data?
+# What even **is** longitudinal data?
 
 .large[
 &lt;table&gt;
@@ -89,7 +102,7 @@ class: inverse, middle,
 
 ---
 
-# What is longitudinal data?
+# What even **is** longitudinal data?
 
 .large[
 &lt;table&gt;
@@ -117,7 +130,7 @@ class: inverse, middle,
 
 ---
 
-# What is longitudinal data?
+# What even **is** longitudinal data?
 
 .large[
 &lt;table&gt;
@@ -150,7 +163,7 @@ class: inverse, middle,
 
 ---
 
-# What is longitudinal data?
+# What even **is** longitudinal data?
 
 .large[
 &lt;table&gt;
@@ -186,12 +199,11 @@ class: inverse, middle,
 &lt;/table&gt;
 ]
 
----
+--
 
-# Same slide as before but with marked up:
-
-- **individuals repeatedly measured** (country)
-- through time (year)
+.large[
+Individuals repeatedly measured through time
+]
 
 ---
 
@@ -217,16 +229,13 @@ class: inverse, middle,
 
 &lt;img src="gifs/animate-all-data-1.gif" style="display: block; margin: auto;" /&gt;
 
+
 ---
 
 # And the rest?
 
-&lt;img src="figures/gg-show-all-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/gg-show-all-again-1.png" width="936" style="display: block; margin: auto;" /&gt;
 
----
-class: bg-black
-
-&lt;img src="gifs/noodle-explode.gif" width="45%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -280,6 +289,11 @@ class: bg-black
 ---
 class: inverse, middle 
 
+# Three Problems in exploring longitudinal data 
+
+--
+
+
 .large[
 Problem #1: How do I look at **some** of the data?
 ]
@@ -290,18 +304,30 @@ Problem #1: How do I look at **some** of the data?
 Problem #2: How do I find **interesting** observations?
 ]
 
+--
+
+.large[
+Problem #3: How do I **understand** a model?
+]
+
 
 ---
 
-# Introducing `brolgar`: brolgar.njtierney.com
+# Introducing `brolgar`: [brolgar.njtierney.com](https://brolgar.njtierney.com)
 
-.pull-left.large[
-* **br**owsing
-* **o**ver
-* **l**ongitudinal data 
-* **g**raphically, and
-* **a**nalytically, in
-* **r**
+.pull-left.medium[
+**br**owsing
+
+**o**ver
+
+**l**ongitudinal data 
+
+**g**raphically, and
+
+**a**nalytically, in
+
+**r**
+
 ]
 
 .pull-right[
@@ -347,13 +373,15 @@ class: inverse, middle,
 
 class: inverse, middle
 
-# Longitudinal data as a **time series**?
+# Can we think of longitudinal data a **time series**?
 
 --
 
 .vlarge[
 &gt; Anything that is observed sequentially over time is a time series
 ]
+
+--
 
 .large[
 [-- Rob Hyndman and George Athanasopolous,
@@ -378,20 +406,9 @@ heights &lt;- as_tsibble(heights,
 
 `1. +  2.` determine distinct rows in a tsibble.
 
-(From Earo Wang's talk: [Melt the clock](https://slides.earo.me/rstudioconf19/#8))
+(From Dr. Earo Wang's talk: [Melt the clock](https://slides.earo.me/rstudioconf19/#8))
 
----
 
-# Longitudinal data as a time series &lt;img src="https://tsibble.tidyverts.org/reference/figures/logo.png" align="right" height=140/&gt;
-
-.large[
-- Record important time series information **once**
-- Use it **many** times in other places
-
-- We add information about **index** + **key**:
-  - Index = Year
-  - Key = Country
-]
 ---
 
 .large[
@@ -409,6 +426,27 @@ heights &lt;- as_tsibble(heights,
 ## 6 Albania      1880      170.
 ## # … with 1,484 more rows
 ```
+]
+
+---
+
+# Longitudinal data as a time series &lt;img src="https://tsibble.tidyverts.org/reference/figures/logo.png" align="right" height=140/&gt;
+
+.large[
+We add information about **index** + **key**:
+
+  📐 Index = Year
+  
+  🔑   Key = Country
+  ]
+  
+--
+
+.large[
+Record important time series information **once**
+
+Use it **many** times in other places
+
 ]
 
 ---
@@ -434,23 +472,24 @@ class: inverse, center, middle
 
 ---
 
+.pull-left[
 &lt;img src="gifs/full-house-spag.gif" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="gifs/garfield-spaghetti.gif" style="display: block; margin: auto;" /&gt;
+]
 
 ---
 
 .pull-left[
 
-&lt;img src="gifs/cat-single-spag.gif" style="display: block; margin: auto;" /&gt;
+&lt;img src="gifs/cat-single-spag.gif" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
-&lt;img src="gifs/rat-spaghetti.gif" style="display: block; margin: auto;" /&gt;
+&lt;img src="gifs/rat-spaghetti.gif" width="100%" style="display: block; margin: auto;" /&gt;
 ]
-
----
-
-&lt;img src="gifs/garfield-spaghetti.gif" style="display: block; margin: auto;" /&gt;
-
 
 
 ---
@@ -473,38 +512,45 @@ class: inverse, center, middle
 &lt;img src="figures/heights-strata-1.png" width="936" style="display: block; margin: auto;" /&gt;
 
 ---
+class: inverse
 
-# **How** to look at many subsamples?
+# **How** do I look at many subsamples?
 
---
 
-.large[
-- How many facets to look at? (2, 4, ... 16?)
-]
+How many keys are there?
 
 --
 
-.large[
-- How many keys per facets?
-  - 144 keys into 16 facets = 9 each
-]
+How many facets do I want to look at?
 
 --
 
-.large[
-- Randomly pick 16 groups of size 9.
-]
+How many keys per facet should I look at?
 
 --
 
-.large[
-- This might not look like much extra work, but it hits the
-**distraction threshold** quite quickly.
-]
+How do I ensure there are the same number of keys per plot?
+
+--
+
+What is `rep`, `rep.int`, and `rep_len`?
+
+--
+
+Do I want `length.out` or `times`?
+
+--
+
+You have hit the **distraction threshold**
+
 
 ---
 
-# Distraction threshold (time to rabbit hole)
+&lt;img src="imgs/what-year-is-it.jpg" width="65%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Distraction threshold ⏱ 🐰 🕳
 
 --
 
@@ -532,41 +578,6 @@ class: inverse, center, middle
 - Task one being overshadowed slightly by minor task 2
 - Task one being overshadowed slightly by minor task 3
 
----
-
-# Distraction threshold (time to rabbit hole)
-
-**I want to look at many subsamples of the data** 
-
---
-
-How many keys are there?
-
---
-
-How many facets do I want to look at
-
---
-
-How many keys per facet should I look at
-
---
-
-How do I ensure there are the same number of keys per plot
-
---
-
-What is `rep`, `rep.int`, and `rep_len`?
-
---
-
-Do I want `length.out` or `times`?
-
-
----
-
-&lt;img src="imgs/what-year-is-it.jpg" width="65%" style="display: block; margin: auto;" /&gt;
-
 
 ---
 
@@ -589,33 +600,6 @@ It's not that we should be better, rather **with better tools we could be more e
 .large[
 We need to make things **as easy as reasonable**, with the least amount of distraction.
 ]
-
-
----
-
-# Remove distraction by asking relevant questions
-
---
-
-.large[
-&gt; How many keys per facet?
-
-&gt; How many plots do I want to look at?
-]
-
---
-
-
-```r
-facet_sample(
-*   n_per_facet = 3,
-*   n_facets = 9
-  )
-```
-
----
-
-&lt;img src="figures/show-facet-sample-print-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -653,6 +637,33 @@ ggplot(heights,
 
 ---
 
+# Remove distraction by asking relevant questions
+
+--
+
+.large[
+&gt; How many keys per facet?
+
+&gt; How many plots do I want to look at?
+]
+
+--
+
+
+```r
+facet_sample(
+*   n_per_facet = 3,
+*   n_facets = 9
+  )
+```
+
+---
+
+&lt;img src="figures/show-facet-sample-print-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
 # How to see **all** individuals?
 
 --
@@ -677,7 +688,7 @@ ggplot(heights,
 
 ---
 
-# Can we re-order these facets better?
+# 🤔 ... can we re-order these facets?
 
 &lt;img src="figures/print-gg-facet-strata-again-1.png" width="936" style="display: block; margin: auto;" /&gt;
 
@@ -751,7 +762,9 @@ ggplot(heights,
 ]
 
 .pull-right.large[
-<i class="fas  fa-bolt "></i> with `sample_n_keys()` &amp; `stratify_keys()`
+<svg viewBox='0 0 320 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+  <path d='M296 160H180.6l42.6-129.8C227.2 15 215.7 0 200 0H56C44 0 33.8 8.9 32.2 20.8l-32 240C-1.7 275.2 9.5 288 24 288h118.7L96.6 482.5c-3.6 15.2 8 29.5 23.3 29.5 8.4 0 16.4-4.4 20.8-12l176-304c9.3-15.9-2.2-36-20.7-36z'></path>
+</svg> with `sample_n_keys()` &amp; `stratify_keys()`
 
 You can still get at data and do manipulations
 ]
@@ -861,7 +874,7 @@ _maximum height_
 
 ---
 
-## Identify important features and decide how to filter 
+## Identify **important features** and **decide** how to filter 
 
 &lt;img src="figures/gg-show-red-points-1.png" width="936" style="display: block; margin: auto;" /&gt;
 
@@ -903,8 +916,8 @@ Let's see that **one more time**, but with the data
 
 
 ```
-## # A tsibble: 9 x 3 [!]
-## # Key:       country [2]
+## # A tsibble: 1,490 x 3 [!]
+## # Key:       country [144]
 ##   country      year height_cm
 ##   &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;
 ## 1 Afghanistan  1870      168.
@@ -916,6 +929,7 @@ Let's see that **one more time**, but with the data
 ## 7 Albania      1890      170.
 ## 8 Albania      1900      169.
 ## 9 Albania      2000      168.
+## # … with 1,481 more rows
 ```
 
 ---
@@ -926,19 +940,19 @@ Let's see that **one more time**, but with the data
 
 
 ```
-## # A tibble: 144 x 6
-##    country       min   q25   med   q75   max
-##    &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 Afghanistan  161.  164.  167.  168.  168.
-##  2 Albania      168.  168.  170.  170.  170.
-##  3 Algeria      166.  168.  169   170.  171.
-##  4 Angola       159.  160.  167.  168.  169.
-##  5 Argentina    167.  168.  168.  170.  174.
-##  6 Armenia      164.  166.  169.  172.  172.
-##  7 Australia    170   171.  172.  173.  178.
-##  8 Austria      162.  164.  167.  169.  179.
-##  9 Azerbaijan   170.  171.  172.  172.  172.
-## 10 Bahrain      161.  161.  164.  164.  164 
+## # A tibble: 144 x 2
+##    country       max
+##    &lt;chr&gt;       &lt;dbl&gt;
+##  1 Afghanistan  168.
+##  2 Albania      170.
+##  3 Algeria      171.
+##  4 Angola       169.
+##  5 Argentina    174.
+##  6 Armenia      172.
+##  7 Australia    178.
+##  8 Austria      179.
+##  9 Azerbaijan   172.
+## 10 Bahrain      164 
 ## # … with 134 more rows
 ```
 
@@ -953,11 +967,11 @@ heights_five %&gt;%
 ```
 
 ```
-## # A tibble: 2 x 6
-##   country            min   q25   med   q75   max
-##   &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 Denmark           165.  168.  170.  178.  183.
-## 2 Papua New Guinea  152.  152.  156.  160.  161.
+## # A tibble: 2 x 2
+##   country            max
+##   &lt;chr&gt;            &lt;dbl&gt;
+## 1 Denmark           183.
+## 2 Papua New Guinea  161.
 ```
 
 ---
@@ -972,20 +986,28 @@ heights_five %&gt;%
 
 
 ```
-## # A tibble: 6 x 8
-##   country   min   q25   med   q75   max  year height_cm
-##   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
-## 1 Denmark  165.  168.  170.  178.  183.  1820      167.
-## 2 Denmark  165.  168.  170.  178.  183.  1830      165.
-## 3 Denmark  165.  168.  170.  178.  183.  1850      167.
-## 4 Denmark  165.  168.  170.  178.  183.  1860      168.
-## 5 Denmark  165.  168.  170.  178.  183.  1870      168.
-## 6 Denmark  165.  168.  170.  178.  183.  1880      170.
+## # A tibble: 21 x 4
+##   country   max  year height_cm
+##   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Denmark  183.  1820      167.
+## 2 Denmark  183.  1830      165.
+## 3 Denmark  183.  1850      167.
+## 4 Denmark  183.  1860      168.
+## 5 Denmark  183.  1870      168.
+## 6 Denmark  183.  1880      170.
+## # … with 15 more rows
 ```
 
 ---
 
 &lt;img src="gifs/dog-solve-problem.gif" width="60%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+.huge[
+But Nick, how did you create those summaries?
+]
 
 ---
 
@@ -1023,7 +1045,7 @@ heights %&gt;%
 
 
 ```
-## # A tibble: 6 x 5
+## # A tibble: 144 x 5
 ##   country       min   max range_diff   iqr
 ##   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;
 ## 1 Afghanistan  161.  168.       7     3.27
@@ -1032,6 +1054,7 @@ heights %&gt;%
 ## 4 Angola       159.  169.      10.5   7.87
 ## 5 Argentina    167.  174.       7     2.21
 ## 6 Armenia      164.  172.       8.82  5.30
+## # … with 138 more rows
 ```
 
 ---
@@ -1045,7 +1068,7 @@ heights %&gt;%
 
 
 ```
-## # A tibble: 6 x 5
+## # A tibble: 144 x 5
 ##   country     increase decrease unvary monotonic
 ##   &lt;chr&gt;       &lt;lgl&gt;    &lt;lgl&gt;    &lt;lgl&gt;  &lt;lgl&gt;    
 ## 1 Afghanistan FALSE    FALSE    FALSE  FALSE    
@@ -1053,7 +1076,8 @@ heights %&gt;%
 ## 3 Algeria     FALSE    FALSE    FALSE  FALSE    
 ## 4 Angola      FALSE    FALSE    FALSE  FALSE    
 ## 5 Argentina   FALSE    FALSE    FALSE  FALSE    
-## 6 Armenia     FALSE    FALSE    FALSE  FALSE
+## 6 Armenia     FALSE    FALSE    FALSE  FALSE    
+## # … with 138 more rows
 ```
 
 ---
@@ -1067,7 +1091,7 @@ heights %&gt;%
 
 
 ```
-## # A tibble: 6 x 5
+## # A tibble: 144 x 5
 ##   country        var    sd   mad   iqr
 ##   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1 Afghanistan  7.20  2.68  1.65   3.27
@@ -1076,6 +1100,7 @@ heights %&gt;%
 ## 4 Angola      16.9   4.12  3.11   7.87
 ## 5 Argentina    2.89  1.70  1.36   2.21
 ## 6 Armenia     10.6   3.26  3.60   5.30
+## # … with 138 more rows
 ```
 
 ---
@@ -1088,7 +1113,202 @@ heights %&gt;%
 - [Create your own features](http://brolgar.njtierney.com/articles/finding-features.html#creating-your-own-features)
 ]
 
+---
 
+# ~~Problem #1: How do I look at **some** of the data?~~
+
+--
+
+# Problem #2: How do I find **interesting** observations?
+
+---
+
+# ~~Problem #1: How do I look at **some** of the data?~~
+
+# ~~Problem #2: How do I find **interesting** observations?~~
+
+--
+
+# Problem #3: How do I **understand** a model?
+
+
+---
+
+# Problem #3: How do I **understand** a model?
+
+.medium[
+Let's fit a mixed effects model.
+
+Fixed effect of year + Random intercept for country
+]
+
+
+```r
+heights_fit &lt;- lmer(height_cm ~ year + (1|country), heights)
+
+heights_aug &lt;- heights %&gt;%
+  add_predictions(heights_fit, var = "pred") %&gt;%
+  add_residuals(heights_fit, var = "res")
+```
+
+---
+
+# Problem #3: How do I **understand** a model?
+
+.large[
+
+```
+## # A tsibble: 1,490 x 5 [!]
+## # Key:       country [144]
+##   country      year height_cm  pred    res
+##   &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Afghanistan  1870      168.  164.  4.59 
+## 2 Afghanistan  1880      166.  164.  1.52 
+## 3 Afghanistan  1930      167.  166.  0.823
+## 4 Afghanistan  1990      167.  168. -1.04 
+## 5 Afghanistan  2000      161.  169. -7.10 
+## 6 Albania      1880      170.  168.  2.39 
+## # … with 1,484 more rows
+```
+]
+
+---
+
+# Problem #3: How do I **understand** a model?
+
+&lt;img src="figures/fits-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Look at **many** subsamples? `facet_sample()`
+
+--
+
+
+```r
+gg_heights_fit + facet_sample()
+```
+
+&lt;img src="figures/heights-fit-facet-sample-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Look at **all** subsamples? `facet_strata()`
+
+--
+
+
+```r
+gg_heights_fit + facet_strata()
+```
+
+&lt;img src="figures/heights-fit-facet-strata-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Look at **all** subsamples **along** residuals?
+
+
+```r
+gg_heights_fit + facet_strata(along = -res)
+```
+
+&lt;img src="figures/heights-fit-facet-strata-res-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Look at the predictions with the data?
+
+
+```r
+set.seed(2020-01-21)
+heights_sample &lt;- 
+heights_aug %&gt;%
+* sample_n_keys(size = 9) %&gt;%
+  ggplot(aes(x = year,
+             y = pred,
+             group = country)) + 
+  geom_line() +
+  facet_wrap(~country)
+
+heights_sample
+```
+
+---
+
+# Look at the predictions with the data?
+
+&lt;img src="figures/small-sample-out-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Look at the predictions with the data?
+
+
+```r
+heights_sample + geom_point(aes(y = height_cm))
+```
+
+&lt;img src="figures/small-sample-add-real-data-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# What if we grabbed a sample of those who have the best, middle, and worst residuals? 
+
+--
+
+
+```r
+summary(heights_aug$res)
+```
+
+```
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## -8.1707 -1.6202 -0.1558  0.0000  1.3545 12.1729
+```
+
+--
+
+.large[
+Which countries are **nearest** to these statistics?
+]
+
+---
+
+# use `keys_near()`
+
+.pull-left[
+
+```r
+keys_near(heights_aug, 
+          var = res)
+```
+
+```
+## # A tibble: 6 x 5
+##   country       res stat  stat_value stat_diff
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;fct&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Ireland    -8.17  min       -8.17   0       
+## 2 Azerbaijan -1.62  q_25      -1.62   0.000269
+## 3 Laos       -0.157 med       -0.156  0.00125 
+## 4 Mongolia   -0.155 med       -0.156  0.00125 
+## 5 Egypt       1.35  q_75       1.35   0.000302
+## 6 Poland     12.2   max       12.2    0
+```
+]
+
+.pull-right[
+
+
+&gt; This shows us the keys that closely match the five number summary. 
+
+]
+
+---
+
+## Show data by joining it with residuals, to explore spread
+
+&lt;img src="figures/plot-join-aug-1.png" width="936" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1098,9 +1318,9 @@ heights %&gt;%
 
 
 .large[
-1. Longitudinal data is a time series
-2. Specify structure once, get a free lunch.
-3. Look at as much of the raw data as possible 
+1. Longitudinal data as a time series 💹
+2. Specify structure once, get a free lunch. 🥪
+3. Look at as much of the raw data as possible  🍣
 4. Use `facet_sample()` / `facet_strata()`
 ]
 
@@ -1119,16 +1339,38 @@ heights %&gt;%
 
 ---
 
+# Take homes
+
+## Problem #3: How do I **understand** a model?
+
+.large[
+1. Look at (one, more or all!) subsamples
+1. Arrange subsamples
+1. Find **keys near** some summary 
+1. Join keys to data to explore representatives
+]
+
+
+---
+
 # Future Directions
 
 .large[
-<i class="fas  fa-mortar-pestle "></i> More features (summaries)
+<svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+  <path d='M501.54 60.91c17.22-17.22 12.51-46.25-9.27-57.14a35.696 35.696 0 0 0-37.37 3.37L251.09 160h151.37l99.08-99.09zM496 192H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h16c0 80.98 50.2 150.11 121.13 178.32-12.76 16.87-21.72 36.8-24.95 58.69-1.46 9.92 6.04 18.98 16.07 18.98h223.5c10.03 0 17.53-9.06 16.07-18.98-3.22-21.89-12.18-41.82-24.95-58.69C429.8 406.11 480 336.98 480 256h16c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z'></path>
+</svg> More features (summaries)
 
-<i class="fas  fa-binoculars "></i> Generalise beyond time series
+<svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+  <path d='M416 48c0-8.84-7.16-16-16-16h-64c-8.84 0-16 7.16-16 16v48h96V48zM63.91 159.99C61.4 253.84 3.46 274.22 0 404v44c0 17.67 14.33 32 32 32h96c17.67 0 32-14.33 32-32V288h32V128H95.84c-17.63 0-31.45 14.37-31.93 31.99zm384.18 0c-.48-17.62-14.3-31.99-31.93-31.99H320v160h32v160c0 17.67 14.33 32 32 32h96c17.67 0 32-14.33 32-32v-44c-3.46-129.78-61.4-150.16-63.91-244.01zM176 32h-64c-8.84 0-16 7.16-16 16v48h96V48c0-8.84-7.16-16-16-16zm48 256h64V128h-64v160z'></path>
+</svg> Generalise beyond time series
 
-<i class="fas  fa-compass "></i> Explore stratification process
+<svg viewBox='0 0 496 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+  <path d='M225.38 233.37c-12.5 12.5-12.5 32.76 0 45.25 12.49 12.5 32.76 12.5 45.25 0 12.5-12.5 12.5-32.76 0-45.25-12.5-12.49-32.76-12.49-45.25 0zM248 8C111.03 8 0 119.03 0 256s111.03 248 248 248 248-111.03 248-248S384.97 8 248 8zm126.14 148.05L308.17 300.4a31.938 31.938 0 0 1-15.77 15.77l-144.34 65.97c-16.65 7.61-33.81-9.55-26.2-26.2l65.98-144.35a31.938 31.938 0 0 1 15.77-15.77l144.34-65.97c16.65-7.6 33.8 9.55 26.19 26.2z'></path>
+</svg> Explore stratification process
 
-<i class="fas  fa-code "></i> Work with `dplyr::across()` &amp; `dplyr::pick()`
+<svg viewBox='0 0 640 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+  <path d='M278.9 511.5l-61-17.7c-6.4-1.8-10-8.5-8.2-14.9L346.2 8.7c1.8-6.4 8.5-10 14.9-8.2l61 17.7c6.4 1.8 10 8.5 8.2 14.9L293.8 503.3c-1.9 6.4-8.5 10.1-14.9 8.2zm-114-112.2l43.5-46.4c4.6-4.9 4.3-12.7-.8-17.2L117 256l90.6-79.7c5.1-4.5 5.5-12.3.8-17.2l-43.5-46.4c-4.5-4.8-12.1-5.1-17-.5L3.8 247.2c-5.1 4.7-5.1 12.8 0 17.5l144.1 135.1c4.9 4.6 12.5 4.4 17-.5zm327.2.6l144.1-135.1c5.1-4.7 5.1-12.8 0-17.5L492.1 112.1c-4.8-4.5-12.4-4.3-17 .5L431.6 159c-4.6 4.9-4.3 12.7.8 17.2L523 256l-90.6 79.7c-5.1 4.5-5.5 12.3-.8 17.2l43.5 46.4c4.5 4.9 12.1 5.1 17 .6z'></path>
+</svg> Work with `dplyr::across()` &amp; `dplyr::pick()`
 ]
 
 ---
@@ -1156,31 +1398,51 @@ heights %&gt;%
 # Resources
 
 .large[
-<i class="fas  fa-box-open "></i> [feasts](http://feasts.tidyverts.org/)
+<svg viewBox='0 0 640 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+  <path d='M425.7 256c-16.9 0-32.8-9-41.4-23.4L320 126l-64.2 106.6c-8.7 14.5-24.6 23.5-41.5 23.5-4.5 0-9-.6-13.3-1.9L64 215v178c0 14.7 10 27.5 24.2 31l216.2 54.1c10.2 2.5 20.9 2.5 31 0L551.8 424c14.2-3.6 24.2-16.4 24.2-31V215l-137 39.1c-4.3 1.3-8.8 1.9-13.3 1.9zm212.6-112.2L586.8 41c-3.1-6.2-9.8-9.8-16.7-8.9L320 64l91.7 152.1c3.8 6.3 11.4 9.3 18.5 7.3l197.9-56.5c9.9-2.9 14.7-13.9 10.2-23.1zM53.2 41L1.7 143.8c-4.6 9.2.3 20.2 10.1 23l197.9 56.5c7.1 2 14.7-1 18.5-7.3L320 64 69.8 32.1c-6.9-.8-13.5 2.7-16.6 8.9z'></path>
+</svg> [feasts](http://feasts.tidyverts.org/)
 
-<i class="fas  fa-box-open "></i> [tsibble](http://tsibble.tidyverts.org/)
+<svg viewBox='0 0 640 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+  <path d='M425.7 256c-16.9 0-32.8-9-41.4-23.4L320 126l-64.2 106.6c-8.7 14.5-24.6 23.5-41.5 23.5-4.5 0-9-.6-13.3-1.9L64 215v178c0 14.7 10 27.5 24.2 31l216.2 54.1c10.2 2.5 20.9 2.5 31 0L551.8 424c14.2-3.6 24.2-16.4 24.2-31V215l-137 39.1c-4.3 1.3-8.8 1.9-13.3 1.9zm212.6-112.2L586.8 41c-3.1-6.2-9.8-9.8-16.7-8.9L320 64l91.7 152.1c3.8 6.3 11.4 9.3 18.5 7.3l197.9-56.5c9.9-2.9 14.7-13.9 10.2-23.1zM53.2 41L1.7 143.8c-4.6 9.2.3 20.2 10.1 23l197.9 56.5c7.1 2 14.7-1 18.5-7.3L320 64 69.8 32.1c-6.9-.8-13.5 2.7-16.6 8.9z'></path>
+</svg> [tsibble](http://tsibble.tidyverts.org/)
 
-<i class="fas  fa-newspaper "></i> [Time series graphics using feasts](https://robjhyndman.com/hyndsight/feasts/)
+<svg viewBox='0 0 576 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+  <path d='M552 64H88c-13.255 0-24 10.745-24 24v8H24c-13.255 0-24 10.745-24 24v272c0 30.928 25.072 56 56 56h472c26.51 0 48-21.49 48-48V88c0-13.255-10.745-24-24-24zM56 400a8 8 0 0 1-8-8V144h16v248a8 8 0 0 1-8 8zm236-16H140c-6.627 0-12-5.373-12-12v-8c0-6.627 5.373-12 12-12h152c6.627 0 12 5.373 12 12v8c0 6.627-5.373 12-12 12zm208 0H348c-6.627 0-12-5.373-12-12v-8c0-6.627 5.373-12 12-12h152c6.627 0 12 5.373 12 12v8c0 6.627-5.373 12-12 12zm-208-96H140c-6.627 0-12-5.373-12-12v-8c0-6.627 5.373-12 12-12h152c6.627 0 12 5.373 12 12v8c0 6.627-5.373 12-12 12zm208 0H348c-6.627 0-12-5.373-12-12v-8c0-6.627 5.373-12 12-12h152c6.627 0 12 5.373 12 12v8c0 6.627-5.373 12-12 12zm0-96H140c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h360c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12z'></path>
+</svg> [Time series graphics using feasts](https://robjhyndman.com/hyndsight/feasts/)
 
-<i class="fas  fa-newspaper "></i> [Feature-based time series analysis](https://robjhyndman.com/hyndsight/fbtsa/)
+<svg viewBox='0 0 576 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+  <path d='M552 64H88c-13.255 0-24 10.745-24 24v8H24c-13.255 0-24 10.745-24 24v272c0 30.928 25.072 56 56 56h472c26.51 0 48-21.49 48-48V88c0-13.255-10.745-24-24-24zM56 400a8 8 0 0 1-8-8V144h16v248a8 8 0 0 1-8 8zm236-16H140c-6.627 0-12-5.373-12-12v-8c0-6.627 5.373-12 12-12h152c6.627 0 12 5.373 12 12v8c0 6.627-5.373 12-12 12zm208 0H348c-6.627 0-12-5.373-12-12v-8c0-6.627 5.373-12 12-12h152c6.627 0 12 5.373 12 12v8c0 6.627-5.373 12-12 12zm-208-96H140c-6.627 0-12-5.373-12-12v-8c0-6.627 5.373-12 12-12h152c6.627 0 12 5.373 12 12v8c0 6.627-5.373 12-12 12zm208 0H348c-6.627 0-12-5.373-12-12v-8c0-6.627 5.373-12 12-12h152c6.627 0 12 5.373 12 12v8c0 6.627-5.373 12-12 12zm0-96H140c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h360c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12z'></path>
+</svg> [Feature-based time series analysis](https://robjhyndman.com/hyndsight/fbtsa/)
 ]
 
 ---
 
 # Colophon
 
-.large[
-<i class="fas  fa-layer-group "></i> Slides made using [xaringan](https://github.com/yihui/xaringan)
+.medium[
+<svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+  <path d='M12.41 148.02l232.94 105.67c6.8 3.09 14.49 3.09 21.29 0l232.94-105.67c16.55-7.51 16.55-32.52 0-40.03L266.65 2.31a25.607 25.607 0 0 0-21.29 0L12.41 107.98c-16.55 7.51-16.55 32.53 0 40.04zm487.18 88.28l-58.09-26.33-161.64 73.27c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.51 209.97l-58.1 26.33c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 276.3c16.55-7.5 16.55-32.5 0-40zm0 127.8l-57.87-26.23-161.86 73.37c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.29 337.87 12.41 364.1c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 404.1c16.55-7.5 16.55-32.5 0-40z'></path>
+</svg> Slides made using [xaringan](https://github.com/yihui/xaringan)
 
-<i class="fas  fa-seedling "></i> Extended with [xaringanthemer](https://github.com/gadenbuie/xaringanthemer)
+<svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+  <path d='M64 96H0c0 123.7 100.3 224 224 224v144c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V320C288 196.3 187.7 96 64 96zm384-64c-84.2 0-157.4 46.5-195.7 115.2 27.7 30.2 48.2 66.9 59 107.6C424 243.1 512 147.9 512 32h-64z'></path>
+</svg> Extended with [xaringanthemer](https://github.com/gadenbuie/xaringanthemer)
 
-<i class="fas  fa-palette "></i> Colours modified from [ochRe::lorikeet](https://github.com/ropenscilabs/ochRe)
+<svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+  <path d='M204.3 5C104.9 24.4 24.8 104.3 5.2 203.4c-37 187 131.7 326.4 258.8 306.7 41.2-6.4 61.4-54.6 42.5-91.7-23.1-45.4 9.9-98.4 60.9-98.4h79.7c35.8 0 64.8-29.6 64.9-65.3C511.5 97.1 368.1-26.9 204.3 5zM96 320c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm32-128c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm128-64c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm128 64c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z'></path>
+</svg> Colours modified from [ochRe::lorikeet](https://github.com/ropenscilabs/ochRe)
 
-<i class="fas  fa-text-height "></i> Header font is **Josefin Sans**
+<svg viewBox='0 0 576 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+  <path d='M304 32H16A16 16 0 0 0 0 48v96a16 16 0 0 0 16 16h32a16 16 0 0 0 16-16v-32h56v304H80a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16h-40V112h56v32a16 16 0 0 0 16 16h32a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zm256 336h-48V144h48c14.31 0 21.33-17.31 11.31-27.31l-80-80a16 16 0 0 0-22.62 0l-80 80C379.36 126 384.36 144 400 144h48v224h-48c-14.31 0-21.32 17.31-11.31 27.31l80 80a16 16 0 0 0 22.62 0l80-80C580.64 386 575.64 368 560 368z'></path>
+</svg> Header font is **Josefin Sans**
 
-<i class="fas  fa-text-height "></i> Body text font is **Montserrat**
+<svg viewBox='0 0 576 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+  <path d='M304 32H16A16 16 0 0 0 0 48v96a16 16 0 0 0 16 16h32a16 16 0 0 0 16-16v-32h56v304H80a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16h-40V112h56v32a16 16 0 0 0 16 16h32a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zm256 336h-48V144h48c14.31 0 21.33-17.31 11.31-27.31l-80-80a16 16 0 0 0-22.62 0l-80 80C379.36 126 384.36 144 400 144h48v224h-48c-14.31 0-21.32 17.31-11.31 27.31l80 80a16 16 0 0 0 22.62 0l80-80C580.64 386 575.64 368 560 368z'></path>
+</svg> Body text font is **Montserrat**
 
-<i class="fas  fa-code "></i> Code font is **Fira Mono**
+<svg viewBox='0 0 640 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+  <path d='M278.9 511.5l-61-17.7c-6.4-1.8-10-8.5-8.2-14.9L346.2 8.7c1.8-6.4 8.5-10 14.9-8.2l61 17.7c6.4 1.8 10 8.5 8.2 14.9L293.8 503.3c-1.9 6.4-8.5 10.1-14.9 8.2zm-114-112.2l43.5-46.4c4.6-4.9 4.3-12.7-.8-17.2L117 256l90.6-79.7c5.1-4.5 5.5-12.3.8-17.2l-43.5-46.4c-4.5-4.8-12.1-5.1-17-.5L3.8 247.2c-5.1 4.7-5.1 12.8 0 17.5l144.1 135.1c4.9 4.6 12.5 4.4 17-.5zm327.2.6l144.1-135.1c5.1-4.7 5.1-12.8 0-17.5L492.1 112.1c-4.8-4.5-12.4-4.3-17 .5L431.6 159c-4.6 4.9-4.3 12.7.8 17.2L523 256l-90.6 79.7c-5.1 4.5-5.5 12.3-.8 17.2l43.5 46.4c4.5 4.9 12.1 5.1 17 .6z'></path>
+</svg> Code font is **Fira Mono**
 ]
 
 ---
@@ -1188,15 +1450,25 @@ heights %&gt;%
 # Learning more
 
 .large[
-<i class="fas  fa-box-open "></i> [brolgar.njtierney.com](http://brolgar.njtierney.com/)
+<svg viewBox='0 0 640 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+  <path d='M425.7 256c-16.9 0-32.8-9-41.4-23.4L320 126l-64.2 106.6c-8.7 14.5-24.6 23.5-41.5 23.5-4.5 0-9-.6-13.3-1.9L64 215v178c0 14.7 10 27.5 24.2 31l216.2 54.1c10.2 2.5 20.9 2.5 31 0L551.8 424c14.2-3.6 24.2-16.4 24.2-31V215l-137 39.1c-4.3 1.3-8.8 1.9-13.3 1.9zm212.6-112.2L586.8 41c-3.1-6.2-9.8-9.8-16.7-8.9L320 64l91.7 152.1c3.8 6.3 11.4 9.3 18.5 7.3l197.9-56.5c9.9-2.9 14.7-13.9 10.2-23.1zM53.2 41L1.7 143.8c-4.6 9.2.3 20.2 10.1 23l197.9 56.5c7.1 2 14.7-1 18.5-7.3L320 64 69.8 32.1c-6.9-.8-13.5 2.7-16.6 8.9z'></path>
+</svg> [brolgar.njtierney.com](http://brolgar.njtierney.com/)
 
-<i class="fas  fa-link "></i> [bit.ly/njt-rstudio](https://bit.ly/njt-rstudio)
+<svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+  <path d='M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z'></path>
+</svg> [bit.ly/njt-rstudio](https://bit.ly/njt-rstudio)
 
-<i class="fab  fa-twitter "></i> nj_tierney
+<svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+  <path d='M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z'></path>
+</svg> nj_tierney
 
-<i class="fab  fa-github "></i> njtierney
+<svg viewBox='0 0 496 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+  <path d='M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z'></path>
+</svg> njtierney
 
-<i class="fas  fa-paper-plane "></i> nicholas.tierney@gmail.com
+<svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+  <path d='M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z'></path>
+</svg> nicholas.tierney@gmail.com
 
 ]
 
@@ -1215,7 +1487,7 @@ heights %&gt;%
 **End.**
 ]
 
-
+&lt;img src="imgs/explorer.jpg" width="50%" style="display: block; margin: auto;" /&gt;
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

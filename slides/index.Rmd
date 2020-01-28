@@ -2,7 +2,7 @@
 title: 'Exploring and understanding the individual experience from longitudinal data, or...'
 subtitle: "_How to make better spaghetti (plots)_"  
 author: "<span style = 'font-size: 90%;'>Nicholas Tierney, Monash University</span>"
-# date: "<span style = 'font-size: 90%;'>rsudioconf2020<br><br> January, 2020</span><br><br> `r icon::fa('link')` [bit.ly/link](https://bit.ly/link)<br><br>`r icon::fa('twitter')` [nj_tierney](https://twitter.com/nj_tierney)"
+date: "<span style = 'font-size: 90%;'>rsudioconf2020<br><br> January, 2020</span><br>`r icon::fontawesome(name = 'layer-group', 'solid')` [bit.ly/njt-rstudio](https://bit.ly/njt-rstudio)<br><br>`r icon::fontawesome$brands$twitter` [nj_tierney](https://twitter.com/nj_tierney)"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -48,19 +48,6 @@ opts_chunk$set(
   cache = FALSE,
   echo = FALSE,
   autodep = TRUE
-)
-
-mp4_vid <- function(src){
-  HTML(
-    paste0(
-      '<video autoplay>
-        <source src="', src, '" type="video/mp4">
-      </video>'
-    )
-  )
-}
-
-fig.fullsize <- c(fig.height = 3.5, fig.width = 8, out.width = "150%"
 )
 
 as_table <- function(...) knitr::kable(..., format='html', digits = 3)
@@ -140,24 +127,32 @@ gg_heights <- function(data){
 
 ---
 
-```{r explorer, out.width = "65%"}
-include_graphics("imgs/explorer.jpg")
+# This is a problem
+
+```{r gg-show-all}
+gg_heights(heights)
 ```
 
 ---
+class: bg-black
 
-# EDA: Why it's worth it
-
---
-
-```{r dino-saurus}
-include_graphics("gifs/dino-saurus.gif")
+```{r noodle-explode-gif, out.width = "45%"}
+include_graphics("gifs/noodle-explode.gif")
 ```
-
--- From ["Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical Statistics through Simulated Annealing"](https://www.autodeskresearch.com/publications/samestats)
 
 ---
 class: middle, center, inverse
+
+.huge[
+How to make better spaghetti
+]
+
+---
+class: middle, center, inverse
+
+.huge[
+~~How to make better spaghetti~~
+]
 
 .huge[
 How to explore longitudinal data effectively
@@ -166,7 +161,9 @@ How to explore longitudinal data effectively
 ---
 class: inverse, middle,
 
-# What is longitudinal data?
+# What even **is** longitudinal data?
+
+--
 
 .huge[
 > Individuals repeatedly measured through time
@@ -175,7 +172,7 @@ class: inverse, middle,
 
 ---
 
-# What is longitudinal data?
+# What even **is** longitudinal data?
 
 .large[
 ```{r example-1}
@@ -185,7 +182,7 @@ as_table(example[1,])
 
 ---
 
-# What is longitudinal data?
+# What even **is** longitudinal data?
 
 .large[
 ```{r example-2}
@@ -195,7 +192,7 @@ as_table(example[1:2,])
 
 ---
 
-# What is longitudinal data?
+# What even **is** longitudinal data?
 
 .large[
 ```{r example-3}
@@ -205,7 +202,7 @@ as_table(example[1:3,])
 
 ---
 
-# What is longitudinal data?
+# What even **is** longitudinal data?
 
 .large[
 ```{r example-4}
@@ -213,12 +210,11 @@ as_table(example[1:4,])
 ```
 ]
 
----
+--
 
-# Same slide as before but with marked up:
-
-- **individuals repeatedly measured** (country)
-- through time (year)
+.large[
+Individuals repeatedly measured through time
+]
 
 ---
 
@@ -264,20 +260,15 @@ gg_heights() +
 include_graphics("gifs/animate-all-data-1.gif")
 ```
 
+
 ---
 
 # And the rest?
 
-```{r gg-show-all}
+```{r gg-show-all-again}
 gg_heights(heights)
 ```
 
----
-class: bg-black
-
-```{r noodle-explode-gif, out.width = "45%"}
-include_graphics("gifs/noodle-explode.gif")
-```
 
 ---
 
@@ -375,6 +366,11 @@ gg_height_highlight
 ---
 class: inverse, middle 
 
+# Three Problems in exploring longitudinal data 
+
+--
+
+
 .large[
 Problem #1: How do I look at **some** of the data?
 ]
@@ -385,18 +381,30 @@ Problem #1: How do I look at **some** of the data?
 Problem #2: How do I find **interesting** observations?
 ]
 
+--
+
+.large[
+Problem #3: How do I **understand** a model?
+]
+
 
 ---
 
-# Introducing `brolgar`: brolgar.njtierney.com
+# Introducing `brolgar`: [brolgar.njtierney.com](https://brolgar.njtierney.com)
 
-.pull-left.large[
-* **br**owsing
-* **o**ver
-* **l**ongitudinal data 
-* **g**raphically, and
-* **a**nalytically, in
-* **r**
+.pull-left.medium[
+**br**owsing
+
+**o**ver
+
+**l**ongitudinal data 
+
+**g**raphically, and
+
+**a**nalytically, in
+
+**r**
+
 ]
 
 .pull-right[
@@ -444,13 +452,15 @@ class: inverse, middle,
 
 class: inverse, middle
 
-# Longitudinal data as a **time series**?
+# Can we think of longitudinal data a **time series**?
 
 --
 
 .vlarge[
 > Anything that is observed sequentially over time is a time series
 ]
+
+--
 
 .large[
 [-- Rob Hyndman and George Athanasopolous,
@@ -474,26 +484,36 @@ heights <- as_tsibble(heights,
 
 `1. +  2.` determine distinct rows in a tsibble.
 
-(From Earo Wang's talk: [Melt the clock](https://slides.earo.me/rstudioconf19/#8))
+(From Dr. Earo Wang's talk: [Melt the clock](https://slides.earo.me/rstudioconf19/#8))
 
----
 
-# Longitudinal data as a time series <img src="https://tsibble.tidyverts.org/reference/figures/logo.png" align="right" height=140/>
-
-.large[
-- Record important time series information **once**
-- Use it **many** times in other places
-
-- We add information about **index** + **key**:
-  - Index = Year
-  - Key = Country
-]
 ---
 
 .large[
 ```{r show-heights}
 print(heights, n = 6)
 ```
+]
+
+---
+
+# Longitudinal data as a time series <img src="https://tsibble.tidyverts.org/reference/figures/logo.png" align="right" height=140/>
+
+.large[
+We add information about **index** + **key**:
+
+  `r emo::ji("ruler")` Index = Year
+  
+  `r emo::ji("key")`   Key = Country
+  ]
+  
+--
+
+.large[
+Record important time series information **once**
+
+Use it **many** times in other places
+
 ]
 
 ---
@@ -524,31 +544,32 @@ include_graphics("gifs/steaming-spaghetti.gif")
 
 ---
 
+.pull-left[
 ```{r full-house-spaghetti}
 include_graphics("gifs/full-house-spag.gif")
 ```
+]
+
+.pull-right[
+```{r garfield-sketti}
+include_graphics("gifs/garfield-spaghetti.gif")
+```
+]
 
 ---
 
 .pull-left[
 
-```{r cat-sketti}
+```{r cat-sketti, out.width = "100%"}
 include_graphics("gifs/cat-single-spag.gif")
 ```
 ]
 
 .pull-right[
-```{r rat-sketti}
+```{r rat-sketti, out.width = "100%"}
 include_graphics("gifs/rat-spaghetti.gif")
 ```
 ]
-
----
-
-```{r garfield-sketti}
-include_graphics("gifs/garfield-spaghetti.gif")
-```
-
 
 
 ---
@@ -578,38 +599,47 @@ gg_heights(heights) +
 ```
 
 ---
+class: inverse
 
-# **How** to look at many subsamples?
+# **How** do I look at many subsamples?
 
---
 
-.large[
-- How many facets to look at? (2, 4, ... 16?)
-]
+How many keys are there?
 
 --
 
-.large[
-- How many keys per facets?
-  - 144 keys into 16 facets = 9 each
-]
+How many facets do I want to look at?
 
 --
 
-.large[
-- Randomly pick 16 groups of size 9.
-]
+How many keys per facet should I look at?
 
 --
 
-.large[
-- This might not look like much extra work, but it hits the
-**distraction threshold** quite quickly.
-]
+How do I ensure there are the same number of keys per plot?
+
+--
+
+What is `rep`, `rep.int`, and `rep_len`?
+
+--
+
+Do I want `length.out` or `times`?
+
+--
+
+You have hit the **distraction threshold**
+
 
 ---
 
-# Distraction threshold (time to rabbit hole)
+```{r what-year-is-it, out.width = "65%"}
+include_graphics("imgs/what-year-is-it.jpg")
+```
+
+---
+
+# Distraction threshold `r emo::ji("clock")` `r emo::ji("rabbit")` `r emo::ji("hole")`
 
 --
 
@@ -637,43 +667,6 @@ gg_heights(heights) +
 - Task one being overshadowed slightly by minor task 2
 - Task one being overshadowed slightly by minor task 3
 
----
-
-# Distraction threshold (time to rabbit hole)
-
-**I want to look at many subsamples of the data** 
-
---
-
-How many keys are there?
-
---
-
-How many facets do I want to look at
-
---
-
-How many keys per facet should I look at
-
---
-
-How do I ensure there are the same number of keys per plot
-
---
-
-What is `rep`, `rep.int`, and `rep_len`?
-
---
-
-Do I want `length.out` or `times`?
-
-
----
-
-```{r what-year-is-it, out.width = "65%"}
-include_graphics("imgs/what-year-is-it.jpg")
-```
-
 
 ---
 
@@ -696,38 +689,6 @@ It's not that we should be better, rather **with better tools we could be more e
 .large[
 We need to make things **as easy as reasonable**, with the least amount of distraction.
 ]
-
-
----
-
-# Remove distraction by asking relevant questions
-
---
-
-.large[
-> How many keys per facet?
-
-> How many plots do I want to look at?
-]
-
---
-
-```{r show-facet-sample, echo = TRUE, eval = FALSE}
-facet_sample(
-    n_per_facet = 3, #<<
-    n_facets = 9 #<<
-  )
-```
-
----
-
-```{r show-facet-sample-print, echo = FALSE, out.width = "100%"}
-gg_heights(heights) + 
-  facet_sample(
-    n_per_facet = 3, #<<
-    n_facets = 9 #<<
-  )
-```
 
 ---
 
@@ -762,6 +723,38 @@ ggplot(heights,
 
 ---
 
+# Remove distraction by asking relevant questions
+
+--
+
+.large[
+> How many keys per facet?
+
+> How many plots do I want to look at?
+]
+
+--
+
+```{r show-facet-sample, echo = TRUE, eval = FALSE}
+facet_sample(
+    n_per_facet = 3, #<<
+    n_facets = 9 #<<
+  )
+```
+
+---
+
+```{r show-facet-sample-print, echo = FALSE, out.width = "100%"}
+gg_heights(heights) + 
+  facet_sample(
+    n_per_facet = 3, #<<
+    n_facets = 9 #<<
+  )
+```
+
+
+---
+
 # How to see **all** individuals?
 
 --
@@ -786,7 +779,7 @@ ggplot(heights,
 
 ---
 
-# Can we re-order these facets better?
+# `r emo::ji("thinking")` ... can we re-order these facets?
 
 ```{r print-gg-facet-strata-again, ref.label='gg-facet-strata'}
 ```
@@ -861,7 +854,7 @@ include_graphics("imgs/car-hood-small.jpg")
 ]
 
 .pull-right.large[
-`r icon::fa_bolt()` with `sample_n_keys()` & `stratify_keys()`
+`r icon::fontawesome$solid$bolt` with `sample_n_keys()` & `stratify_keys()`
 
 You can still get at data and do manipulations
 ]
@@ -1039,7 +1032,7 @@ gg_id_just_points
 
 ---
 
-## Identify important features and decide how to filter 
+## Identify **important features** and **decide** how to filter 
 
 ```{r gg-show-red-points}
 min_max <- heights_feature_flat_point %>%
@@ -1154,7 +1147,7 @@ Let's see that **one more time**, but with the data
 ## Identify features: one observation per **key**
 
 ```{r print-heights-again}
-heights[1:9, ]
+print(heights, n = 9)
 ```
 
 ---
@@ -1164,7 +1157,8 @@ heights[1:9, ]
 ```{r create-feature-five-1}
 heights_five <- heights %>%
   features(height_cm, #<<
-           feat_five_num) #<<
+           feat_five_num) %>%  #<< 
+  select(country, max)
 ```
 
 ```{r print-heights-for-features}
@@ -1194,7 +1188,7 @@ heights_five %>%
 heights_five %>% 
   filter(max == max(max) | max == min(max)) %>% 
   left_join(heights, by = "country") %>% 
-  head()
+  print(n = 6)
 ```
 
 ---
@@ -1202,6 +1196,13 @@ heights_five %>%
 ```{r show-doggo, out.width = "60%"}
 include_graphics("gifs/dog-solve-problem.gif")
 ```
+
+
+---
+
+.huge[
+But Nick, how did you create those summaries?
+]
 
 ---
 
@@ -1233,7 +1234,7 @@ heights %>%
 ```{r features-feat-ranges, echo = FALSE}
 heights %>%
   features(height_cm, feat_ranges) %>% 
-  head()
+  print(n = 6)
 ```
 
 ---
@@ -1248,7 +1249,7 @@ heights %>%
 ```{r features-feat-monotonic}
 heights %>%
   features(height_cm, feat_monotonic) %>% 
-  head()
+  print(n = 6)
 ```
 
 ---
@@ -1263,7 +1264,7 @@ heights %>%
 ```{r features-feat-spread}
 heights %>%
   features(height_cm, feat_spread) %>% 
-  head()
+  print(n = 6)
 ```
 
 ---
@@ -1276,7 +1277,192 @@ heights %>%
 - [Create your own features](http://brolgar.njtierney.com/articles/finding-features.html#creating-your-own-features)
 ]
 
+---
 
+# ~~Problem #1: How do I look at **some** of the data?~~
+
+--
+
+# Problem #2: How do I find **interesting** observations?
+
+---
+
+# ~~Problem #1: How do I look at **some** of the data?~~
+
+# ~~Problem #2: How do I find **interesting** observations?~~
+
+--
+
+# Problem #3: How do I **understand** a model?
+
+
+---
+
+# Problem #3: How do I **understand** a model?
+
+.medium[
+Let's fit a mixed effects model.
+
+Fixed effect of year + Random intercept for country
+]
+
+```{r fit-lme4, echo = TRUE}
+heights_fit <- lmer(height_cm ~ year + (1|country), heights)
+
+heights_aug <- heights %>%
+  add_predictions(heights_fit, var = "pred") %>%
+  add_residuals(heights_fit, var = "res")
+```
+
+---
+
+# Problem #3: How do I **understand** a model?
+
+.large[
+```{r lme4-augment}
+print(heights_aug, n = 6)
+```
+]
+
+---
+
+# Problem #3: How do I **understand** a model?
+
+```{r fits}
+gg_heights_fit <- 
+ggplot(heights_aug,
+       aes(x = year,
+           y = pred,
+           group = country)) + 
+  geom_line() 
+
+gg_heights_fit
+```
+
+---
+
+# Look at **many** subsamples? `facet_sample()`
+
+--
+
+```{r heights-fit-facet-sample, echo = TRUE, out.width = "70%"}
+gg_heights_fit + facet_sample()
+```
+
+---
+
+# Look at **all** subsamples? `facet_strata()`
+
+--
+
+```{r heights-fit-facet-strata, echo = TRUE, out.width = "70%"}
+gg_heights_fit + facet_strata()
+```
+
+---
+
+# Look at **all** subsamples **along** residuals?
+
+```{r heights-fit-facet-strata-res, echo = TRUE, out.width = "70%"}
+gg_heights_fit + facet_strata(along = -res)
+```
+
+---
+
+# Look at the predictions with the data?
+
+```{r small-sample, eval = FALSE, echo = TRUE}
+set.seed(2020-01-21)
+heights_sample <- 
+heights_aug %>%
+  sample_n_keys(size = 9) %>% #<<
+  ggplot(aes(x = year,
+             y = pred,
+             group = country)) + 
+  geom_line() +
+  facet_wrap(~country)
+
+heights_sample
+```  
+
+---
+
+# Look at the predictions with the data?
+
+```{r small-sample-out, ref.label = 'small-sample', echo = FALSE, out.width = "100%"}
+
+```
+
+---
+
+# Look at the predictions with the data?
+
+```{r small-sample-add-real-data, echo = TRUE, out.width = "70%"}
+heights_sample + geom_point(aes(y = height_cm))
+```  
+
+---
+
+# What if we grabbed a sample of those who have the best, middle, and worst residuals? 
+
+--
+
+```{r summary-residuals, echo = TRUE}
+summary(heights_aug$res)
+```
+
+--
+
+.large[
+Which countries are **nearest** to these statistics?
+]
+
+---
+
+# use `keys_near()`
+
+.pull-left[
+```{r keys-near, echo = TRUE}
+keys_near(heights_aug, 
+          var = res)
+```
+]
+
+.pull-right[
+```{r save-keys-near}
+heights_near <- keys_near(heights_aug, 
+                          var = res)
+```
+
+> This shows us the keys that closely match the five number summary. 
+
+]
+
+---
+
+## Show data by joining it with residuals, to explore spread
+
+```{r plot-join-aug}
+library(stickylabeller)
+
+heights_near_aug <- left_join(heights_near,
+          heights_aug,
+          by = "country")
+
+gg_heights_near <-
+ggplot(heights_near_aug,
+       aes(x = year,
+             y = pred,
+             group = country,
+             colour = country)) + 
+  geom_line() + 
+  geom_point(aes(y = height_cm)) + 
+  facet_wrap(~stat + country,
+             labeller = label_glue("Country: {country} \nNearest to {stat} residual")) + 
+  theme(legend.position = "none")
+
+gg_heights_near
+```  
 
 ---
 
@@ -1286,9 +1472,9 @@ heights %>%
 
 
 .large[
-1. Longitudinal data is a time series
-2. Specify structure once, get a free lunch.
-3. Look at as much of the raw data as possible 
+1. Longitudinal data as a time series `r emo::ji("chart")`
+2. Specify structure once, get a free lunch. `r emo::ji("sandwich")`
+3. Look at as much of the raw data as possible  `r emo::ji("sushi")`
 4. Use `facet_sample()` / `facet_strata()`
 ]
 
@@ -1307,16 +1493,30 @@ heights %>%
 
 ---
 
+# Take homes
+
+## Problem #3: How do I **understand** a model?
+
+.large[
+1. Look at (one, more or all!) subsamples
+1. Arrange subsamples
+1. Find **keys near** some summary 
+1. Join keys to data to explore representatives
+]
+
+
+---
+
 # Future Directions
 
 .large[
-`r icon::fa_mortar_pestle()` More features (summaries)
+`r icon::fontawesome("mortar-pestle", "solid")` More features (summaries)
 
-`r icon::fa_binoculars()` Generalise beyond time series
+`r icon::fontawesome$solid$binoculars` Generalise beyond time series
 
-`r icon::fa_compass()` Explore stratification process
+`r icon::fontawesome$solid$compass` Explore stratification process
 
-`r icon::fa_code()` Work with `dplyr::across()` & `dplyr::pick()`
+`r icon::fontawesome$solid$code` Work with `dplyr::across()` & `dplyr::pick()`
 ]
 
 ---
@@ -1344,31 +1544,31 @@ heights %>%
 # Resources
 
 .large[
-`r icon::fa_box_open()` [feasts](http://feasts.tidyverts.org/)
+`r icon::fontawesome(name = "box-open", "solid")` [feasts](http://feasts.tidyverts.org/)
 
-`r icon::fa_box_open()` [tsibble](http://tsibble.tidyverts.org/)
+`r icon::fontawesome(name = "box-open", "solid")` [tsibble](http://tsibble.tidyverts.org/)
 
-`r icon::fa_newspaper()` [Time series graphics using feasts](https://robjhyndman.com/hyndsight/feasts/)
+`r icon::fontawesome$solid$newspaper` [Time series graphics using feasts](https://robjhyndman.com/hyndsight/feasts/)
 
-`r icon::fa_newspaper()` [Feature-based time series analysis](https://robjhyndman.com/hyndsight/fbtsa/)
+`r icon::fontawesome$solid$newspaper` [Feature-based time series analysis](https://robjhyndman.com/hyndsight/fbtsa/)
 ]
 
 ---
 
 # Colophon
 
-.large[
-`r icon::fa_layer_group()` Slides made using [xaringan](https://github.com/yihui/xaringan)
+.medium[
+`r icon::fontawesome(name = "layer-group", "solid")` Slides made using [xaringan](https://github.com/yihui/xaringan)
 
-`r icon::fa_seedling()` Extended with [xaringanthemer](https://github.com/gadenbuie/xaringanthemer)
+`r icon::fontawesome$solid$seedling` Extended with [xaringanthemer](https://github.com/gadenbuie/xaringanthemer)
 
-`r icon::fa_palette()` Colours modified from [ochRe::lorikeet](https://github.com/ropenscilabs/ochRe)
+`r icon::fontawesome$solid$palette` Colours modified from [ochRe::lorikeet](https://github.com/ropenscilabs/ochRe)
 
-`r icon::fa_text_height()` Header font is **Josefin Sans**
+`r icon::fontawesome(name = "text-height", "solid") ` Header font is **Josefin Sans**
 
-`r icon::fa_text_height()` Body text font is **Montserrat**
+`r icon::fontawesome(name = "text-height", "solid") ` Body text font is **Montserrat**
 
-`r icon::fa_code()` Code font is **Fira Mono**
+`r icon::fontawesome$solid$code` Code font is **Fira Mono**
 ]
 
 ---
@@ -1376,15 +1576,15 @@ heights %>%
 # Learning more
 
 .large[
-`r icon::fa_box_open() ` [brolgar.njtierney.com](http://brolgar.njtierney.com/)
+`r icon::fontawesome(name = "box-open", "solid") ` [brolgar.njtierney.com](http://brolgar.njtierney.com/)
 
-`r icon::fa('link')` [bit.ly/njt-rstudio](https://bit.ly/njt-rstudio)
+`r icon::fontawesome$solid$link` [bit.ly/njt-rstudio](https://bit.ly/njt-rstudio)
 
-`r icon::fa_twitter()` nj_tierney
+`r icon::fontawesome$brands$twitter` nj_tierney
 
-`r icon::fa_github()` njtierney
+`r icon::fontawesome$brands$github` njtierney
 
-`r icon::fa_paper_plane()` nicholas.tierney@gmail.com
+`r icon::fontawesome(name = "paper-plane", "solid")` nicholas.tierney@gmail.com
 
 ]
 
@@ -1403,22 +1603,7 @@ heights %>%
 **End.**
 ]
 
-```{r many-ggplots, eval = FALSE}
-# some code to generate many alphas
-
-library(magick)
-
-gg_ha <- function(tr){
-ggplot(heights,
-       aes(x = year,
-           y = height_cm,
-           group = country)) + 
-  geom_line(alpha = tr)
-}
-
-alfs <- (1:10)/10
-
-map(alfs, gg_ha)
-
+```{r explorer, out.width = "25%"}
+include_graphics("imgs/explorer.jpg")
 ```
 
