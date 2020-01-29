@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>How to make better spaghetti (plots) 🍝 🍝 🍝</title>
+    <title>.vlarge[How to make better spaghetti (plots) 🍝 🍝 ]</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Nicholas Tierney, Monash University" />
+    <meta name="author" content=".vlarge[Nicholas Tierney, Monash University]" />
     <script src="libs/header-attrs-2.1/header-attrs.js"></script>
     <link rel="stylesheet" href="njtheme.css" type="text/css" />
     <link rel="stylesheet" href="extra.css" type="text/css" />
@@ -14,13 +14,15 @@
     <textarea id="source">
 class: left, middle, inverse, title-slide
 
-# How to make better spaghetti (plots) 🍝 🍝 🍝
-### Nicholas Tierney, Monash University
-### rsudioconf2020 <br><br> January, 2020 <br><br> <svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
-  <path d='M12.41 148.02l232.94 105.67c6.8 3.09 14.49 3.09 21.29 0l232.94-105.67c16.55-7.51 16.55-32.52 0-40.03L266.65 2.31a25.607 25.607 0 0 0-21.29 0L12.41 107.98c-16.55 7.51-16.55 32.53 0 40.04zm487.18 88.28l-58.09-26.33-161.64 73.27c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.51 209.97l-58.1 26.33c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 276.3c16.55-7.5 16.55-32.5 0-40zm0 127.8l-57.87-26.23-161.86 73.37c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.29 337.87 12.41 364.1c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 404.1c16.55-7.5 16.55-32.5 0-40z'></path>
+# .vlarge[How to make better spaghetti (plots) 🍝 🍝 ]
+### .vlarge[Nicholas Tierney, Monash University]
+### <div class="medium">
+rstudioconf2020, January 29 <br><br> <svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+  <path d='M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z'></path>
 </svg> <a href="https://bit.ly/njt-rstudio">bit.ly/njt-rstudio</a> <br><br> <svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
   <path d='M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z'></path>
 </svg> <a href="https://twitter.com/nj_tierney">nj_tierney</a>
+</div>
 
 ---
 
@@ -202,27 +204,27 @@ Individuals repeatedly measured through time
 
 # All of Australia
 
-&lt;img src="figures/gg-all-australia-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/gg-all-australia-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 
 ---
 
 # ...And New Zealand
 
-&lt;img src="figures/gg-show-a-few-countries-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/gg-show-a-few-countries-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+
+---
+# And the rest?
+
+&lt;img src="gifs/animate-all-data-1.gif" width="90%" style="display: block; margin: auto;" /&gt;
 
 
 ---
 class: animated, heartBeat
 # And the rest?
 
-&lt;img src="gifs/animate-all-data-1.gif" style="display: block; margin: auto;" /&gt;
-
-
----
-# And the rest
-
-&lt;img src="figures/gg-show-all-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/gg-show-all-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ---
 class: bg-black
@@ -235,31 +237,31 @@ class: center, bottom, white
 
 # Problems:
 
-.pull-left.large[
-- Overplotting
-- We don't see the individuals
-- We could look at 144 individual plots, but this doesn't help.
+.large.pull-left[
+<svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+  <path d='M12.41 148.02l232.94 105.67c6.8 3.09 14.49 3.09 21.29 0l232.94-105.67c16.55-7.51 16.55-32.52 0-40.03L266.65 2.31a25.607 25.607 0 0 0-21.29 0L12.41 107.98c-16.55 7.51-16.55 32.53 0 40.04zm487.18 88.28l-58.09-26.33-161.64 73.27c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.51 209.97l-58.1 26.33c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 276.3c16.55-7.5 16.55-32.5 0-40zm0 127.8l-57.87-26.23-161.86 73.37c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.29 337.87 12.41 364.1c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 404.1c16.55-7.5 16.55-32.5 0-40z'></path>
+</svg> Overplotting
+
+We don't see the individuals
+
+Looking at **144** plots doesn't really help
 ]
 
-.pull-right[
-&lt;img src="figures/gg-heights-heights-again-1.png" width="936" style="display: block; margin: auto;" /&gt;
+.pull-right.animated.shake[
+&lt;img src="figures/gg-heights-heights-again-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
 
 # Answers: Transparency?
 
-&lt;!-- (slowly fade the image alpha down) --&gt;
-
---
-
-&lt;img src="figures/gg-show-all-w-alpha-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/gg-show-all-w-alpha-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 # Answers: Transparency + a model?
 
-&lt;img src="figures/gg-show-all-w-model-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/gg-show-all-w-model-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ???
 
@@ -272,7 +274,7 @@ class: center, bottom, white
 
 # But we forget about the **individuals**
 
-&lt;img src="figures/heights-dec-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/heights-dec-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ???
 
@@ -283,7 +285,7 @@ class: center, bottom, white
 ---
 class: inverse, middle 
 
-# Three Problems in exploring longitudinal data 
+# Three problems in exploring longitudinal data 
 
 --
 
@@ -309,23 +311,17 @@ Problem #3: How do I **understand** a model?
 
 # Introducing `brolgar`: [brolgar.njtierney.com](https://brolgar.njtierney.com)
 
-.pull-left.medium[
-**br**owsing
-
-**o**ver
-
-**l**ongitudinal data 
-
-**g**raphically, and
-
-**a**nalytically, in
-
+.pull-left.mlarge[
+**br**owsing &lt;br&gt;
+**o**ver &lt;br&gt;
+**l**ongitudinal data &lt;br&gt;
+**g**raphically, and &lt;br&gt;
+**a**nalytically, in &lt;br&gt;
 **r**
-
 ]
 
 .pull-right[
-&lt;img src="imgs/brolga-bird.jpg" width="569" style="display: block; margin: auto;" /&gt;
+&lt;img src="imgs/brolga-bird.jpg" width="90%" style="display: block; margin: auto;" /&gt;
 ]
 
 ???
@@ -367,12 +363,12 @@ class: inverse, middle,
 
 class: inverse, middle
 
-# 🤔 Can we think of longitudinal data as a **time series**?
+# 🤔 longitudinal data as a **time series**?
 
 --
 
 .vlarge[
-&gt; Anything that is observed sequentially over time is a time series
+&gt; Anything that is observed sequentially over time **is a time series**
 ]
 
 --
@@ -395,13 +391,14 @@ heights &lt;- as_tsibble(heights,
 *                     regular = FALSE)
 ```
 
+.medium[
 1. **index**: Your time variable
 2. **key**: Variable(s) defining individual groups (or series)
 
 `1. +  2.` determine distinct rows in a tsibble.
 
 (From Dr. Earo Wang's talk: [Melt the clock](https://slides.earo.me/rstudioconf19/#8))
-
+]
 
 ---
 
@@ -454,16 +451,16 @@ class: inverse, center, middle
 
 # How do you **eat** spaghetti?
 
-&lt;img src="gifs/steaming-spaghetti.gif" style="display: block; margin: auto;" /&gt;
+&lt;img src="gifs/steaming-spaghetti.gif" width="100%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 .pull-left[
-&lt;img src="gifs/full-house-spag.gif" style="display: block; margin: auto;" /&gt;
+&lt;img src="gifs/full-house-spag.gif" width="90%" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
-&lt;img src="gifs/garfield-spaghetti.gif" style="display: block; margin: auto;" /&gt;
+&lt;img src="gifs/garfield-spaghetti.gif" width="90%" style="display: block; margin: auto;" /&gt;
 ]
 
 --
@@ -490,20 +487,20 @@ data indigestion
 
 # Portion out your spaghetti! 🍝 🍝 🍝 🍝
 
-&lt;img src="figures/all-heights-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/all-heights-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 
 ---
 
 # Look at **one** set of subsamples 🍝
 
-&lt;img src="figures/all-heights-samples-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/all-heights-samples-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 # Look at **many** subsamples 🍝 🍝 🍝 🍝 🍝 🍝
 
-&lt;img src="figures/heights-strata-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/heights-strata-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ---
 class: inverse
@@ -512,31 +509,41 @@ class: inverse
 
 --
 
+.vlarge[
 How many keys are there?
+]
+--
+
+.vlarge[
+How many facets do I want?
+]
 
 --
 
-How many facets do I want to look at?
+.vlarge[
+How many keys per facet?
+]
+
+---
+class: inverse
+
+# **How** do I look at many subsamples? 🤔
+
+.vlarge[
+How to keep the same number of keys per plot?
+]
 
 --
 
-How many keys per facet should I look at?
-
---
-
-How do I ensure there are the same number of keys per plot?
-
---
-
+.vlarge[
 What is `rep`, `rep.int`, and `rep_len`?
+]
 
 --
 
+.vlarge[
 Do I want `length.out` or `times`?
-
---
-
-You have hit the **distraction threshold**
+]
 
 
 ---
@@ -602,6 +609,7 @@ We need to make things **as easy as reasonable**, with the least amount of distr
 
 # `facet_sample()`: See more individuals 👀
 
+.large[
 
 ```r
 ggplot(heights, aes(x = year, 
@@ -609,13 +617,20 @@ ggplot(heights, aes(x = year,
                     group = country)) + 
   geom_line() 
 ```
-
-&lt;img src="figures/gg-facet-sample-all-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
 
 ---
 
 # `facet_sample()`: See more individuals 👀
 
+&lt;img src="figures/gg-facet-sample-all-out-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+# `facet_sample()`: See more individuals 👀
+---
+
+# `facet_sample()`: See more individuals 👀
+
+.large[
 
 ```r
 ggplot(heights, aes(x = year,
@@ -624,18 +639,17 @@ ggplot(heights, aes(x = year,
   geom_line() + 
 * facet_sample()
 ```
+]
 
 ---
 
 # `facet_sample()`: See more individuals 👀
 
-&lt;img src="figures/print-gg-facet-sample-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/print-gg-facet-sample-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 # Remove distraction. Ask relevant questions
-
---
 
 .large[
 &gt; How many keys per facet?
@@ -665,8 +679,6 @@ gg_heights +
 
 # How to see **all** individuals?
 
---
-
 .huge[
 
 ```r
@@ -679,13 +691,13 @@ gg_heights +
 
 # `facet_strata()`: See **all** individuals
 
-&lt;img src="figures/print-gg-facet-strata-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/print-gg-facet-strata-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 # 🤔 ... can we re-order these facets?
 
-&lt;img src="figures/print-gg-facet-strata-again-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/print-gg-facet-strata-again-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ???
 
@@ -695,7 +707,7 @@ In asking these questions we can solve something else interesting
 
 # We can re-order these facets?! 😄
 
-&lt;img src="figures/print-gg-facet-strata-again-again-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/print-gg-facet-strata-again-again-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -715,7 +727,7 @@ gg_heights +
 
 # See all individuals **along** some variable
 
-&lt;img src="figures/print-gg-facet-strata-along-again-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/print-gg-facet-strata-along-again-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -839,7 +851,7 @@ View **all** subsamples
 
 ## Problem #2: How do I find **interesting** observations?
 
-&lt;img src="figures/quite-interesting-obs-2-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/quite-interesting-obs-2-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ---
 class: inverse, center, middle
@@ -856,7 +868,7 @@ A workflow
 
 --
 
-.huge[
+.huge.animated.bounceInLeft[
 _maximum height_
 ]
 
@@ -867,52 +879,52 @@ _maximum height_
 
 
 
-&lt;img src="gifs/anim-line-flat-max-1.gif" style="display: block; margin: auto;" /&gt;
+&lt;img src="gifs/anim-line-flat-max-1.gif" width="90%" style="display: block; margin: auto;" /&gt;
 
 
 ---
 
 ## Identify features: one observation per **key**
 
-&lt;img src="figures/show-line-range-point-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/show-line-range-point-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 
 ---
 
 ## Identify features: one observation per **key**
 
-&lt;img src="figures/gg-show-point-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/gg-show-point-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Identify **important features** and **decide** how to filter 
 
-&lt;img src="figures/gg-show-red-points-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/gg-show-red-points-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Identify **important features** and **decide** how to filter 
 
-&lt;img src="figures/gg-just-red-points-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/gg-just-red-points-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 
 ---
 
 ## Join this feature back to the data
 
-&lt;img src="figures/gg-join-red-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/gg-join-red-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Join this feature back to the data
 
-&lt;img src="figures/gg-join-red-show-all-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/gg-join-red-show-all-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## 🎉 Countries with smallest and largest max height
 
-&lt;img src="figures/show-red-all-again-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/show-red-all-again-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ---
 class: inverse, middle, cetner
@@ -1118,7 +1130,7 @@ heights %&gt;%
 
 ## features: MANY more features in `feasts` &lt;img src="https://feasts.tidyverts.org/reference/figures/logo.png" align="right" height=140/&gt;
 
-.large[
+.mlarge[
 
 `feat_acf`: autocorrelation-based features
 
@@ -1194,7 +1206,7 @@ heights_aug &lt;- heights %&gt;%
 
 # Problem #3: How do I **understand** a model?
 
-&lt;img src="figures/fits-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/fits-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1276,9 +1288,9 @@ heights_sample + geom_point(aes(y = height_cm))
 ## Problem #1: How do I look at **some** of the data?
 
 
-.large[
+.mlarge[
 1. Longitudinal data as a time series 💹
-2. Specify structure once, get a free lunch. 🥪
+2. Specify structure, get a free lunch. 🥪
 3. Look at as much of the raw data as possible  🍣
 4. Use `facet_sample()` / `facet_strata()`
 ]
@@ -1289,7 +1301,7 @@ heights_sample + geom_point(aes(y = height_cm))
 
 ## Problem #2: How do I find **interesting** observations?
 
-.large[
+.mlarge[
 1. Decide what features are interesting
 2. Summarise down to one observation per key
 3. Decide how to filter
@@ -1302,7 +1314,7 @@ heights_sample + geom_point(aes(y = height_cm))
 
 ## Problem #3: How do I **understand** a model?
 
-.large[
+.mlarge[
 1. Look at (one, more or all!) subsamples
 1. Arrange subsamples
 1. (actually use similar approaches to earlier!)
@@ -1430,14 +1442,6 @@ heights_sample + geom_point(aes(y = height_cm))
 ]
 
 ---
-
-&lt;iframe width="1060" height="590" src="https://www.youtube.com/embed/UerBCXHKJ5s?start=38" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
-
----
-
-&lt;iframe width="960" height="600" src="https://www.youtube.com/embed/AbSehcT19u0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
-
----
 class: animated, heartBeat
 
 .vhuge[
@@ -1446,10 +1450,28 @@ BONUS ROUND
 
 ---
 
+&lt;iframe width="1060" height="590" src="https://www.youtube.com/embed/UerBCXHKJ5s?start=38" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+---
+
+&lt;iframe width="960" height="600" src="https://www.youtube.com/embed/AbSehcT19u0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+---
+
+# What about interactive graphics?
+
+.vlarge[
+&gt; if you make a tooltip or rollover, **assume no one will ever see it**"
+-- Archie Tse, NYT
+]
+
+---
+
 # What if we grabbed a sample of those who have the best, middle, and worst residuals? 
 
 --
 
+.medium[
 
 ```r
 summary(heights_aug$res)
@@ -1459,10 +1481,11 @@ summary(heights_aug$res)
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ## -8.1707 -1.6202 -0.1558  0.0000  1.3545 12.1729
 ```
+]
 
 --
 
-.large[
+.mlarge[
 Which countries are **nearest** to these statistics?
 ]
 
@@ -1501,7 +1524,7 @@ keys_near(heights_aug,
 
 # Join data back and explore
 
-&lt;img src="figures/plot-join-aug-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/plot-join-aug-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ---
 

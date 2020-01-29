@@ -80,6 +80,11 @@ div.my-footer span {
 .large {
   font-size: 140%;
 }
+
+.mlarge {
+  font-size: 170%;
+}
+
 .vlarge {
   font-size: 200%;
 }

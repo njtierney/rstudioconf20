@@ -1,7 +1,7 @@
 ---
-title: 'How to make better spaghetti (plots) `r emo::ji("spaghetti")` `r emo::ji("spaghetti")` `r emo::ji("spaghetti")`'
-author: Nicholas Tierney, Monash University
-date: "rsudioconf2020 <br><br> January, 2020 <br><br> `r icon::fontawesome(name = 'layer-group', 'solid')` [bit.ly/njt-rstudio](https://bit.ly/njt-rstudio) <br><br> `r icon::fontawesome$brands$twitter` [nj_tierney](https://twitter.com/nj_tierney)"
+title: .vlarge[How to make better spaghetti (plots) `r emo::ji("spaghetti")` `r emo::ji("spaghetti")` ]
+author: .vlarge[Nicholas Tierney, Monash University]
+date: "<div class='medium'>rstudioconf2020, January 29 <br><br> `r icon::fontawesome(name = 'link', 'solid')` [bit.ly/njt-rstudio](https://bit.ly/njt-rstudio) <br><br> `r icon::fontawesome$brands$twitter` [nj_tierney](https://twitter.com/nj_tierney)</div>"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -43,6 +43,7 @@ opts_chunk$set(
   fig.width = 13,
   fig.height = 6,
   fig.retina = 3,
+  out.width = "90%",
   fig.show = "hold",
   external = TRUE,
   # dev = "svglite",
@@ -243,7 +244,6 @@ plot_heights() +
 
 
 ---
-class: animated, heartBeat
 # And the rest?
 
 ```{r animate-all-data}
@@ -253,7 +253,8 @@ include_graphics("gifs/animate-all-data-1.gif")
 
 
 ---
-# And the rest
+class: animated, heartBeat
+# And the rest?
 
 ```{r gg-show-all}
 gg_heights
@@ -270,13 +271,15 @@ class: center, bottom, white
 
 # Problems:
 
-.pull-left.large[
-- Overplotting
-- We don't see the individuals
-- We could look at 144 individual plots, but this doesn't help.
+.large.pull-left[
+`r icon::fontawesome("layer-group", "solid")` Overplotting
+
+🙈 We don't see the individuals
+
+🤷 Looking at **144** plots doesn't really help
 ]
 
-.pull-right[
+.pull-right.animated.shake[
 ```{r gg-heights-heights-again}
 gg_heights
 ```
@@ -285,10 +288,6 @@ gg_heights
 ---
 
 # Answers: Transparency?
-
-<!-- (slowly fade the image alpha down) -->
-
---
 
 ```{r gg-show-all-w-alpha}
 ggplot(heights,
@@ -362,7 +361,7 @@ gg_height_highlight
 ---
 class: inverse, middle 
 
-# Three Problems in exploring longitudinal data 
+# Three problems in exploring longitudinal data 
 
 --
 
@@ -388,19 +387,13 @@ Problem #3: How do I **understand** a model?
 
 # Introducing `brolgar`: [brolgar.njtierney.com](https://brolgar.njtierney.com)
 
-.pull-left.medium[
-**br**owsing
-
-**o**ver
-
-**l**ongitudinal data 
-
-**g**raphically, and
-
-**a**nalytically, in
-
+.pull-left.mlarge[
+**br**owsing <br>
+**o**ver <br>
+**l**ongitudinal data <br>
+**g**raphically, and <br>
+**a**nalytically, in <br>
 **r**
-
 ]
 
 .pull-right[
@@ -448,12 +441,12 @@ class: inverse, middle,
 
 class: inverse, middle
 
-# `r emo::ji("thinking")` Can we think of longitudinal data as a **time series**?
+# `r emo::ji("thinking")` longitudinal data as a **time series**?
 
 --
 
 .vlarge[
-> Anything that is observed sequentially over time is a time series
+> Anything that is observed sequentially over time **is a time series**
 ]
 
 --
@@ -475,13 +468,14 @@ heights <- as_tsibble(heights,
                       regular = FALSE) #<<
 ```
 
+.medium[
 1. **index**: Your time variable
 2. **key**: Variable(s) defining individual groups (or series)
 
 `1. +  2.` determine distinct rows in a tsibble.
 
 (From Dr. Earo Wang's talk: [Melt the clock](https://slides.earo.me/rstudioconf19/#8))
-
+]
 
 ---
 
@@ -526,7 +520,7 @@ gg_sample_keys <- plot_heights(heights_sample)
 
 # How do you **eat** spaghetti?
 
-```{r steaming-sketti}
+```{r steaming-sketti, out.width = "75%"}
 include_graphics("gifs/steaming-spaghetti.gif")
 ```
 
@@ -601,31 +595,41 @@ class: inverse
 
 --
 
+.vlarge[
 How many keys are there?
+]
+--
+
+.vlarge[
+How many facets do I want?
+]
 
 --
 
-How many facets do I want to look at?
+.vlarge[
+How many keys per facet?
+]
+
+---
+class: inverse
+
+# **How** do I look at many subsamples? `r emo::ji("thinking")`
+
+.vlarge[
+How to keep the same number of keys per plot?
+]
 
 --
 
-How many keys per facet should I look at?
-
---
-
-How do I ensure there are the same number of keys per plot?
-
---
-
+.vlarge[
 What is `rep`, `rep.int`, and `rep_len`?
+]
 
 --
 
+.vlarge[
 Do I want `length.out` or `times`?
-
---
-
-You have hit the **distraction threshold**
+]
 
 
 ---
@@ -691,17 +695,28 @@ We need to make things **as easy as reasonable**, with the least amount of distr
 
 # `facet_sample()`: See more individuals `r emo::ji("eyes")`
 
-```{r gg-facet-sample-all, echo = TRUE, out.width = "50%"}
+.large[
+```{r gg-facet-sample-all, echo = TRUE, eval = FALSE}
 ggplot(heights, aes(x = year, 
                     y = height_cm, 
                     group = country)) + 
   geom_line() 
 ```
+]
 
 ---
 
 # `facet_sample()`: See more individuals `r emo::ji("eyes")`
 
+```{r gg-facet-sample-all-out, ref.label = 'gg-facet-sample-all', echo = FALSE, out.width = "100%"}
+```
+
+# `facet_sample()`: See more individuals `r emo::ji("eyes")`
+---
+
+# `facet_sample()`: See more individuals `r emo::ji("eyes")`
+
+.large[
 ```{r gg-facet-sample, echo = TRUE, eval = FALSE}
 ggplot(heights, aes(x = year,
                     y = height_cm,
@@ -709,6 +724,7 @@ ggplot(heights, aes(x = year,
   geom_line() + 
   facet_sample() #<<
 ```
+]
 
 ---
 
@@ -720,8 +736,6 @@ ggplot(heights, aes(x = year,
 ---
 
 # Remove distraction. Ask relevant questions
-
---
 
 .large[
 > How many keys per facet?
@@ -756,8 +770,6 @@ plot_heights(heights) +
 
 # How to see **all** individuals?
 
---
-
 .huge[
 ```{r gg-facet-strata, echo = TRUE, eval = FALSE}
 gg_heights +  
@@ -790,7 +802,11 @@ In asking these questions we can solve something else interesting
 
 # We can re-order these facets?! `r emo::ji("smile")`
 
-```{r print-gg-facet-strata-again-again, ref.label='gg-facet-strata'}
+```{r print-gg-facet-strata-again-again}
+gg_heights + 
+  facet_strata(
+    along = -year #<<
+    ) 
 ```
 
 ---
@@ -952,7 +968,7 @@ A workflow
 
 --
 
-.huge[
+.huge.animated.bounceInLeft[
 _maximum height_
 ]
 
@@ -1291,7 +1307,7 @@ heights %>%
 
 ## features: MANY more features in `feasts` <img src="https://feasts.tidyverts.org/reference/figures/logo.png" align="right" height=140/>
 
-.large[
+.mlarge[
 
 `feat_acf`: autocorrelation-based features
 
@@ -1435,9 +1451,9 @@ heights_sample + geom_point(aes(y = height_cm))
 ## Problem #1: How do I look at **some** of the data?
 
 
-.large[
+.mlarge[
 1. Longitudinal data as a time series `r emo::ji("chart")`
-2. Specify structure once, get a free lunch. `r emo::ji("sandwich")`
+2. Specify structure, get a free lunch. `r emo::ji("sandwich")`
 3. Look at as much of the raw data as possible  `r emo::ji("sushi")`
 4. Use `facet_sample()` / `facet_strata()`
 ]
@@ -1448,7 +1464,7 @@ heights_sample + geom_point(aes(y = height_cm))
 
 ## Problem #2: How do I find **interesting** observations?
 
-.large[
+.mlarge[
 1. Decide what features are interesting
 2. Summarise down to one observation per key
 3. Decide how to filter
@@ -1461,7 +1477,7 @@ heights_sample + geom_point(aes(y = height_cm))
 
 ## Problem #3: How do I **understand** a model?
 
-.large[
+.mlarge[
 1. Look at (one, more or all!) subsamples
 1. Arrange subsamples
 1. (actually use similar approaches to earlier!)
@@ -1551,14 +1567,6 @@ heights_sample + geom_point(aes(y = height_cm))
 ]
 
 ---
-
-<iframe width="1060" height="590" src="https://www.youtube.com/embed/UerBCXHKJ5s?start=38" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
----
-
-<iframe width="960" height="600" src="https://www.youtube.com/embed/AbSehcT19u0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
----
 class: animated, heartBeat
 
 .vhuge[
@@ -1567,17 +1575,36 @@ BONUS ROUND
 
 ---
 
+<iframe width="1060" height="590" src="https://www.youtube.com/embed/UerBCXHKJ5s?start=38" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+---
+
+<iframe width="960" height="600" src="https://www.youtube.com/embed/AbSehcT19u0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+---
+
+# What about interactive graphics?
+
+.vlarge[
+> if you make a tooltip or rollover, **assume no one will ever see it**"
+-- Archie Tse, NYT
+]
+
+---
+
 # What if we grabbed a sample of those who have the best, middle, and worst residuals? 
 
 --
 
+.medium[
 ```{r summary-residuals, echo = TRUE}
 summary(heights_aug$res)
 ```
+]
 
 --
 
-.large[
+.mlarge[
 Which countries are **nearest** to these statistics?
 ]
 
