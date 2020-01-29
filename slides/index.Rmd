@@ -832,7 +832,7 @@ gg_heights +
 
 ---
 
-# Magic facets: Focus on relevant questions instead of minutae:
+# Magic facets: Focus on relevant questions instead of minutiae:
 
 --
 
@@ -879,7 +879,7 @@ gg_heights +
 # `facet_strata()` & `facet_sample()`
 
 .pull-left[
-```{r under-hood, out.width = "8010"}
+```{r under-hood, out.width = "100%"}
 include_graphics("imgs/car-hood-small.jpg")
 ```
 ]
@@ -1167,7 +1167,7 @@ gg_join_red_all +
 ```
 
 ---
-class: inverse, middle, cetner
+class: inverse, middle
 
 .vhuge[
 Let's see that **one more time**, but with the data
