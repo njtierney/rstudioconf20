@@ -1,18 +1,22 @@
 ---
-title: 'Exploring and understanding the individual experience from longitudinal data, or...'
-subtitle: "_How to make better spaghetti (plots)_"  
-author: "<span style = 'font-size: 90%;'>Nicholas Tierney, Monash University</span>"
-date: "<span style = 'font-size: 90%;'>rsudioconf2020<br><br> January, 2020</span><br>`r icon::fontawesome(name = 'layer-group', 'solid')` [bit.ly/njt-rstudio](https://bit.ly/njt-rstudio)<br><br>`r icon::fontawesome$brands$twitter` [nj_tierney](https://twitter.com/nj_tierney)"
+title: 'How to make better spaghetti (plots) `r emo::ji("spaghetti")` `r emo::ji("spaghetti")` `r emo::ji("spaghetti")`'
+author: Nicholas Tierney, Monash University
+date: "rsudioconf2020 <br><br> January, 2020 <br><br> `r icon::fontawesome(name = 'layer-group', 'solid')` [bit.ly/njt-rstudio](https://bit.ly/njt-rstudio) <br><br> `r icon::fontawesome$brands$twitter` [nj_tierney](https://twitter.com/nj_tierney)"
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: [njtheme.css, extra.css, animate.css]
+    css: 
+      - njtheme.css
+      - extra.css
+      - animate.css
+      - typewriter.css
     nature:
       ratio: "16:9"
       titleSlideClass: ["left", "middle", "inverse"]
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
+      slideNumberFormat: "%current%"  
 ---
 
 layout: true
@@ -45,7 +49,7 @@ opts_chunk$set(
   # dev.args = list(bg = "transparent"),
   message = FALSE,
   warning = FALSE,
-  cache = FALSE,
+  cache = TRUE,
   echo = FALSE,
   autodep = TRUE
 )
@@ -116,28 +120,15 @@ animate(p, fps = 24, duration = 5)
 ```
 
 ```{r fun-gg-heights}
-gg_heights <- function(data){  
+plot_heights <- function(data){  
   ggplot(data, 
          aes(x = year,
              y = height_cm,
              group = country)) + 
   geom_line()
 }
-```
 
----
-
-# This is a problem
-
-```{r gg-show-all}
-gg_heights(heights)
-```
-
----
-class: bg-black
-
-```{r noodle-explode-gif, out.width = "45%"}
-include_graphics("gifs/noodle-explode.gif")
+gg_heights <- plot_heights(heights)
 ```
 
 ---
@@ -230,7 +221,7 @@ include_graphics("gifs/reveal-height-1.gif")
 ```{r gg-all-australia}
 heights %>%
   filter(country %in% c("Australia")) %>%
-  gg_heights() + 
+  plot_heights() + 
   lims(x = range(heights$year),
        y = range(heights$height_cm))
 
@@ -245,14 +236,14 @@ heights %>%
 heights %>%
   filter(country %in% c("Australia",
                         "New Zealand")) %>%
-gg_heights() + 
+plot_heights() + 
   lims(x = range(heights$year),
        y = range(heights$height_cm))
 ```
 
 
 ---
-
+class: animated, heartBeat
 # And the rest?
 
 ```{r animate-all-data}
@@ -262,13 +253,18 @@ include_graphics("gifs/animate-all-data-1.gif")
 
 
 ---
+# And the rest
 
-# And the rest?
-
-```{r gg-show-all-again}
-gg_heights(heights)
+```{r gg-show-all}
+gg_heights
 ```
 
+---
+class: bg-black
+background-image: url("gifs/noodle-explode.gif")
+background-size: contain
+background-position: 50% 50%
+class: center, bottom, white
 
 ---
 
@@ -282,7 +278,7 @@ gg_heights(heights)
 
 .pull-right[
 ```{r gg-heights-heights-again}
-gg_heights(heights)
+gg_heights
 ```
 ]
 
@@ -452,7 +448,7 @@ class: inverse, middle,
 
 class: inverse, middle
 
-# Can we think of longitudinal data a **time series**?
+# `r emo::ji("thinking")` Can we think of longitudinal data as a **time series**?
 
 --
 
@@ -516,14 +512,6 @@ Use it **many** times in other places
 
 ]
 
----
-class: inverse, middle
-
-.huge[
-Remember: 
-
-**key**  = variable(s) defining individual groups (or series)
-]
 
 ---
 class: inverse, center, middle
@@ -531,7 +519,7 @@ class: inverse, center, middle
 
 ```{r ggplot-sample-keys}
 heights_sample <- sample_n_keys(heights, 5)
-gg_sample_keys <- gg_heights(heights_sample)
+gg_sample_keys <- plot_heights(heights_sample)
 ```
 
 --
@@ -556,6 +544,12 @@ include_graphics("gifs/garfield-spaghetti.gif")
 ```
 ]
 
+--
+
+.animated.rollIn.huge.center[
+data indigestion
+]
+
 ---
 
 .pull-left[
@@ -564,6 +558,8 @@ include_graphics("gifs/garfield-spaghetti.gif")
 include_graphics("gifs/cat-single-spag.gif")
 ```
 ]
+
+--
 
 .pull-right[
 ```{r rat-sketti, out.width = "100%"}
@@ -577,7 +573,7 @@ include_graphics("gifs/rat-spaghetti.gif")
 # Portion out your spaghetti! `r emo::ji("spaghetti")` `r emo::ji("spaghetti")` `r emo::ji("spaghetti")` `r emo::ji("spaghetti")`
 
 ```{r all-heights}
-gg_heights(heights)
+plot_heights(heights)
 ```
 
 
@@ -591,18 +587,19 @@ gg_sample_keys
 
 ---
 
-# Look at **many** subsamples `r emo::ji("spaghetti")` `r emo::ji("spaghetti")`
+# Look at **many** subsamples `r emo::ji("spaghetti")` `r emo::ji("spaghetti")` `r emo::ji("spaghetti")` `r emo::ji("spaghetti")` `r emo::ji("spaghetti")` `r emo::ji("spaghetti")`
 
 ```{r heights-strata}
-gg_heights(heights) + 
+gg_heights +
   facet_sample()
 ```
 
 ---
 class: inverse
 
-# **How** do I look at many subsamples?
+# **How** do I look at many subsamples? `r emo::ji("thinking")`
 
+--
 
 How many keys are there?
 
@@ -632,10 +629,10 @@ You have hit the **distraction threshold**
 
 
 ---
-
-```{r what-year-is-it, out.width = "65%"}
-include_graphics("imgs/what-year-is-it.jpg")
-```
+background-image: url("imgs/what-year-is-it.jpg")
+background-size: contain
+background-position: 50% 50%
+class: center, bottom, white
 
 ---
 
@@ -692,7 +689,7 @@ We need to make things **as easy as reasonable**, with the least amount of distr
 
 ---
 
-# `facet_sample()`: See more individuals
+# `facet_sample()`: See more individuals `r emo::ji("eyes")`
 
 ```{r gg-facet-sample-all, echo = TRUE, out.width = "50%"}
 ggplot(heights, aes(x = year, 
@@ -703,27 +700,26 @@ ggplot(heights, aes(x = year,
 
 ---
 
-# `facet_sample()`: See more individuals
+# `facet_sample()`: See more individuals `r emo::ji("eyes")`
 
 ```{r gg-facet-sample, echo = TRUE, eval = FALSE}
-ggplot(heights,
-       aes(x = year,
-             y = height_cm,
-             group = country)) + 
+ggplot(heights, aes(x = year,
+                    y = height_cm,
+                    group = country)) + 
   geom_line() + 
   facet_sample() #<<
 ```
 
 ---
 
-# `facet_sample()`: See more individuals
+# `facet_sample()`: See more individuals `r emo::ji("eyes")`
 
 ```{r print-gg-facet-sample, ref.label='gg-facet-sample'}
 ```
 
 ---
 
-# Remove distraction by asking relevant questions
+# Remove distraction. Ask relevant questions
 
 --
 
@@ -735,17 +731,20 @@ ggplot(heights,
 
 --
 
+.large[
 ```{r show-facet-sample, echo = TRUE, eval = FALSE}
-facet_sample(
+gg_heights +  
+  facet_sample(
     n_per_facet = 3, #<<
     n_facets = 9 #<<
   )
 ```
+]
 
 ---
 
 ```{r show-facet-sample-print, echo = FALSE, out.width = "100%"}
-gg_heights(heights) + 
+plot_heights(heights) + 
   facet_sample(
     n_per_facet = 3, #<<
     n_facets = 9 #<<
@@ -759,29 +758,28 @@ gg_heights(heights) +
 
 --
 
-# `facet_strata()`
-
+.huge[
 ```{r gg-facet-strata, echo = TRUE, eval = FALSE}
-ggplot(heights,
-       aes(x = year,
-           y = height_cm,
-           group = country)) + 
-  geom_line() + 
+gg_heights +  
   facet_strata() #<<
 ```
+]
 
 ---
 
 # `facet_strata()`: See **all** individuals
 
-```{r print-gg-facet-strata, ref.label='gg-facet-strata'}
+```{r print-gg-facet-strata}
+set.seed(2020-01-29)
+gg_strata <- gg_heights +  facet_strata()
+gg_strata
 ```
 
 ---
 
 # `r emo::ji("thinking")` ... can we re-order these facets?
 
-```{r print-gg-facet-strata-again, ref.label='gg-facet-strata'}
+```{r print-gg-facet-strata-again, ref.label='print-gg-facet-strata'}
 ```
 
 ???
@@ -790,35 +788,48 @@ In asking these questions we can solve something else interesting
 
 ---
 
-# See all individuals **along** some variable
+# We can re-order these facets?! `r emo::ji("smile")`
 
-```{r gg-facet-strata-along, echo = TRUE, eval = FALSE}
-ggplot(heights,
-       aes(x = year,
-           y = height_cm,
-           group = country)) + 
-  geom_line() + 
-  facet_strata(along = -year) #<<
+```{r print-gg-facet-strata-again-again, ref.label='gg-facet-strata'}
 ```
 
 ---
 
 # See all individuals **along** some variable
 
-```{r print-gg-facet-strata-along, ref.label = "gg-facet-strata-along"}
+.huge[
+```{r print-gg-facet-strata-along, echo = TRUE, eval = FALSE}
+gg_heights + 
+  facet_strata(
+    along = -year #<<
+    ) 
+```
+]
+
+---
+
+# See all individuals **along** some variable
+
+```{r print-gg-facet-strata-along-again, ref.label = "print-gg-facet-strata-along"}
 ```
 
 
 ---
 
-# Focus on relevant questions instead of minutae:
+# Magic facets: Focus on relevant questions instead of minutae:
+
+--
 
 .pull-left[
+
+**`facet_sample()`**
+
 "How many lines per facet"
 
 "How many facets?"
 
 ```{r demo-facet-sample, eval = FALSE, echo = TRUE}
+gg_heights +  
   facet_sample(
     n_per_facet = 10, #<<
     n_facets = 12 #<<
@@ -830,11 +841,15 @@ ggplot(heights,
 --
 
 .pull-right[
+
+**`facet_strata()`**
+
 "How many facets / strata?"
 
 "**What** to arrange plots **along**?"
 
 ```{r demo-facet-strata, eval = FALSE, echo = TRUE}
+gg_heights +  
   facet_strata(
     n_strata = 10, #<<
     along = -year #<<
@@ -1055,7 +1070,7 @@ gg_id_features_red_dots
 
 ---
 
-## Identify important features and decide how to filter 
+## Identify **important features** and **decide** how to filter 
 
 ```{r gg-just-red-points}
 gg_id_features_red_dots_only <- 
@@ -1146,9 +1161,11 @@ Let's see that **one more time**, but with the data
 
 ## Identify features: one observation per **key**
 
+.large[
 ```{r print-heights-again}
-print(heights, n = 9)
+print(heights, n = 6)
 ```
+]
 
 ---
 
@@ -1161,9 +1178,11 @@ heights_five <- heights %>%
   select(country, max)
 ```
 
+.large[
 ```{r print-heights-for-features}
-heights_five
+print(heights_five, n = 6)
 ```
+]
 
 ---
 
@@ -1173,6 +1192,7 @@ heights_five
 heights_five %>% 
   filter(max == max(max) | max == min(max))
 ```
+
 
 ---
 
@@ -1193,14 +1213,15 @@ heights_five %>%
 
 ---
 
-```{r show-doggo, out.width = "60%"}
-include_graphics("gifs/dog-solve-problem.gif")
-```
+background-image: url("gifs/dog-solve-problem.gif")
+background-size: contain
+background-position: 50% 50%
+class: center, bottom, white
 
 
 ---
 
-.huge[
+.vhuge[
 But Nick, how did you create those summaries?
 ]
 
@@ -1210,8 +1231,7 @@ But Nick, how did you create those summaries?
 
 ```{r show-features, echo = TRUE, eval = FALSE}
 heights %>%
-  features(height_cm, #<<
-           feat_five_num) #<<
+  features(height_cm, feat_five_num) #<<
 ```
  
 ```{r create-feature-five}
@@ -1272,9 +1292,13 @@ heights %>%
 ## features: MANY more features in `feasts` <img src="https://feasts.tidyverts.org/reference/figures/logo.png" align="right" height=140/>
 
 .large[
-- `feat_acf`: autocorrelation-based features
-- `feat_stl`: STL (Seasonal, Trend, and Remainder by LOESS) decomposition
-- [Create your own features](http://brolgar.njtierney.com/articles/finding-features.html#creating-your-own-features)
+
+`feat_acf`: autocorrelation-based features
+
+`feat_stl`: STL (Seasonal, Trend, and Remainder by LOESS) decomposition
+
+[Create your own features](http://brolgar.njtierney.com/articles/finding-features.html#creating-your-own-features)
+
 ]
 
 ---
@@ -1295,6 +1319,9 @@ heights %>%
 
 # Problem #3: How do I **understand** a model?
 
+.vhuge.center[
+`r emo::ji("thinking")`
+]
 
 ---
 
@@ -1403,69 +1430,6 @@ heights_sample + geom_point(aes(y = height_cm))
 
 ---
 
-# What if we grabbed a sample of those who have the best, middle, and worst residuals? 
-
---
-
-```{r summary-residuals, echo = TRUE}
-summary(heights_aug$res)
-```
-
---
-
-.large[
-Which countries are **nearest** to these statistics?
-]
-
----
-
-# use `keys_near()`
-
-.pull-left[
-```{r keys-near, echo = TRUE}
-keys_near(heights_aug, 
-          var = res)
-```
-]
-
-.pull-right[
-```{r save-keys-near}
-heights_near <- keys_near(heights_aug, 
-                          var = res)
-```
-
-> This shows us the keys that closely match the five number summary. 
-
-]
-
----
-
-## Show data by joining it with residuals, to explore spread
-
-```{r plot-join-aug}
-library(stickylabeller)
-
-heights_near_aug <- left_join(heights_near,
-          heights_aug,
-          by = "country")
-
-gg_heights_near <-
-ggplot(heights_near_aug,
-       aes(x = year,
-             y = pred,
-             group = country,
-             colour = country)) + 
-  geom_line() + 
-  geom_point(aes(y = height_cm)) + 
-  facet_wrap(~stat + country,
-             labeller = label_glue("Country: {country} \nNearest to {stat} residual")) + 
-  theme(legend.position = "none")
-
-gg_heights_near
-```  
-
----
-
 # Take homes
 
 ## Problem #1: How do I look at **some** of the data?
@@ -1486,7 +1450,7 @@ gg_heights_near
 
 .large[
 1. Decide what features are interesting
-2. Summarise down to one observation
+2. Summarise down to one observation per key
 3. Decide how to filter
 4. Join this feature back to the data
 ]
@@ -1500,10 +1464,8 @@ gg_heights_near
 .large[
 1. Look at (one, more or all!) subsamples
 1. Arrange subsamples
-1. Find **keys near** some summary 
-1. Join keys to data to explore representatives
+1. (actually use similar approaches to earlier!)
 ]
-
 
 ---
 
@@ -1512,7 +1474,7 @@ gg_heights_near
 .large[
 `r icon::fontawesome("mortar-pestle", "solid")` More features (summaries)
 
-`r icon::fontawesome$solid$binoculars` Generalise beyond time series
+`r icon::fontawesome$solid$binoculars` Generalise beyond longitudinal data 
 
 `r icon::fontawesome$solid$compass` Explore stratification process
 
@@ -1596,14 +1558,85 @@ gg_heights_near
 
 <iframe width="960" height="600" src="https://www.youtube.com/embed/AbSehcT19u0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+---
+class: animated, heartBeat
+
+.vhuge[
+BONUS ROUND
+]
 
 ---
 
-.vhuge[
+# What if we grabbed a sample of those who have the best, middle, and worst residuals? 
+
+--
+
+```{r summary-residuals, echo = TRUE}
+summary(heights_aug$res)
+```
+
+--
+
+.large[
+Which countries are **nearest** to these statistics?
+]
+
+---
+
+# use `keys_near()`
+
+.pull-left[
+```{r keys-near, echo = TRUE}
+keys_near(heights_aug, 
+          var = res)
+```
+]
+
+.pull-right[
+```{r save-keys-near}
+heights_near <- keys_near(heights_aug, 
+                          var = res)
+```
+
+> `r emo::ji("key")` `r emo::ji("key")` `r emo::ji("key")` that best match the 5 number summary. 
+
+]
+
+---
+
+# Join data back and explore
+
+```{r plot-join-aug}
+library(stickylabeller)
+
+heights_near_aug <- left_join(heights_near,
+          heights_aug,
+          by = "country")
+
+gg_heights_near <-
+ggplot(heights_near_aug,
+       aes(x = year,
+             y = pred,
+             group = country,
+             colour = country)) + 
+  geom_line() + 
+  geom_point(aes(y = height_cm)) + 
+  facet_wrap(~stat + country,
+             labeller = label_glue("Country: {country} \nNearest to {stat} residual")) + 
+  theme(legend.position = "none")
+
+gg_heights_near
+```  
+
+---
+
+.vhuge.left-code[
 **End.**
 ]
 
-```{r explorer, out.width = "25%"}
+.right-plot[
+```{r explorer, out.width = "100%"}
 include_graphics("imgs/explorer.jpg")
 ```
 
+]

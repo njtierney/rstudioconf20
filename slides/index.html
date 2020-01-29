@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Exploring and understanding the individual experience from longitudinal data, or…</title>
+    <title>How to make better spaghetti (plots) 🍝 🍝 🍝</title>
     <meta charset="utf-8" />
     <meta name="author" content="Nicholas Tierney, Monash University" />
     <script src="libs/header-attrs-2.1/header-attrs.js"></script>
     <link rel="stylesheet" href="njtheme.css" type="text/css" />
     <link rel="stylesheet" href="extra.css" type="text/css" />
     <link rel="stylesheet" href="animate.css" type="text/css" />
+    <link rel="stylesheet" href="typewriter.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: left, middle, inverse, title-slide
 
-# Exploring and understanding the individual experience from longitudinal data, or…
-## <em>How to make better spaghetti (plots)</em>
-### <span style="font-size: 90%;">Nicholas Tierney, Monash University</span>
-### <span style="font-size: 90%;">rsudioconf2020<br><br> January, 2020</span><br><svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+# How to make better spaghetti (plots) 🍝 🍝 🍝
+### Nicholas Tierney, Monash University
+### rsudioconf2020 <br><br> January, 2020 <br><br> <svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
   <path d='M12.41 148.02l232.94 105.67c6.8 3.09 14.49 3.09 21.29 0l232.94-105.67c16.55-7.51 16.55-32.52 0-40.03L266.65 2.31a25.607 25.607 0 0 0-21.29 0L12.41 107.98c-16.55 7.51-16.55 32.53 0 40.04zm487.18 88.28l-58.09-26.33-161.64 73.27c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.51 209.97l-58.1 26.33c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 276.3c16.55-7.5 16.55-32.5 0-40zm0 127.8l-57.87-26.23-161.86 73.37c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.29 337.87 12.41 364.1c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 404.1c16.55-7.5 16.55-32.5 0-40z'></path>
-</svg> <a href="https://bit.ly/njt-rstudio">bit.ly/njt-rstudio</a><br><br><svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
+</svg> <a href="https://bit.ly/njt-rstudio">bit.ly/njt-rstudio</a> <br><br> <svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
   <path d='M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z'></path>
 </svg> <a href="https://twitter.com/nj_tierney">nj_tierney</a>
 
@@ -35,17 +35,6 @@ layout: true
 
 
 
-
----
-
-# This is a problem
-
-&lt;img src="figures/gg-show-all-1.png" width="936" style="display: block; margin: auto;" /&gt;
-
----
-class: bg-black
-
-&lt;img src="gifs/noodle-explode.gif" width="45%" style="display: block; margin: auto;" /&gt;
 
 ---
 class: middle, center, inverse
@@ -224,18 +213,23 @@ Individuals repeatedly measured through time
 
 
 ---
-
+class: animated, heartBeat
 # And the rest?
 
 &lt;img src="gifs/animate-all-data-1.gif" style="display: block; margin: auto;" /&gt;
 
 
 ---
+# And the rest
 
-# And the rest?
+&lt;img src="figures/gg-show-all-1.png" width="936" style="display: block; margin: auto;" /&gt;
 
-&lt;img src="figures/gg-show-all-again-1.png" width="936" style="display: block; margin: auto;" /&gt;
-
+---
+class: bg-black
+background-image: url("gifs/noodle-explode.gif")
+background-size: contain
+background-position: 50% 50%
+class: center, bottom, white
 
 ---
 
@@ -373,7 +367,7 @@ class: inverse, middle,
 
 class: inverse, middle
 
-# Can we think of longitudinal data a **time series**?
+# 🤔 Can we think of longitudinal data as a **time series**?
 
 --
 
@@ -449,14 +443,6 @@ Use it **many** times in other places
 
 ]
 
----
-class: inverse, middle
-
-.huge[
-Remember: 
-
-**key**  = variable(s) defining individual groups (or series)
-]
 
 ---
 class: inverse, center, middle
@@ -480,12 +466,20 @@ class: inverse, center, middle
 &lt;img src="gifs/garfield-spaghetti.gif" style="display: block; margin: auto;" /&gt;
 ]
 
+--
+
+.animated.rollIn.huge.center[
+data indigestion
+]
+
 ---
 
 .pull-left[
 
 &lt;img src="gifs/cat-single-spag.gif" width="100%" style="display: block; margin: auto;" /&gt;
 ]
+
+--
 
 .pull-right[
 &lt;img src="gifs/rat-spaghetti.gif" width="100%" style="display: block; margin: auto;" /&gt;
@@ -507,15 +501,16 @@ class: inverse, center, middle
 
 ---
 
-# Look at **many** subsamples 🍝 🍝
+# Look at **many** subsamples 🍝 🍝 🍝 🍝 🍝 🍝
 
 &lt;img src="figures/heights-strata-1.png" width="936" style="display: block; margin: auto;" /&gt;
 
 ---
 class: inverse
 
-# **How** do I look at many subsamples?
+# **How** do I look at many subsamples? 🤔
 
+--
 
 How many keys are there?
 
@@ -545,12 +540,14 @@ You have hit the **distraction threshold**
 
 
 ---
-
-&lt;img src="imgs/what-year-is-it.jpg" width="65%" style="display: block; margin: auto;" /&gt;
+background-image: url("imgs/what-year-is-it.jpg")
+background-size: contain
+background-position: 50% 50%
+class: center, bottom, white
 
 ---
 
-# Distraction threshold ⏱ 🐰 🕳
+# Distraction threshold ⏲ 🐰 🕳
 
 --
 
@@ -603,7 +600,7 @@ We need to make things **as easy as reasonable**, with the least amount of distr
 
 ---
 
-# `facet_sample()`: See more individuals
+# `facet_sample()`: See more individuals 👀
 
 
 ```r
@@ -617,27 +614,26 @@ ggplot(heights, aes(x = year,
 
 ---
 
-# `facet_sample()`: See more individuals
+# `facet_sample()`: See more individuals 👀
 
 
 ```r
-ggplot(heights,
-       aes(x = year,
-             y = height_cm,
-             group = country)) + 
+ggplot(heights, aes(x = year,
+                    y = height_cm,
+                    group = country)) + 
   geom_line() + 
 * facet_sample()
 ```
 
 ---
 
-# `facet_sample()`: See more individuals
+# `facet_sample()`: See more individuals 👀
 
 &lt;img src="figures/print-gg-facet-sample-1.png" width="936" style="display: block; margin: auto;" /&gt;
 
 ---
 
-# Remove distraction by asking relevant questions
+# Remove distraction. Ask relevant questions
 
 --
 
@@ -649,13 +645,16 @@ ggplot(heights,
 
 --
 
+.large[
 
 ```r
-facet_sample(
+gg_heights +  
+  facet_sample(
 *   n_per_facet = 3,
 *   n_facets = 9
   )
 ```
+]
 
 ---
 
@@ -668,17 +667,13 @@ facet_sample(
 
 --
 
-# `facet_strata()`
-
+.huge[
 
 ```r
-ggplot(heights,
-       aes(x = year,
-           y = height_cm,
-           group = country)) + 
-  geom_line() + 
+gg_heights +  
 * facet_strata()
 ```
+]
 
 ---
 
@@ -698,36 +693,48 @@ In asking these questions we can solve something else interesting
 
 ---
 
+# We can re-order these facets?! 😄
+
+&lt;img src="figures/print-gg-facet-strata-again-again-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+---
+
 # See all individuals **along** some variable
 
+.huge[
 
 ```r
-ggplot(heights,
-       aes(x = year,
-           y = height_cm,
-           group = country)) + 
-  geom_line() + 
-* facet_strata(along = -year)
+gg_heights + 
+  facet_strata(
+*   along = -year
+    ) 
 ```
+]
 
 ---
 
 # See all individuals **along** some variable
 
-&lt;img src="figures/print-gg-facet-strata-along-1.png" width="936" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/print-gg-facet-strata-along-again-1.png" width="936" style="display: block; margin: auto;" /&gt;
 
 
 ---
 
-# Focus on relevant questions instead of minutae:
+# Magic facets: Focus on relevant questions instead of minutae:
+
+--
 
 .pull-left[
+
+**`facet_sample()`**
+
 "How many lines per facet"
 
 "How many facets?"
 
 
 ```r
+gg_heights +  
   facet_sample(
 *   n_per_facet = 10,
 *   n_facets = 12
@@ -739,12 +746,16 @@ ggplot(heights,
 --
 
 .pull-right[
+
+**`facet_strata()`**
+
 "How many facets / strata?"
 
 "**What** to arrange plots **along**?"
 
 
 ```r
+gg_heights +  
   facet_strata(
 *   n_strata = 10,
 *   along = -year
@@ -880,7 +891,7 @@ _maximum height_
 
 ---
 
-## Identify important features and decide how to filter 
+## Identify **important features** and **decide** how to filter 
 
 &lt;img src="figures/gg-just-red-points-1.png" width="936" style="display: block; margin: auto;" /&gt;
 
@@ -914,6 +925,7 @@ Let's see that **one more time**, but with the data
 
 ## Identify features: one observation per **key**
 
+.large[
 
 ```
 ## # A tsibble: 1,490 x 3 [!]
@@ -926,11 +938,9 @@ Let's see that **one more time**, but with the data
 ## 4 Afghanistan  1990      167.
 ## 5 Afghanistan  2000      161.
 ## 6 Albania      1880      170.
-## 7 Albania      1890      170.
-## 8 Albania      1900      169.
-## 9 Albania      2000      168.
-## # … with 1,481 more rows
+## # … with 1,484 more rows
 ```
+]
 
 ---
 
@@ -938,23 +948,21 @@ Let's see that **one more time**, but with the data
 
 
 
+.large[
 
 ```
 ## # A tibble: 144 x 2
-##    country       max
-##    &lt;chr&gt;       &lt;dbl&gt;
-##  1 Afghanistan  168.
-##  2 Albania      170.
-##  3 Algeria      171.
-##  4 Angola       169.
-##  5 Argentina    174.
-##  6 Armenia      172.
-##  7 Australia    178.
-##  8 Austria      179.
-##  9 Azerbaijan   172.
-## 10 Bahrain      164 
-## # … with 134 more rows
+##   country       max
+##   &lt;chr&gt;       &lt;dbl&gt;
+## 1 Afghanistan  168.
+## 2 Albania      170.
+## 3 Algeria      171.
+## 4 Angola       169.
+## 5 Argentina    174.
+## 6 Armenia      172.
+## # … with 138 more rows
 ```
+]
 
 ---
 
@@ -973,6 +981,7 @@ heights_five %&gt;%
 ## 1 Denmark           183.
 ## 2 Papua New Guinea  161.
 ```
+
 
 ---
 
@@ -1000,12 +1009,15 @@ heights_five %&gt;%
 
 ---
 
-&lt;img src="gifs/dog-solve-problem.gif" width="60%" style="display: block; margin: auto;" /&gt;
+background-image: url("gifs/dog-solve-problem.gif")
+background-size: contain
+background-position: 50% 50%
+class: center, bottom, white
 
 
 ---
 
-.huge[
+.vhuge[
 But Nick, how did you create those summaries?
 ]
 
@@ -1016,8 +1028,7 @@ But Nick, how did you create those summaries?
 
 ```r
 heights %&gt;%
-* features(height_cm,
-*          feat_five_num)
+* features(height_cm, feat_five_num)
 ```
  
 
@@ -1108,9 +1119,13 @@ heights %&gt;%
 ## features: MANY more features in `feasts` &lt;img src="https://feasts.tidyverts.org/reference/figures/logo.png" align="right" height=140/&gt;
 
 .large[
-- `feat_acf`: autocorrelation-based features
-- `feat_stl`: STL (Seasonal, Trend, and Remainder by LOESS) decomposition
-- [Create your own features](http://brolgar.njtierney.com/articles/finding-features.html#creating-your-own-features)
+
+`feat_acf`: autocorrelation-based features
+
+`feat_stl`: STL (Seasonal, Trend, and Remainder by LOESS) decomposition
+
+[Create your own features](http://brolgar.njtierney.com/articles/finding-features.html#creating-your-own-features)
+
 ]
 
 ---
@@ -1131,6 +1146,9 @@ heights %&gt;%
 
 # Problem #3: How do I **understand** a model?
 
+.vhuge.center[
+🤔
+]
 
 ---
 
@@ -1253,65 +1271,6 @@ heights_sample + geom_point(aes(y = height_cm))
 
 ---
 
-# What if we grabbed a sample of those who have the best, middle, and worst residuals? 
-
---
-
-
-```r
-summary(heights_aug$res)
-```
-
-```
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## -8.1707 -1.6202 -0.1558  0.0000  1.3545 12.1729
-```
-
---
-
-.large[
-Which countries are **nearest** to these statistics?
-]
-
----
-
-# use `keys_near()`
-
-.pull-left[
-
-```r
-keys_near(heights_aug, 
-          var = res)
-```
-
-```
-## # A tibble: 6 x 5
-##   country       res stat  stat_value stat_diff
-##   &lt;chr&gt;       &lt;dbl&gt; &lt;fct&gt;      &lt;dbl&gt;     &lt;dbl&gt;
-## 1 Ireland    -8.17  min       -8.17   0       
-## 2 Azerbaijan -1.62  q_25      -1.62   0.000269
-## 3 Laos       -0.157 med       -0.156  0.00125 
-## 4 Mongolia   -0.155 med       -0.156  0.00125 
-## 5 Egypt       1.35  q_75       1.35   0.000302
-## 6 Poland     12.2   max       12.2    0
-```
-]
-
-.pull-right[
-
-
-&gt; This shows us the keys that closely match the five number summary. 
-
-]
-
----
-
-## Show data by joining it with residuals, to explore spread
-
-&lt;img src="figures/plot-join-aug-1.png" width="936" style="display: block; margin: auto;" /&gt;
-
----
-
 # Take homes
 
 ## Problem #1: How do I look at **some** of the data?
@@ -1332,7 +1291,7 @@ keys_near(heights_aug,
 
 .large[
 1. Decide what features are interesting
-2. Summarise down to one observation
+2. Summarise down to one observation per key
 3. Decide how to filter
 4. Join this feature back to the data
 ]
@@ -1346,10 +1305,8 @@ keys_near(heights_aug,
 .large[
 1. Look at (one, more or all!) subsamples
 1. Arrange subsamples
-1. Find **keys near** some summary 
-1. Join keys to data to explore representatives
+1. (actually use similar approaches to earlier!)
 ]
-
 
 ---
 
@@ -1362,7 +1319,7 @@ keys_near(heights_aug,
 
 <svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
   <path d='M416 48c0-8.84-7.16-16-16-16h-64c-8.84 0-16 7.16-16 16v48h96V48zM63.91 159.99C61.4 253.84 3.46 274.22 0 404v44c0 17.67 14.33 32 32 32h96c17.67 0 32-14.33 32-32V288h32V128H95.84c-17.63 0-31.45 14.37-31.93 31.99zm384.18 0c-.48-17.62-14.3-31.99-31.93-31.99H320v160h32v160c0 17.67 14.33 32 32 32h96c17.67 0 32-14.33 32-32v-44c-3.46-129.78-61.4-150.16-63.91-244.01zM176 32h-64c-8.84 0-16 7.16-16 16v48h96V48c0-8.84-7.16-16-16-16zm48 256h64V128h-64v160z'></path>
-</svg> Generalise beyond time series
+</svg> Generalise beyond longitudinal data 
 
 <svg viewBox='0 0 496 512' xmlns='http://www.w3.org/2000/svg' style='height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;'>
   <path d='M225.38 233.37c-12.5 12.5-12.5 32.76 0 45.25 12.49 12.5 32.76 12.5 45.25 0 12.5-12.5 12.5-32.76 0-45.25-12.5-12.49-32.76-12.49-45.25 0zM248 8C111.03 8 0 119.03 0 256s111.03 248 248 248 248-111.03 248-248S384.97 8 248 8zm126.14 148.05L308.17 300.4a31.938 31.938 0 0 1-15.77 15.77l-144.34 65.97c-16.65 7.61-33.81-9.55-26.2-26.2l65.98-144.35a31.938 31.938 0 0 1 15.77-15.77l144.34-65.97c16.65-7.6 33.8 9.55 26.19 26.2z'></path>
@@ -1480,15 +1437,82 @@ keys_near(heights_aug,
 
 &lt;iframe width="960" height="600" src="https://www.youtube.com/embed/AbSehcT19u0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
 
+---
+class: animated, heartBeat
+
+.vhuge[
+BONUS ROUND
+]
 
 ---
 
-.vhuge[
+# What if we grabbed a sample of those who have the best, middle, and worst residuals? 
+
+--
+
+
+```r
+summary(heights_aug$res)
+```
+
+```
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## -8.1707 -1.6202 -0.1558  0.0000  1.3545 12.1729
+```
+
+--
+
+.large[
+Which countries are **nearest** to these statistics?
+]
+
+---
+
+# use `keys_near()`
+
+.pull-left[
+
+```r
+keys_near(heights_aug, 
+          var = res)
+```
+
+```
+## # A tibble: 6 x 5
+##   country       res stat  stat_value stat_diff
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;fct&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Ireland    -8.17  min       -8.17   0       
+## 2 Azerbaijan -1.62  q_25      -1.62   0.000269
+## 3 Laos       -0.157 med       -0.156  0.00125 
+## 4 Mongolia   -0.155 med       -0.156  0.00125 
+## 5 Egypt       1.35  q_75       1.35   0.000302
+## 6 Poland     12.2   max       12.2    0
+```
+]
+
+.pull-right[
+
+
+&gt; 🔑 🔑 🔑 that best match the 5 number summary. 
+
+]
+
+---
+
+# Join data back and explore
+
+&lt;img src="figures/plot-join-aug-1.png" width="936" style="display: block; margin: auto;" /&gt;
+
+---
+
+.vhuge.left-code[
 **End.**
 ]
 
-&lt;img src="imgs/explorer.jpg" width="50%" style="display: block; margin: auto;" /&gt;
+.right-plot[
+&lt;img src="imgs/explorer.jpg" width="100%" style="display: block; margin: auto;" /&gt;
 
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -1496,7 +1520,8 @@ keys_near(heights_aug,
 "ratio": "16:9",
 "highlightStyle": "github",
 "highlightLines": true,
-"countIncrementalSlides": false
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%"
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
