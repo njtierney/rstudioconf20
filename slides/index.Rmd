@@ -1,7 +1,7 @@
 ---
 title: .vlarge[How to make better spaghetti (plots) `r emo::ji("spaghetti")` `r emo::ji("spaghetti")` ]
 author: .vlarge[Nicholas Tierney, Monash University]
-date: "<div class='medium'>rstudioconf2020, January 29 <br><br> `r icon::fontawesome(name = 'link', 'solid')` [bit.ly/njt-rstudio](https://bit.ly/njt-rstudio) <br><br> `r icon::fontawesome$brands$twitter` [nj_tierney](https://twitter.com/nj_tierney)</div>"
+date: "<div class='medium'>rstudioconf2020, January 29 <br><br> `r icon::fontawesome(name = 'link', 'solid')` **bit.ly/njt-rstudio** <br><br> `r icon::fontawesome$brands$twitter` **nj_tierney**</div>"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -136,14 +136,14 @@ gg_heights <- plot_heights(heights)
 class: middle, center, inverse
 
 .huge[
-How to make better spaghetti
+How to make better spaghetti `r emo::ji("spaghetti")`
 ]
 
 ---
 class: middle, center, inverse
 
 .huge[
-~~How to make better spaghetti~~
+~~How to make better spaghetti `r emo::ji("spaghetti")`~~
 ]
 
 .huge[
@@ -205,7 +205,7 @@ as_table(example[1:4,])
 --
 
 .large[
-Individuals repeatedly measured through time
+`r emo::ji("tada")` Individuals repeatedly measured through time
 ]
 
 ---
@@ -520,7 +520,7 @@ gg_sample_keys <- plot_heights(heights_sample)
 
 # How do you **eat** spaghetti?
 
-```{r steaming-sketti, out.width = "75%"}
+```{r steaming-sketti, out.width = "60%"}
 include_graphics("gifs/steaming-spaghetti.gif")
 ```
 
@@ -708,7 +708,7 @@ ggplot(heights, aes(x = year,
 
 # `facet_sample()`: See more individuals `r emo::ji("eyes")`
 
-```{r gg-facet-sample-all-out, ref.label = 'gg-facet-sample-all', echo = FALSE, out.width = "100%"}
+```{r gg-facet-sample-all-out, ref.label = 'gg-facet-sample-all', echo = FALSE}
 ```
 
 # `facet_sample()`: See more individuals `r emo::ji("eyes")`
@@ -879,7 +879,7 @@ gg_heights +
 # `facet_strata()` & `facet_sample()`
 
 .pull-left[
-```{r under-hood, out.width = "80%"}
+```{r under-hood, out.width = "8010"}
 include_graphics("imgs/car-hood-small.jpg")
 ```
 ]
@@ -1513,6 +1513,7 @@ heights_sample + geom_point(aes(y = height_cm))
 - Rob Hyndman
 - Miles McBain
 - Hadley Wickham
+- Garrick Aden-Buie
 - Monash University
 - ACEMS
 ]

@@ -2,9 +2,9 @@
 
 # Learn more at [brolgar.njtierney.com](http://brolgar.njtierney.com/)
 
-# Slide available [here](https://bit.ly/njt-rstudio)
+# Slides available [here](https://njt-rstudio20.netlify.com/)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/d628115f-4978-495f-afb4-dba4a4017de5/deploy-status)](https://app.netlify.com/sites/njt-wombat/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1b747875-4358-48b8-9f55-42c799cc477b/deploy-status)](https://app.netlify.com/sites/njt-rstudio20/deploys)
 
 # Take home messages
 
